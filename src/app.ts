@@ -16,6 +16,8 @@ import { Init } from './states/init.js';
 // Globals
 const canvas = document.getElementById('game-canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+canvas.width = 600;
+canvas.height = 600;
 const gameContext = new GameContext(new Init(), ctx); // is this the place for infamous ctx?!
 
 // Event Listeners

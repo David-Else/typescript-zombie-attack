@@ -7,20 +7,20 @@ export class LevelOne extends Base implements State {
     context.State = new StartScreen();
   }
   public update(context: GameContext): void {
-    if (this.inGameKeys.firePressed) {
+    if (context.inGameKeys.firePressed) {
       console.log('fire');
     }
-    if (this.inGameKeys.leftPressed) {
+    if (context.inGameKeys.leftPressed) {
       console.log('left');
     }
-    if (this.inGameKeys.rightPressed) {
+    if (context.inGameKeys.rightPressed) {
       console.log('right');
     }
-    if (this.inGameKeys.pausePressed) {
+    if (context.inGameKeys.pausePressed) {
       console.log('pause');
     }
 
-    if (this.inGameKeys.firePressed) {
+    if (context.inGameKeys.firePressed) {
       context.transition();
     }
   }

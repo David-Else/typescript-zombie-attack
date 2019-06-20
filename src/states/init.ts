@@ -5,6 +5,7 @@ import { instantiate } from '../entities/entity-factory.js';
 import { Zombie } from '../entities/zombie.js';
 import { Hero } from '../entities/hero.js';
 import { Bullet } from '../entities/bullet.js';
+import { Vector2 } from '../vectors.js';
 
 let runAsyncInitFunctionOnce = false; // HACK to fix
 
@@ -65,21 +66,27 @@ export class Init extends Base implements State {
      * Instantiate classes
      * ==========================================================================
      */
-    this.entities.hero.push(
+
+    const middleOfScreen = (ctx: CanvasRenderingContext2D): Vector2 => [
+      ctx.canvas.width / 2,
+      ctx.canvas.height / 2,
+    ];
+
+    context.entities.hero.push(
       ...instantiate(Hero, 1, {
-        position: [11, 10],
+        position: middleOfScreen(context.ctx),
       }),
     );
 
-    this.entities.zombies.push(
-      ...instantiate(Zombie, 3, {
+    context.entities.zombies.push(
+      ...instantiate(Zombie, 50, {
         widthHeight: [10, 10],
         image: zombieImg,
-        position: [11, 10],
+        pointToSpawnAround: middleOfScreen(context.ctx),
       }),
     );
 
-    this.entities.bullets.push(
+    context.entities.bullets.push(
       ...instantiate(Bullet, 10, {
         position: [10, 10],
         rotation: 0,
@@ -87,9 +94,9 @@ export class Init extends Base implements State {
     );
 
     console.log(
-      this.entities.zombies[0],
-      this.entities.hero,
-      this.entities.bullets,
+      context.entities.zombies[0],
+      context.entities.hero,
+      context.entities.bullets,
     );
     // WORKS!! this.renderAll(context.ctx);
     context.transition();

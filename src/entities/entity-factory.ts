@@ -10,13 +10,24 @@ interface HeroOptions {
 interface ZombieOptions {
   widthHeight: Vector2;
   image: HTMLImageElement;
-  position: Vector2;
+  pointToSpawnAround: Vector2;
 }
 
 interface BulletOptions {
   position: Vector2;
   rotation: number;
 }
+
+const randomSpawnPoint = (pointToSpawnAround: Vector2): Vector2 => {
+  const variationInR = 400;
+  const minimumR = 200;
+  const theta = Math.random() * (2 * Math.PI);
+  const r = Math.random() * variationInR + minimumR;
+  return [
+    Math.cos(theta) * r + pointToSpawnAround[0],
+    Math.sin(theta) * r + pointToSpawnAround[1],
+  ];
+};
 
 // FUNCTION OVERLOADS AND MAIN FUNCTION
 export function instantiate(
@@ -47,7 +58,7 @@ export function instantiate(
           new ClassToInstantiate(
             options.widthHeight,
             options.image,
-            options.position,
+            randomSpawnPoint(options.pointToSpawnAround),
           ),
         );
         break;

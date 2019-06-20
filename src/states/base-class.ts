@@ -1,12 +1,8 @@
 import { GameContext } from './context.js';
-import { Hero } from '../entities/hero.js';
-import { Zombie } from '../entities/zombie.js';
-import { Bullet } from '../entities/bullet.js';
-import { Drawable } from '../entities/base-classes.js';
 
 export interface State {
   transition(context: GameContext): void;
-  keyHandler(event: KeyboardEvent): void;
+  keyHandler(event: KeyboardEvent, context: GameContext): void;
   update(context: GameContext): void;
   renderAll(context: GameContext): void;
 
@@ -23,48 +19,31 @@ export interface InGameKeys {
 }
 
 export abstract class Base {
-  public entities: {
-    [key: string]: Drawable[];
-  } = {
-    hero: [] as Hero[],
-    zombies: [] as Zombie[],
-    bullets: [] as Bullet[],
-    // screenText: [] as ScreenText[],
-  };
-
-  protected inGameKeys: InGameKeys = {
-    startPressed: false,
-    firePressed: false,
-    leftPressed: false,
-    rightPressed: false,
-    pausePressed: false,
-  };
-
   public renderAll(context: GameContext): void {
-    Object.keys(this.entities).forEach(characterGroup =>
-      this.entities[characterGroup].forEach(character => {
+    Object.keys(context.entities).forEach(characterGroup =>
+      context.entities[characterGroup].forEach(character => {
         //   update(character);
         character.draw(context.ctx);
       }),
     );
   }
 
-  public keyHandler(event: KeyboardEvent): void {
+  public keyHandler(event: KeyboardEvent, context: GameContext): void {
     switch (event.code) {
       case 'KeyF':
-        this.inGameKeys.firePressed = event.type === 'keydown';
+        context.inGameKeys.firePressed = event.type === 'keydown';
         break;
       case 'ArrowLeft':
         event.preventDefault();
-        this.inGameKeys.leftPressed = event.type === 'keydown';
+        context.inGameKeys.leftPressed = event.type === 'keydown';
         break;
       case 'ArrowRight':
         event.preventDefault();
-        this.inGameKeys.rightPressed = event.type === 'keydown';
+        context.inGameKeys.rightPressed = event.type === 'keydown';
         break;
       case 'KeyP':
         if (event.type === 'keydown' && !event.repeat) {
-          this.inGameKeys.pausePressed = !this.inGameKeys.pausePressed;
+          context.inGameKeys.pausePressed = !context.inGameKeys.pausePressed;
         }
         break;
       // no default

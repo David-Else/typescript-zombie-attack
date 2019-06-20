@@ -7,16 +7,16 @@ export class StartScreen extends Base implements State {
     context.State = new LevelOne();
   }
 
-  public keyHandler(event: KeyboardEvent): void {
+  public keyHandler(event: KeyboardEvent, context: GameContext): void {
     if (event.code === 'KeyS') {
-      this.inGameKeys.startPressed = event.type === 'keydown';
+      context.inGameKeys.startPressed = event.type === 'keydown';
     }
   }
 
   public update(context: GameContext): void {
     // NOTHING RENDERED! this.renderAll(context);
 
-    if (this.inGameKeys.startPressed) {
+    if (context.inGameKeys.startPressed) {
       context.transition();
     }
   }
