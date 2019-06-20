@@ -1,0 +1,14 @@
+{
+  "files.exclude": {
+    ".vscode": true,
+    "node_modules": true,
+    "rollup.config.js": true,
+    "pnpm-lock.yaml": true,
+    ".prettierignore": true,
+    "favicon.ico": true,
+    ".eslintrc": true,
+    ".eslintcache": true,
+    "tsconfig.json": true,
+    "**/.gitignore": true
+  }
+}

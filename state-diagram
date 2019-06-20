@@ -1,0 +1,104 @@
+@startuml
+interface State {
+    +transition(context: GameContext): void
+    +keyHandler(event: KeyboardEvent): void
+    +update(context: GameContext): void
+}
+interface InGameKeys {
+    +startPressed: boolean
+    +firePressed: boolean
+    +leftPressed: boolean
+    +rightPressed: boolean
+    +pausePressed: boolean
+}
+abstract class Base {
+    #inGameKeys: InGameKeys
+    +keyHandler(event: KeyboardEvent): void
+}
+class GameContext {
+    -state: State
+    +ctx: CanvasRenderingContext2D
+    +State: State
+    +State: State
+    +transition(): void
+    +keyHandler(ev: KeyboardEvent): void
+    +update(): void
+}
+class LevelOne extends Base implements State {
+    +transition(context: GameContext): void
+    +update(context: GameContext): void
+}
+class StartScreen extends Base implements State {
+    +transition(context: GameContext): void
+    +keyHandler(event: KeyboardEvent): void
+    +update(context: GameContext): void
+}
+class Zombie extends BitmapCharacter {
+    +kind: "zombie" | undefined
+    +widthHeight: [number, number]
+    +image: HTMLImageElement
+    +position: [number, number]
+    +update(): void
+    -randomStumble(): void
+}
+class Hero extends VectorCharacter {
+    +kind: "hero" | undefined
+    +lives: number
+    +widthHeight: [number, number]
+    +color: string
+    +firePaused: boolean
+    +position: [number, number]
+    +update(state: any): void
+}
+interface Drawable {
+    +update(state?: any): void
+    +draw(ctx: CanvasRenderingContext2D): void
+}
+abstract class GameObject {
+    +rotation: number
+    +scale: [number, number]
+    +{abstract} position: [number, number]
+    +x: number
+    +y: number
+}
+abstract class BaseCharacter extends GameObject implements Drawable {
+    +lives: number
+    +velocity: [number, number]
+    +update(state?: any): void
+    +directTowards(targetPosition: [number, number]): void
+    +{abstract} draw(ctx: CanvasRenderingContext2D): void
+}
+abstract class VectorCharacter extends BaseCharacter {
+    +draw(ctx: CanvasRenderingContext2D): void
+    +{abstract} color: string
+    +{abstract} widthHeight: [number, number]
+}
+abstract class BitmapCharacter extends BaseCharacter {
+    +draw(ctx: CanvasRenderingContext2D): void
+    +{abstract} image: HTMLImageElement
+    +{abstract} widthHeight: [number, number]
+}
+class Bullet extends VectorCharacter {
+    +kind: "bullet" | undefined
+    +widthHeight: [number, number]
+    +color: string
+    +position: [number, number]
+    +update(): void
+}
+interface HeroOptions {
+    +position: [number, number]
+}
+interface ZombieOptions {
+    +widthHeight: [number, number]
+    +image: HTMLImageElement
+    +position: [number, number]
+}
+interface BulletOptions {
+    +position: [number, number]
+    +rotation: number
+}
+class Init extends Base implements State {
+    +transition(context: GameContext): void
+    +update(context: GameContext): void
+}
+@enduml

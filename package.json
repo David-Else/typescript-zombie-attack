@@ -21,7 +21,7 @@
     "@typescript-eslint/parser": "^1.9.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-config-prettier": "^4.3.0",
+    "eslint-config-prettier": "5.0.0",
     "esm": "^3.2.25",
     "jsdom": "^15.1.0",
     "mocha": "^6.1.4",
