@@ -6,6 +6,7 @@ import { Zombie } from '../entities/zombie.js';
 import { Hero } from '../entities/hero.js';
 import { Bullet } from '../entities/bullet.js';
 import { Vector2 } from '../vectors.js';
+import { Character } from '../entities/base-classes.js';
 
 let runAsyncInitFunctionOnce = false; // HACK to fix
 
@@ -67,10 +68,10 @@ export class Init extends Base implements State {
      * ==========================================================================
      */
 
-    const middleOfScreen = (ctx: CanvasRenderingContext2D): Vector2 => [
-      ctx.canvas.width / 2,
-      ctx.canvas.height / 2,
-    ];
+    const middleOfScreen = (
+      ctx: CanvasRenderingContext2D,
+      //   entity: Character,
+    ): Vector2 => [ctx.canvas.width / 2, ctx.canvas.height / 2];
 
     context.entities.hero.push(
       ...instantiate(Hero, 1, {
@@ -80,7 +81,6 @@ export class Init extends Base implements State {
 
     context.entities.zombies.push(
       ...instantiate(Zombie, 50, {
-        widthHeight: [10, 10],
         image: zombieImg,
         pointToSpawnAround: middleOfScreen(context.ctx),
       }),
@@ -88,7 +88,7 @@ export class Init extends Base implements State {
 
     context.entities.bullets.push(
       ...instantiate(Bullet, 10, {
-        position: [10, 10],
+        position: middleOfScreen(context.ctx),
         rotation: 0,
       }),
     );

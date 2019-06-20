@@ -8,7 +8,6 @@ interface HeroOptions {
 }
 
 interface ZombieOptions {
-  widthHeight: Vector2;
   image: HTMLImageElement;
   pointToSpawnAround: Vector2;
 }
@@ -56,7 +55,6 @@ export function instantiate(
       case Zombie:
         characters.push(
           new ClassToInstantiate(
-            options.widthHeight,
             options.image,
             randomSpawnPoint(options.pointToSpawnAround),
           ),

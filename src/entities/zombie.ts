@@ -3,12 +3,14 @@ import { BitmapCharacter } from './base-classes.js';
 
 export class Zombie extends BitmapCharacter {
   public kind: 'zombie' | undefined;
-  public constructor(
-    public widthHeight: Vector2,
-    public image: HTMLImageElement,
-    public position: Vector2,
-  ) {
+  public widthHeight: Vector2;
+  public image: HTMLImageElement;
+  public position: Vector2;
+  public constructor(image: HTMLImageElement, position: Vector2) {
     super();
+    this.widthHeight = [image.width, image.height];
+    this.image = image;
+    this.position = position;
   }
 
   public update(): void {
