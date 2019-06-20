@@ -3,6 +3,7 @@ import { Drawable } from '../entities/base-classes.js';
 import { Hero } from '../entities/hero.js';
 import { Zombie } from '../entities/zombie.js';
 import { Bullet } from '../entities/bullet.js';
+import { ScreenText } from '../entities/text.js';
 
 export class GameContext {
   public entities: {
@@ -11,7 +12,7 @@ export class GameContext {
     hero: [] as Hero[],
     zombies: [] as Zombie[],
     bullets: [] as Bullet[],
-    // screenText: [] as ScreenText[],
+    screenText: [] as ScreenText[],
   };
 
   public inGameKeys: InGameKeys = {

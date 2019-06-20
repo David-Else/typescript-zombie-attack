@@ -20,9 +20,15 @@ export interface InGameKeys {
 
 export abstract class Base {
   public renderAll(context: GameContext): void {
+    context.ctx.clearRect(
+      0,
+      0,
+      context.ctx.canvas.width,
+      context.ctx.canvas.height,
+    );
     Object.keys(context.entities).forEach(characterGroup =>
       context.entities[characterGroup].forEach(character => {
-        //   update(character);
+        character.update(context);
         character.draw(context.ctx);
       }),
     );
