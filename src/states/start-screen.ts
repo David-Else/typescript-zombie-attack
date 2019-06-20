@@ -21,7 +21,7 @@ export class StartScreen extends Base implements State {
     }
   }
 
-  public renderAndUpdateAll(context: GameContext) {
+  public renderAll(context: GameContext) {
     this.startScreenText.draw(context.ctx); // refactor!
   }
 
