@@ -52,8 +52,8 @@ document.addEventListener('keyup', gameContext.keyHandler.bind(gameContext));
 
 // Main loop 1
 function gameLoop(): void {
-  gameContext.update();
-  gameContext.renderAll(); // for now every update is only seeing change to keys object and switching state if needed
+  gameContext.updateCurrentState();
+  gameContext.updateAndDrawCharacters();
   requestAnimationFrame(gameLoop);
 }
 

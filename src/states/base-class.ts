@@ -4,10 +4,6 @@ export interface State {
   transition(context: GameContext): void;
   keyHandler(event: KeyboardEvent, context: GameContext): void;
   update(context: GameContext): void;
-  renderAll(context: GameContext): void;
-
-  //   draw(): void;
-  // levelDate
 }
 
 export interface InGameKeys {
@@ -19,21 +15,6 @@ export interface InGameKeys {
 }
 
 export abstract class Base {
-  public renderAll(context: GameContext): void {
-    context.ctx.clearRect(
-      0,
-      0,
-      context.ctx.canvas.width,
-      context.ctx.canvas.height,
-    );
-    Object.keys(context.entities).forEach(characterGroup =>
-      context.entities[characterGroup].forEach(character => {
-        character.update(context);
-        character.draw(context.ctx);
-      }),
-    );
-  }
-
   public keyHandler(event: KeyboardEvent, context: GameContext): void {
     switch (event.code) {
       case 'KeyF':

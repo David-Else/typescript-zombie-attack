@@ -6,13 +6,12 @@ import { Zombie } from '../entities/zombie.js';
 import { Hero } from '../entities/hero.js';
 import { Bullet } from '../entities/bullet.js';
 import { Vector2 } from '../vectors.js';
-import { Character } from '../entities/base-classes.js';
 
-let runAsyncInitFunctionOnce = false; // HACK to fix
+let runAsyncInitFunctionOnce = false; // HACK to fix MAKE CONSTRUCTOR? can't because async?
 
 export class Init extends Base implements State {
   public transition(context: GameContext): void {
-    context.State = new StartScreen();
+    context.State = new StartScreen(context);
   }
   public update(context: GameContext): void {
     if (!runAsyncInitFunctionOnce) {
@@ -20,6 +19,8 @@ export class Init extends Base implements State {
       this.init(context); // it transitions at end of this async
     }
   }
+
+  public keyHandler(event: KeyboardEvent, context: GameContext): void {}
 
   async init(context: GameContext): Promise<void> {
     /**

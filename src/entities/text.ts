@@ -1,5 +1,6 @@
 import { Vector2 } from '../vectors.js';
 import { GameObject, Drawable } from './base-classes.js';
+import { GameContext } from '../states/context.js';
 
 export class ScreenText extends GameObject implements Drawable {
   public position: Vector2 = [200, 200];
@@ -29,8 +30,10 @@ export class ScreenText extends GameObject implements Drawable {
     this.fontColor = fontColor;
   }
 
-  public update(state: any): void {
-    this.linesOfText = state.characters.screenText[0].linesOfText;
+  // HEART of problems! Need stratagey to sort this
+  public update(context: GameContext): void {
+    // this.linesOfText = state.characters.screenText[0].linesOfText;
+    // this.linesOfText = context.entities.screenText[0].linesOfText; // what is going on?
   }
 
   public draw(ctx: CanvasRenderingContext2D): void {

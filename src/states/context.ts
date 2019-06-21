@@ -47,11 +47,17 @@ export class GameContext {
     this.state.keyHandler(ev, this);
   }
 
-  public update(): void {
+  public updateCurrentState(): void {
     this.state.update(this);
   }
 
-  public renderAll(): void {
-    this.state.renderAll(this);
+  public updateAndDrawCharacters(): void {
+    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    Object.keys(this.entities).forEach(characterGroup =>
+      this.entities[characterGroup].forEach(character => {
+        character.update(this);
+        character.draw(this.ctx);
+      }),
+    );
   }
 }
