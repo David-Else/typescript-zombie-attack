@@ -1,5 +1,5 @@
-import { Base, State, InGameKeys } from './base-class.js';
-import { GameContext } from './context.js';
+import { Base, State } from './base-class.js';
+import { GameContext, InGameKeys } from './context.js';
 import { StartScreen } from './start-screen.js';
 import { instantiate } from '../entities/entity-factory.js';
 import { Zombie } from '../entities/zombie.js';
@@ -13,6 +13,7 @@ export class Init extends Base implements State {
   private runAsyncInitFunctionOnce = false; // HACK to fix MAKE CONSTRUCTOR? can't because async?
 
   public transition(context: GameContext): void {
+    console.log('context.State = new StartScreen(context);');
     context.State = new StartScreen(context);
   }
 

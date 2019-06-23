@@ -1,17 +1,9 @@
-import { GameContext } from './context.js';
+import { GameContext, InGameKeys } from './context.js';
 
 export interface State {
   transition(context: GameContext): void;
   keyHandler(event: KeyboardEvent, inGameKeys: InGameKeys): void;
   update(context: GameContext): void;
-}
-
-export interface InGameKeys {
-  startPressed: boolean;
-  firePressed: boolean;
-  leftPressed: boolean;
-  rightPressed: boolean;
-  pausePressed: boolean;
 }
 
 export abstract class Base {

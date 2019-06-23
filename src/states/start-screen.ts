@@ -1,5 +1,5 @@
-import { Base, State, InGameKeys } from './base-class.js';
-import { GameContext } from './context.js';
+import { Base, State } from './base-class.js';
+import { GameContext, InGameKeys } from './context.js';
 import { LevelOne } from './level-one.js';
 import { ScreenText } from '../entities/text.js';
 
@@ -17,6 +17,7 @@ export class StartScreen extends Base implements State {
   }
 
   public transition(context: GameContext): void {
+    console.log('context.State = new LevelOne(context);');
     context.State = new LevelOne(context);
   }
 
@@ -30,6 +31,7 @@ export class StartScreen extends Base implements State {
     context.entities.ScreenText[0].draw(context.ctx);
 
     if (context.inGameKeys.startPressed) {
+      context.inGameKeys.startPressed = false;
       context.transition();
     }
   }

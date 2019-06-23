@@ -28,7 +28,8 @@ export class LevelOne extends Base implements State {
   }
 
   public transition(context: GameContext): void {
-    context.State = new Init();
+    console.log('context.State = new Init();');
+    context.State = new StartScreen(context);
   }
 
   public update(context: GameContext): void {
@@ -37,6 +38,7 @@ export class LevelOne extends Base implements State {
     // this.gameScreenText.draw(context.ctx); // refactor!
 
     if (context.inGameKeys.firePressed) {
+      context.inGameKeys.firePressed = false;
       context.transition();
     }
   }

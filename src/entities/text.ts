@@ -30,10 +30,8 @@ export class ScreenText extends GameObject implements Drawable {
     this.fontColor = fontColor;
   }
 
-  // HEART of problems! Need stratagey to sort this
   public updatePosition(context: GameContext): void {
-    // this.linesOfText = state.characters.screenText[0].linesOfText;
-    // this.linesOfText = context.entities.screenText[0].linesOfText; // what is going on?
+    // do nothing, it does not move
   }
 
   public draw(ctx: CanvasRenderingContext2D): void {

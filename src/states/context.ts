@@ -1,9 +1,17 @@
-import { State, InGameKeys } from './base-class.js';
+import { State } from './base-class.js';
 import { Drawable } from '../entities/base-classes.js';
 import { Hero } from '../entities/hero.js';
 import { Zombie } from '../entities/zombie.js';
 import { Bullet } from '../entities/bullet.js';
 import { ScreenText } from '../entities/text.js';
+
+export interface InGameKeys {
+  startPressed: boolean;
+  firePressed: boolean;
+  leftPressed: boolean;
+  rightPressed: boolean;
+  pausePressed: boolean;
+}
 
 export class GameContext {
   public entities: {
