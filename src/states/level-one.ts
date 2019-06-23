@@ -3,6 +3,9 @@ import { GameContext } from './context.js';
 import { StartScreen } from './start-screen.js';
 import { ScreenText } from '../entities/text.js';
 import { Init } from './init.js';
+import { instantiate } from '../entities/entity-factory.js';
+import { Bullet } from '../entities/bullet.js';
+import { Vector2 } from '../vectors.js';
 
 export class LevelOne extends Base implements State {
   public constructor(context: GameContext) {
@@ -35,11 +38,21 @@ export class LevelOne extends Base implements State {
   public update(context: GameContext): void {
     super.update(context);
 
-    // this.gameScreenText.draw(context.ctx); // refactor!
+    // DANGER duplicated function WRONG PLACE
+    const middleOfScreen = (ctx: CanvasRenderingContext2D): Vector2 => [
+      ctx.canvas.width / 2,
+      ctx.canvas.height / 2,
+    ];
 
     if (context.inGameKeys.firePressed) {
       context.inGameKeys.firePressed = false;
-      context.transition();
+      context.entities.bullets.push(
+        ...instantiate(Bullet, 10, {
+          position: middleOfScreen(context.ctx),
+          rotation: context.entities.hero[0].rotation,
+        }),
+      );
+      //   context.transition();
     }
   }
 }

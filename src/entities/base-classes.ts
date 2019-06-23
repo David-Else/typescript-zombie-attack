@@ -2,6 +2,7 @@ import { vectors, Vector2 } from '../vectors.js';
 import { Zombie } from './zombie.js';
 import { Hero } from './hero.js';
 import { Bullet } from './bullet.js';
+import { GameContext } from '../states/context.js';
 
 export type Character = Hero | Zombie | Bullet;
 export interface Drawable {
@@ -15,7 +16,7 @@ export interface Drawable {
  * =============================================================================
  */
 export abstract class GameObject {
-  protected rotation = 0;
+  public rotation = 0;
   protected scale: Vector2 = [0, 0];
   protected abstract position: Vector2 = [0, 0];
 
@@ -36,7 +37,7 @@ abstract class BaseCharacter extends GameObject {
   protected lives: number = 1;
   protected velocity: Vector2 = [0, 0];
 
-  public updatePosition(context?: any): void {
+  public updatePosition(context?: GameContext): void {
     this.position = vectors.add(this.position, this.velocity);
   }
 

@@ -14,15 +14,15 @@ export const vectors = {
     return [a[0] * b[0], a[1] * b[1]];
   },
   get up(): Vector2 {
-    return [0, 0.1];
+    return [0, 1];
   },
   get down(): Vector2 {
-    return [0, -0.1];
+    return [0, -1];
   },
   get left(): Vector2 {
-    return [-0.1, 0];
+    return [-1, 0];
   },
   get right(): Vector2 {
-    return [0.1, 0];
+    return [1, 0];
   },
 };
