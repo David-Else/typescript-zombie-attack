@@ -1,4 +1,4 @@
-import { Base, State } from './base-class.js';
+import { Base, State, InGameKeys } from './base-class.js';
 import { GameContext } from './context.js';
 import { StartScreen } from './start-screen.js';
 import { instantiate } from '../entities/entity-factory.js';
@@ -7,22 +7,27 @@ import { Hero } from '../entities/hero.js';
 import { Bullet } from '../entities/bullet.js';
 import { Vector2 } from '../vectors.js';
 
-let runAsyncInitFunctionOnce = false; // HACK to fix MAKE CONSTRUCTOR? can't because async?
+// let runAsyncInitFunctionOnce = false; // HACK to fix MAKE CONSTRUCTOR? can't because async?
 
 export class Init extends Base implements State {
+  private runAsyncInitFunctionOnce = false; // HACK to fix MAKE CONSTRUCTOR? can't because async?
+
   public transition(context: GameContext): void {
     context.State = new StartScreen(context);
   }
+
   public update(context: GameContext): void {
-    if (!runAsyncInitFunctionOnce) {
-      runAsyncInitFunctionOnce = true;
-      this.init(context); // it transitions at end of this async
+    if (!this.runAsyncInitFunctionOnce) {
+      this.runAsyncInitFunctionOnce = true;
+      Init.init(context); // it transitions at end of this async
     }
   }
 
-  public keyHandler(event: KeyboardEvent, context: GameContext): void {}
+  public keyHandler(event: KeyboardEvent, inGameKeys: InGameKeys): void {
+    // do nothing, overide base class
+  }
 
-  public async init(context: GameContext): Promise<void> {
+  public static async init(context: GameContext): Promise<void> {
     /**
      * ==========================================================================
      * Load images and audio assets
@@ -69,10 +74,10 @@ export class Init extends Base implements State {
      * ==========================================================================
      */
 
-    const middleOfScreen = (
-      ctx: CanvasRenderingContext2D,
-      //   entity: Character,
-    ): Vector2 => [ctx.canvas.width / 2, ctx.canvas.height / 2];
+    const middleOfScreen = (ctx: CanvasRenderingContext2D): Vector2 => [
+      ctx.canvas.width / 2,
+      ctx.canvas.height / 2,
+    ];
 
     context.entities.hero.push(
       ...instantiate(Hero, 1, {
@@ -94,11 +99,6 @@ export class Init extends Base implements State {
       }),
     );
 
-    console.log(
-      context.entities.zombies[0],
-      context.entities.hero,
-      context.entities.bullets,
-    );
     // WORKS!! this.renderAll(context.ctx);
     context.transition();
   }

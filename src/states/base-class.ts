@@ -2,7 +2,7 @@ import { GameContext } from './context.js';
 
 export interface State {
   transition(context: GameContext): void;
-  keyHandler(event: KeyboardEvent, context: GameContext): void;
+  keyHandler(event: KeyboardEvent, inGameKeys: InGameKeys): void;
   update(context: GameContext): void;
 }
 
@@ -29,22 +29,22 @@ export abstract class Base {
       }),
     );
   }
-  public keyHandler(event: KeyboardEvent, context: GameContext): void {
+  public keyHandler(event: KeyboardEvent, inGameKeys: InGameKeys): void {
     switch (event.code) {
       case 'KeyF':
-        context.inGameKeys.firePressed = event.type === 'keydown';
+        inGameKeys.firePressed = event.type === 'keydown';
         break;
       case 'ArrowLeft':
         event.preventDefault();
-        context.inGameKeys.leftPressed = event.type === 'keydown';
+        inGameKeys.leftPressed = event.type === 'keydown';
         break;
       case 'ArrowRight':
         event.preventDefault();
-        context.inGameKeys.rightPressed = event.type === 'keydown';
+        inGameKeys.rightPressed = event.type === 'keydown';
         break;
       case 'KeyP':
         if (event.type === 'keydown' && !event.repeat) {
-          context.inGameKeys.pausePressed = !context.inGameKeys.pausePressed;
+          inGameKeys.pausePressed = !inGameKeys.pausePressed;
         }
         break;
       // no default

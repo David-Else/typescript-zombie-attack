@@ -1,4 +1,4 @@
-import { Base, State } from './base-class.js';
+import { Base, State, InGameKeys } from './base-class.js';
 import { GameContext } from './context.js';
 import { LevelOne } from './level-one.js';
 import { ScreenText } from '../entities/text.js';
@@ -20,9 +20,9 @@ export class StartScreen extends Base implements State {
     context.State = new LevelOne(context);
   }
 
-  public keyHandler(event: KeyboardEvent, context: GameContext): void {
+  public keyHandler(event: KeyboardEvent, inGameKeys: InGameKeys): void {
     if (event.code === 'KeyS') {
-      context.inGameKeys.startPressed = event.type === 'keydown';
+      inGameKeys.startPressed = event.type === 'keydown';
     }
   }
 

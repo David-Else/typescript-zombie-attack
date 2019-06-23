@@ -13,10 +13,10 @@ export class GameContext {
     screenText: ScreenText[];
     [key: string]: Drawable[];
   } = {
-    hero: [] as Hero[],
-    zombies: [] as Zombie[],
-    bullets: [] as Bullet[],
-    screenText: [] as ScreenText[],
+    hero: [],
+    zombies: [],
+    bullets: [],
+    screenText: [],
   };
 
   public inGameKeys: InGameKeys = {
@@ -30,9 +30,7 @@ export class GameContext {
   public constructor(
     private state: State,
     public ctx: CanvasRenderingContext2D,
-  ) {
-    // this.state = state;
-  }
+  ) {}
 
   public get State(): State {
     return this.state;
@@ -47,21 +45,11 @@ export class GameContext {
     this.state.transition(this);
   }
 
-  public keyHandler(ev: KeyboardEvent): void {
-    this.state.keyHandler(ev, this);
+  public keyHandler(event: KeyboardEvent): void {
+    this.state.keyHandler(event, this.inGameKeys);
   }
 
   public updateCurrentState(): void {
     this.state.update(this);
   }
-
-  //   public updateAndDrawCharacters(): void {
-  //     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-  //     Object.keys(this.entities).forEach(characterGroup =>
-  //       this.entities[characterGroup].forEach(character => {
-  //         character.update(this);
-  //         character.draw(this.ctx);
-  //       }),
-  //     );
-  //   }
 }
