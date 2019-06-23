@@ -53,7 +53,7 @@ document.addEventListener('keyup', gameContext.keyHandler.bind(gameContext));
 // Main loop 1
 function gameLoop(): void {
   gameContext.updateCurrentState();
-  gameContext.updateAndDrawCharacters();
+  //   gameContext.updateAndDrawCharacters();
   requestAnimationFrame(gameLoop);
 }
 

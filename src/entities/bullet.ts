@@ -11,7 +11,7 @@ export class Bullet extends VectorCharacter {
     this.rotation = rotation;
   }
 
-  public update(): void {
+  public updatePosition(): void {
     const rotationInRadians = this.rotation * (Math.PI / 180);
 
     this.position = vectors.add(this.position, [

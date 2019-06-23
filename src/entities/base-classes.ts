@@ -5,7 +5,7 @@ import { Bullet } from './bullet.js';
 
 export type Character = Hero | Zombie | Bullet;
 export interface Drawable {
-  update(state?: any): void;
+  updatePosition(state?: any): void;
   draw(ctx: CanvasRenderingContext2D): void;
 }
 
@@ -32,11 +32,11 @@ export abstract class GameObject {
  * Second level base character abstract class all other characters inherit from
  * =============================================================================
  */
-abstract class BaseCharacter extends GameObject implements Drawable {
+abstract class BaseCharacter extends GameObject {
   protected lives: number = 1;
   protected velocity: Vector2 = [0, 0];
 
-  public update(state?: any): void {
+  public updatePosition(context?: any): void {
     this.position = vectors.add(this.position, this.velocity);
   }
 
@@ -57,7 +57,6 @@ abstract class BaseCharacter extends GameObject implements Drawable {
 
     this.velocity = targetVelocity;
   }
-  public abstract draw(ctx: CanvasRenderingContext2D): void;
 }
 
 /**
@@ -67,7 +66,8 @@ abstract class BaseCharacter extends GameObject implements Drawable {
  */
 
 // cx.scale(3, .5); <<< scale method exits, add it so we don't have to make another scale thing!
-export abstract class VectorCharacter extends BaseCharacter {
+export abstract class VectorCharacter extends BaseCharacter
+  implements Drawable {
   public draw(ctx: CanvasRenderingContext2D): void {
     ctx.save();
     ctx.beginPath();
@@ -95,7 +95,8 @@ export abstract class VectorCharacter extends BaseCharacter {
  * Characters drawn using bitmap
  * =============================================================================
  */
-export abstract class BitmapCharacter extends BaseCharacter {
+export abstract class BitmapCharacter extends BaseCharacter
+  implements Drawable {
   public draw(ctx: CanvasRenderingContext2D): void {
     ctx.drawImage(this.image, this.x, this.y);
   }

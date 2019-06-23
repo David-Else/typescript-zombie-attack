@@ -31,7 +31,7 @@ export class ScreenText extends GameObject implements Drawable {
   }
 
   // HEART of problems! Need stratagey to sort this
-  public update(context: GameContext): void {
+  public updatePosition(context: GameContext): void {
     // this.linesOfText = state.characters.screenText[0].linesOfText;
     // this.linesOfText = context.entities.screenText[0].linesOfText; // what is going on?
   }

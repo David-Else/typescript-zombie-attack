@@ -7,6 +7,10 @@ import { ScreenText } from '../entities/text.js';
 
 export class GameContext {
   public entities: {
+    hero: Hero[];
+    zombies: Zombie[];
+    bullets: Bullet[];
+    screenText: ScreenText[];
     [key: string]: Drawable[];
   } = {
     hero: [] as Hero[],
@@ -51,13 +55,13 @@ export class GameContext {
     this.state.update(this);
   }
 
-  public updateAndDrawCharacters(): void {
-    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-    Object.keys(this.entities).forEach(characterGroup =>
-      this.entities[characterGroup].forEach(character => {
-        character.update(this);
-        character.draw(this.ctx);
-      }),
-    );
-  }
+  //   public updateAndDrawCharacters(): void {
+  //     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+  //     Object.keys(this.entities).forEach(characterGroup =>
+  //       this.entities[characterGroup].forEach(character => {
+  //         character.update(this);
+  //         character.draw(this.ctx);
+  //       }),
+  //     );
+  //   }
 }

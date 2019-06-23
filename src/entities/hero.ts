@@ -14,7 +14,7 @@ export class Hero extends VectorCharacter {
     super();
   }
 
-  public update(context: GameContext): void {
+  public updatePosition(context: GameContext): void {
     // console.log('kk');
 
     if (context.inGameKeys.rightPressed) {

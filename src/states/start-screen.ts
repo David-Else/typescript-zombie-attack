@@ -2,7 +2,6 @@ import { Base, State } from './base-class.js';
 import { GameContext } from './context.js';
 import { LevelOne } from './level-one.js';
 import { ScreenText } from '../entities/text.js';
-import { UV_UDP_REUSEADDR } from 'constants';
 
 export class StartScreen extends Base implements State {
   public constructor(context: GameContext) {
@@ -18,7 +17,7 @@ export class StartScreen extends Base implements State {
   }
 
   public transition(context: GameContext): void {
-    context.State = new LevelOne();
+    context.State = new LevelOne(context);
   }
 
   public keyHandler(event: KeyboardEvent, context: GameContext): void {
@@ -28,9 +27,8 @@ export class StartScreen extends Base implements State {
   }
 
   public update(context: GameContext): void {
-    // this.startScreenText.draw(context.ctx); // refactor!
-    // console.log('hello');
-    // NOTHING RENDERED! this.renderAll(context);
+    context.entities.ScreenText[0].draw(context.ctx);
+
     if (context.inGameKeys.startPressed) {
       context.transition();
     }

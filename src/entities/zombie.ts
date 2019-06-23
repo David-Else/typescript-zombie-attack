@@ -1,5 +1,6 @@
 import { vectors, Vector2 } from '../vectors.js';
 import { BitmapCharacter } from './base-classes.js';
+import { GameContext } from '../states/context.js';
 
 export class Zombie extends BitmapCharacter {
   public kind: 'zombie' | undefined;
@@ -13,9 +14,10 @@ export class Zombie extends BitmapCharacter {
     this.position = position;
   }
 
-  public update(): void {
+  public updatePosition(context: GameContext): void {
+    this.directTowards(context.entities.hero[0].position);
     this.randomStumble();
-    super.update();
+    super.updatePosition();
   }
 
   private randomStumble(): void {
