@@ -15,14 +15,14 @@ export interface Drawable {
  * =============================================================================
  */
 export abstract class GameObject {
-  public rotation = 0;
-  public scale: Vector2 = [0, 0];
-  abstract position: Vector2 = [0, 0];
+  protected rotation = 0;
+  protected scale: Vector2 = [0, 0];
+  protected abstract position: Vector2 = [0, 0];
 
-  public get x(): number {
+  protected get x(): number {
     return this.position[0];
   }
-  public get y(): number {
+  protected get y(): number {
     return this.position[1];
   }
 }
@@ -33,14 +33,14 @@ export abstract class GameObject {
  * =============================================================================
  */
 abstract class BaseCharacter extends GameObject implements Drawable {
-  public lives: number = 1;
-  public velocity: Vector2 = [0, 0];
+  protected lives: number = 1;
+  protected velocity: Vector2 = [0, 0];
 
   public update(state?: any): void {
     this.position = vectors.add(this.position, this.velocity);
   }
 
-  public directTowards(targetPosition: Vector2): void {
+  protected directTowards(targetPosition: Vector2): void {
     const [targetX, targetY] = [targetPosition[0], targetPosition[1]];
     let targetVelocity: Vector2 = [0, 0];
 
@@ -57,7 +57,7 @@ abstract class BaseCharacter extends GameObject implements Drawable {
 
     this.velocity = targetVelocity;
   }
-  abstract draw(ctx: CanvasRenderingContext2D): void;
+  public abstract draw(ctx: CanvasRenderingContext2D): void;
 }
 
 /**
@@ -86,8 +86,8 @@ export abstract class VectorCharacter extends BaseCharacter {
     ctx.restore();
   }
 
-  abstract color: string;
-  abstract widthHeight: Vector2;
+  protected abstract color: string;
+  protected abstract widthHeight: Vector2;
 }
 
 /**
@@ -100,6 +100,6 @@ export abstract class BitmapCharacter extends BaseCharacter {
     ctx.drawImage(this.image, this.x, this.y);
   }
 
-  abstract image: HTMLImageElement;
-  abstract widthHeight: Vector2;
+  protected abstract image: HTMLImageElement;
+  protected abstract widthHeight: Vector2;
 }

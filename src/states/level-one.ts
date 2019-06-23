@@ -4,17 +4,6 @@ import { StartScreen } from './start-screen.js';
 import { ScreenText } from '../entities/text.js';
 
 export class LevelOne extends Base implements State {
-  public transition(context: GameContext): void {
-    context.State = new StartScreen(context);
-  }
-  public update(context: GameContext): void {
-    this.gameScreenText.draw(context.ctx); // refactor!
-
-    if (context.inGameKeys.firePressed) {
-      context.transition();
-    }
-  }
-
   public gameScreenText = new ScreenText(
     [
       //   `Lives = ${this.lives}`,
@@ -31,4 +20,15 @@ export class LevelOne extends Base implements State {
     [161, 30],
     'right',
   );
+
+  public transition(context: GameContext): void {
+    context.State = new StartScreen(context);
+  }
+  public update(context: GameContext): void {
+    this.gameScreenText.draw(context.ctx); // refactor!
+
+    if (context.inGameKeys.firePressed) {
+      context.transition();
+    }
+  }
 }

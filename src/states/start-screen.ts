@@ -5,6 +5,18 @@ import { ScreenText } from '../entities/text.js';
 import { UV_UDP_REUSEADDR } from 'constants';
 
 export class StartScreen extends Base implements State {
+  public constructor(context: GameContext) {
+    super();
+    context.entities.ScreenText = [
+      new ScreenText(
+        ['Welcome', 'To', 'Zombie Game', "('s' to start)", "('p' to pause)"],
+        '80px Helvetica Neue',
+        'red',
+        [350, 150], // make centrered
+      ),
+    ];
+  }
+
   public transition(context: GameContext): void {
     context.State = new LevelOne();
   }
@@ -22,17 +34,5 @@ export class StartScreen extends Base implements State {
     if (context.inGameKeys.startPressed) {
       context.transition();
     }
-  }
-
-  constructor(context: GameContext) {
-    super();
-    context.entities.ScreenText = [
-      new ScreenText(
-        ['Welcome', 'To', 'Zombie Game', "('s' to start)", "('p' to pause)"],
-        '80px Helvetica Neue',
-        'red',
-        [350, 150], // make centrered
-      ),
-    ];
   }
 }

@@ -10,5 +10,13 @@
     ".eslintcache": true,
     "tsconfig.json": true,
     "**/.gitignore": true
-  }
+},
+"spellright.language": [
+    "English (British)"
+],
+"spellright.documentTypes": [
+    "markdown",
+    "latex",
+    "plaintext"
+]
 }

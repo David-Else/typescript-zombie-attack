@@ -22,7 +22,7 @@ export class Init extends Base implements State {
 
   public keyHandler(event: KeyboardEvent, context: GameContext): void {}
 
-  async init(context: GameContext): Promise<void> {
+  public async init(context: GameContext): Promise<void> {
     /**
      * ==========================================================================
      * Load images and audio assets
