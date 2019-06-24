@@ -29,6 +29,10 @@
     "@typescript-eslint/no-unnecessary-type-assertion": "warn",
     "@typescript-eslint/member-ordering": "warn",
     "@typescript-eslint/unified-signatures": "warn",
+    "@typescript-eslint/no-floating-promises": "warn",
+    "@typescript-eslint/prefer-string-starts-ends-with": "warn",
+    "@typescript-eslint/promise-function-async": "warn",
+    "@typescript-eslint/unbound-method": "warn",
     "@typescript-eslint/explicit-function-return-type": [
       "warn",
       {

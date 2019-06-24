@@ -43,12 +43,12 @@ abstract class BaseCharacter extends GameObject {
 
     if (this.x > targetX) {
       targetVelocity = vectors.add(targetVelocity, vectors.left);
-    } else if (this.x < targetX) {
+    } else {
       targetVelocity = vectors.add(targetVelocity, vectors.right);
     }
     if (this.y > targetY) {
       targetVelocity = vectors.add(targetVelocity, vectors.down);
-    } else if (this.y < targetY) {
+    } else {
       targetVelocity = vectors.add(targetVelocity, vectors.up);
     }
 

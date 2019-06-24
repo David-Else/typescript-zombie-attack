@@ -3,10 +3,10 @@ import { BitmapCharacter } from './base-classes.js';
 import { GameContext } from '../states/context.js';
 
 export class Zombie extends BitmapCharacter {
+  public static imagesToLoad: HTMLImageElement[] = [];
   public widthHeight: Vector2;
   public image: HTMLImageElement;
   public position: Vector2;
-  public static imagesToLoad: HTMLImageElement[] = [];
 
   public constructor(image: HTMLImageElement, position: Vector2) {
     super();
