@@ -1,20 +1,15 @@
 import { Base, State } from './base-class.js';
 import { GameContext, InGameKeys } from './context.js';
 import { StartScreen } from './start-screen.js';
-import { instantiate } from '../entities/entity-factory.js';
 import { Zombie } from '../entities/zombie.js';
-import { Hero } from '../entities/hero.js';
-import { Vector2 } from '../vectors.js';
-
-// let runAsyncInitFunctionOnce = false; // HACK to fix MAKE CONSTRUCTOR? can't because async?
 
 export class Init extends Base implements State {
-  private runAsyncInitFunctionOnce = false; // HACK to fix MAKE CONSTRUCTOR? can't because async?
+  private runAsyncInitFunctionOnce = false; // HACK?
 
   public static async init(context: GameContext): Promise<void> {
     /**
      * ==========================================================================
-     * Load images and audio assets
+     * Load images assets
      * ==========================================================================
      */
     function loadImage(filePath: string): Promise<HTMLImageElement> {
@@ -30,6 +25,14 @@ export class Init extends Base implements State {
       return promise;
     }
 
+    const [zombieImg] = await Promise.all([
+      loadImage('./assets/zombie64-final.png'),
+    ]);
+    /**
+     * ==========================================================================
+     * Load audio assets
+     * ==========================================================================
+     */
     function loadAudio(filePath: string): Promise<HTMLAudioElement> {
       const audioElement = new Audio();
 
@@ -43,40 +46,13 @@ export class Init extends Base implements State {
       return promise;
     }
 
-    const [zombieImg] = await Promise.all([
-      loadImage('./assets/zombie64-final.png'),
-    ]);
     const [explosionSound, invaderkilledSound, shootSound] = await Promise.all([
       loadAudio('./assets/explosion.wav'),
       loadAudio('./assets/invaderkilled.wav'),
       loadAudio('./assets/shoot.wav'),
     ]);
 
-    /**
-     * ==========================================================================
-     * Instantiate classes << this needs to go in each state!
-     * ==========================================================================
-     */
-
-    const middleOfScreen = (ctx: CanvasRenderingContext2D): Vector2 => [
-      ctx.canvas.width / 2,
-      ctx.canvas.height / 2,
-    ];
-
-    context.entities.hero.push(
-      ...instantiate(Hero, 1, {
-        position: middleOfScreen(context.ctx),
-      }),
-    );
-
-    context.entities.zombies.push(
-      ...instantiate(Zombie, 50, {
-        image: zombieImg,
-        pointToSpawnAround: middleOfScreen(context.ctx),
-      }),
-    );
-
-    // WORKS!! this.renderAll(context.ctx);
+    Zombie.imagesToLoad.push(zombieImg);
     context.transition();
   }
 

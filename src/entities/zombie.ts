@@ -6,6 +6,8 @@ export class Zombie extends BitmapCharacter {
   public widthHeight: Vector2;
   public image: HTMLImageElement;
   public position: Vector2;
+  public static imagesToLoad: HTMLImageElement[] = [];
+
   public constructor(image: HTMLImageElement, position: Vector2) {
     super();
     this.widthHeight = [image.width, image.height];
