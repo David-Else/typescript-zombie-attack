@@ -6,7 +6,7 @@ import { ScreenText } from '../entities/text.js';
 export class StartScreen extends Base implements State {
   public constructor(context: GameContext) {
     super();
-    context.entities.ScreenText = [
+    context.entities.screenText = [
       new ScreenText(
         ['Welcome', 'To', 'Zombie Game', "('s' to start)", "('p' to pause)"],
         '80px Helvetica Neue',
@@ -28,7 +28,7 @@ export class StartScreen extends Base implements State {
   }
 
   public update(context: GameContext): void {
-    context.entities.ScreenText[0].draw(context.ctx);
+    context.entities.screenText[0].draw(context.ctx);
 
     if (context.inGameKeys.startPressed) {
       context.inGameKeys.startPressed = false;

@@ -77,13 +77,6 @@ export class Init extends Base implements State {
       }),
     );
 
-    context.entities.bullets.push(
-      ...instantiate(Bullet, 10, {
-        position: middleOfScreen(context.ctx),
-        rotation: 0,
-      }),
-    );
-
     // WORKS!! this.renderAll(context.ctx);
     context.transition();
   }

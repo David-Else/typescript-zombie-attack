@@ -5,7 +5,7 @@ import { GameContext } from '../states/context.js';
 export class ScreenText extends GameObject implements Drawable {
   public position: Vector2 = [200, 200];
 
-  private linesOfText: string[];
+  public linesOfText: string[];
   private textStyle: string;
   private textAlignment: CanvasTextAlign;
   private fontColor: string;

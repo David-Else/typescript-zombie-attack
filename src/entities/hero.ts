@@ -19,10 +19,12 @@ export class Hero extends VectorCharacter {
   public updatePosition(context: GameContext): void {
     // console.log('kk');
 
-    function centerOfEntity(entity: Hero | Zombie | Bullet): Vector2 {
+    type Entity = Hero | Zombie | Bullet;
+
+    function centerOfEntityScreenPosition(entity: Entity): Vector2 {
       return vectors.add(
         entity.position,
-        vectors.divide(entity.widthHeight, [2, 2]),
+        vectors.divide(vectors.add(entity.widthHeight, [6, 25]), [2, 2]),
       );
     }
 
@@ -45,8 +47,8 @@ export class Hero extends VectorCharacter {
       this.firePaused = true;
 
       context.entities.bullets.push(
-        ...instantiate(Bullet, 10, {
-          position: centerOfEntity(this),
+        ...instantiate(Bullet, 1, {
+          position: centerOfEntityScreenPosition(this),
           rotation: this.rotation,
         }),
       );

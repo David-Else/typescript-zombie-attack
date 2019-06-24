@@ -10,23 +10,8 @@ import { Vector2 } from '../vectors.js';
 export class LevelOne extends Base implements State {
   public constructor(context: GameContext) {
     super();
-    context.entities.ScreenText = [
-      new ScreenText(
-        [
-          //   `Lives = ${this.lives}`,
-          //   `Score = ${this.score}`,
-          //   `Zombies = ${this.numberOfZombies}`,
-          //   `Bullets = ${this.numberOfBullets}`,
-          `Lives = `,
-          `Score = `,
-          `Zombies = `,
-          `Bullets = `,
-        ],
-        '25px Arial',
-        'black',
-        [161, 30],
-        'right',
-      ),
+    context.entities.screenText = [
+      new ScreenText([], '25px Arial', 'black', [161, 30], 'right'),
     ];
   }
 
@@ -37,22 +22,11 @@ export class LevelOne extends Base implements State {
 
   public update(context: GameContext): void {
     super.update(context);
-
-    // // DANGER duplicated function WRONG PLACE
-    // const middleOfScreen = (ctx: CanvasRenderingContext2D): Vector2 => [
-    //   ctx.canvas.width / 2,
-    //   ctx.canvas.height / 2,
-    // ];
-
-    // if (context.inGameKeys.firePressed) {
-    //   context.inGameKeys.firePressed = false;
-    //   context.entities.bullets.push(
-    //     ...instantiate(Bullet, 10, {
-    //       position: middleOfScreen(context.ctx),
-    //       rotation: context.entities.hero[0].rotation,
-    //     }),
-    //   );
-    //   //   context.transition();
-    // }
+    context.entities.screenText[0].linesOfText = [
+      `Lives = `,
+      `Score = `,
+      `Zombies = `,
+      `Bullets = ${context.entities.hero[0].numberOfBullets}`,
+    ];
   }
 }
