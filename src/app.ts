@@ -1,8 +1,8 @@
 import { GameContext } from './states/context.js';
 import { Init } from './states/init.js';
 import { checkCollision } from './collision-detection.js';
-
-// Enable the Quokka.js jsdom plugin and parse index.html
+import { Vector2 } from './vectors.js';
+import { LevelOne } from './states/level-one.js';
 
 // eslint-disable-next-line no-unused-expressions
 // ({
@@ -10,15 +10,29 @@ import { checkCollision } from './collision-detection.js';
 //   jsdom: { file: './index.html' },
 // });
 
-/**
- * TEST
- */
+function toFixedScreenRatio(
+  currentWidth: number,
+  currentHeight: number,
+  targetWidthToHeight: number,
+): Vector2 {
+  const currentWidthToHeight = currentWidth / currentHeight;
+
+  if (currentWidthToHeight > targetWidthToHeight) {
+    // window width is too wide relative to desired game width
+    return [currentHeight * targetWidthToHeight, currentHeight];
+  }
+  // window height is too high relative to desired game height
+  return [currentWidth, currentWidth / targetWidthToHeight];
+}
 
 // Globals
 const canvas = document.getElementById('game-canvas') as HTMLCanvasElement;
+[canvas.width, canvas.height] = toFixedScreenRatio(
+  window.innerWidth,
+  window.innerHeight,
+  4 / 3,
+);
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
-canvas.width = 600;
-canvas.height = 600;
 const gameContext = new GameContext(new Init(), ctx); // is this the place for infamous ctx?!
 
 // Event Listeners
@@ -32,7 +46,8 @@ function detectCollision(context: GameContext): void {
     if (checkCollision(context.entities.hero[0], zombie)) {
       // hero killed by zombie, loose life, start level again
       context.entities.hero[0].lives -= 1;
-      console.log('now we need new reset level code!');
+      // massive zombie spawn bug!
+      //   context.State = new LevelOne(context);
     }
 
     // inner loop for bullets
