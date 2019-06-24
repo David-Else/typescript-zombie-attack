@@ -1,5 +1,6 @@
 import { GameContext } from './states/context.js';
 import { Init } from './states/init.js';
+import { checkCollision } from './collision-detection.js';
 
 // Enable the Quokka.js jsdom plugin and parse index.html
 
@@ -24,35 +25,34 @@ const gameContext = new GameContext(new Init(), ctx); // is this the place for i
 document.addEventListener('keydown', gameContext.keyHandler.bind(gameContext));
 document.addEventListener('keyup', gameContext.keyHandler.bind(gameContext));
 
-/**
- * ==========================================================================
- * Loop over characters and update/render
- * ==========================================================================
- */
-// function update(character: Character): void {
-//   if (character.kind === 'zombie') {
-//     // FIX ME!
-//     character.directTowards(state.characters.hero[0].position);
-//   }
-//   character.update(state);
-// }
+// Detect collision
+function detectCollision(context: GameContext): void {
+  // outer loop for zombies
+  context.entities.zombies.forEach((zombie, index) => {
+    if (checkCollision(context.entities.hero[0], zombie)) {
+      // hero killed by zombie, loose life, start level again
+      context.entities.hero[0].lives -= 1;
+      console.log('now we need new reset level code!');
+    }
 
-// function render(character: Character): void {
-//   character.draw(ctx);
-// }
+    // inner loop for bullets
+    context.entities.bullets.forEach((bullet, innerIndex) => {
+      if (checkCollision(zombie, bullet)) {
+        // zombie hit by bullet, delete zombie and bullet
+        context.entities.zombies.splice(index, 1);
+        context.entities.bullets.splice(innerIndex, 1);
+      }
+      //  else if (!state.boundaries.intersects(bullet)) {
+      //   //   state.deleteBullet = innerIndex;
+      // }
+    });
+  });
+}
 
-// function loopOverCharacters(): void {
-//   Object.keys(state.characters).forEach(characterGroup =>
-//     state.characters[characterGroup].forEach(character => {
-//       update(character);
-//       render(character);
-//     }),
-//   );
-// }
-
-// Main loop 1
+// Main loop
 function gameLoop(): void {
   gameContext.updateCurrentState();
+  detectCollision(gameContext);
   //   gameContext.updateAndDrawCharacters();
   requestAnimationFrame(gameLoop);
 }

@@ -16,10 +16,10 @@ export abstract class GameObject {
   //   protected scale: Vector2 = [0, 0];
   protected abstract position: Vector2 = [0, 0];
 
-  protected get x(): number {
+  public get x(): number {
     return this.position[0];
   }
-  protected get y(): number {
+  public get y(): number {
     return this.position[1];
   }
 }

@@ -27,6 +27,8 @@ export class GameContext {
     screenText: [],
   };
 
+  public score = 0;
+
   public inGameKeys: InGameKeys = {
     startPressed: false,
     firePressed: false,
