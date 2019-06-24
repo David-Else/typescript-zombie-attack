@@ -5,6 +5,8 @@ import { instantiate } from './entity-factory.js';
 import { Bullet } from './bullet.js';
 import { Zombie } from './zombie.js';
 
+type Entity = Hero | Zombie | Bullet;
+
 export class Hero extends VectorCharacter {
   public lives = 3;
   public widthHeight: Vector2 = [25, 50];
@@ -17,10 +19,6 @@ export class Hero extends VectorCharacter {
   }
 
   public updatePosition(context: GameContext): void {
-    // console.log('kk');
-
-    type Entity = Hero | Zombie | Bullet;
-
     function centerOfEntityScreenPosition(entity: Entity): Vector2 {
       return vectors.add(
         entity.position,
@@ -30,7 +28,8 @@ export class Hero extends VectorCharacter {
 
     if (context.inGameKeys.rightPressed) {
       this.rotation = this.rotation + 1;
-    } else if (context.inGameKeys.leftPressed) {
+    }
+    if (context.inGameKeys.leftPressed) {
       this.rotation = this.rotation - 1;
     }
 

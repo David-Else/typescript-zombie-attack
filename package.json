@@ -8,7 +8,8 @@
     "test-and-eslint": "npm run test && npm run eslint",
     "test": "mocha --reporter min --require esm --require ./setup-jsdom.js",
     "eslint": "eslint --cache -f unix --ext .ts src/ test/",
-    "build-bundle": "rollup --config"
+    "build-bundle": "rollup --config",
+    "uml": "tplant --input src/app.ts --output uml-diagram.svg"
   },
   "keywords": [],
   "author": "",

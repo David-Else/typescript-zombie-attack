@@ -1,4 +1,4 @@
-import { Vector2 } from './game-objects.js';
+import { Vector2 } from './vectors.js';
 
 /**
  * =============================================================================

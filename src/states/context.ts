@@ -27,6 +27,8 @@ export class GameContext {
     screenText: [],
   };
 
+  //   public zombieImg: HTMLImageElement = undefined;
+
   public score = 0;
 
   public inGameKeys: InGameKeys = {

@@ -4,7 +4,6 @@ import { StartScreen } from './start-screen.js';
 import { instantiate } from '../entities/entity-factory.js';
 import { Zombie } from '../entities/zombie.js';
 import { Hero } from '../entities/hero.js';
-import { Bullet } from '../entities/bullet.js';
 import { Vector2 } from '../vectors.js';
 
 // let runAsyncInitFunctionOnce = false; // HACK to fix MAKE CONSTRUCTOR? can't because async?
@@ -55,7 +54,7 @@ export class Init extends Base implements State {
 
     /**
      * ==========================================================================
-     * Instantiate classes
+     * Instantiate classes << this needs to go in each state!
      * ==========================================================================
      */
 

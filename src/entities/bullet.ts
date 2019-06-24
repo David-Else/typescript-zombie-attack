@@ -5,9 +5,8 @@ export class Bullet extends VectorCharacter {
   public widthHeight: Vector2 = [6, 25];
   public color = 'black';
 
-  public constructor(public position: Vector2, rotation: number) {
+  public constructor(public position: Vector2, public rotation: number) {
     super();
-    this.rotation = rotation;
   }
 
   public updatePosition(): void {
