@@ -2,7 +2,6 @@ import { vectors, Vector2 } from '../vectors.js';
 import { VectorCharacter } from './base-classes.js';
 
 export class Bullet extends VectorCharacter {
-  public kind: 'bullet' | undefined;
   public widthHeight: Vector2 = [6, 25];
   public color = 'black';
 

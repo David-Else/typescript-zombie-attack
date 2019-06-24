@@ -13,6 +13,9 @@ export const vectors = {
   multiply(a: Vector2, b: Vector2): Vector2 {
     return [a[0] * b[0], a[1] * b[1]];
   },
+  divide(a: Vector2, b: Vector2): Vector2 {
+    return [a[0] / b[0], a[1] / b[1]];
+  },
   get up(): Vector2 {
     return [0, 1];
   },

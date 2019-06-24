@@ -1,10 +1,6 @@
 import { vectors, Vector2 } from '../vectors.js';
-import { Zombie } from './zombie.js';
-import { Hero } from './hero.js';
-import { Bullet } from './bullet.js';
 import { GameContext } from '../states/context.js';
 
-export type Character = Hero | Zombie | Bullet;
 export interface Drawable {
   updatePosition(context?: GameContext): void;
   draw(ctx: CanvasRenderingContext2D): void;
@@ -17,7 +13,7 @@ export interface Drawable {
  */
 export abstract class GameObject {
   public rotation = 0;
-  protected scale: Vector2 = [0, 0];
+  //   protected scale: Vector2 = [0, 0];
   protected abstract position: Vector2 = [0, 0];
 
   protected get x(): number {

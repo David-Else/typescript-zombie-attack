@@ -1,14 +1,16 @@
-import { Vector2 } from '../vectors.js';
+import { Vector2, vectors } from '../vectors.js';
 import { VectorCharacter } from './base-classes.js';
 import { GameContext } from '../states/context.js';
+import { instantiate } from './entity-factory.js';
+import { Bullet } from './bullet.js';
+import { Zombie } from './zombie.js';
 
 export class Hero extends VectorCharacter {
-  public kind: 'hero' | undefined;
   public lives = 3;
   public widthHeight: Vector2 = [25, 50];
   public color = 'red';
   public firePaused = false;
-  //   public numberOfBullets = 100;
+  public numberOfBullets = 100;
 
   public constructor(public position: Vector2) {
     super();
@@ -17,31 +19,38 @@ export class Hero extends VectorCharacter {
   public updatePosition(context: GameContext): void {
     // console.log('kk');
 
+    function centerOfEntity(entity: Hero | Zombie | Bullet): Vector2 {
+      return vectors.add(
+        entity.position,
+        vectors.divide(entity.widthHeight, [2, 2]),
+      );
+    }
+
     if (context.inGameKeys.rightPressed) {
       this.rotation = this.rotation + 1;
     } else if (context.inGameKeys.leftPressed) {
       this.rotation = this.rotation - 1;
     }
-    // firePaused is set to true after every bullet
-    // only when the fire button is released is it set to false
-    // this means only one bullet fired per button press
-    // if (!context.inGameKeys.firePressed) {
-    //   this.firePaused = false;
-    // }
-    // if (
-    //   context.inGameKeys.firePressed &&
-    //   state.numberOfBullets > 0 &&
-    //   !this.firePaused
-    // ) {
-    //   state.numberOfBullets -= 1;
-    //   console.log(`fire! ${state.numberOfBullets}`);
-    //   //   state.events.fire.broadcast();
-    //   this.firePaused = true;
-    // }
 
-    // super.update(); <<< PROBLEM for logic, why not here?
+    if (!context.inGameKeys.firePressed) {
+      this.firePaused = false;
+    }
+
+    if (
+      context.inGameKeys.firePressed &&
+      this.numberOfBullets > 0 &&
+      !this.firePaused
+    ) {
+      //   context.inGameKeys.firePressed = false; WATCH OUT RACE BUG
+      this.firePaused = true;
+
+      context.entities.bullets.push(
+        ...instantiate(Bullet, 10, {
+          position: centerOfEntity(this),
+          rotation: this.rotation,
+        }),
+      );
+      this.numberOfBullets -= 1;
+    }
   }
-  //   public createBullet(): void {
-
-  //   }
 }
