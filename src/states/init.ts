@@ -12,22 +12,6 @@ import { Vector2 } from '../vectors.js';
 export class Init extends Base implements State {
   private runAsyncInitFunctionOnce = false; // HACK to fix MAKE CONSTRUCTOR? can't because async?
 
-  public transition(context: GameContext): void {
-    console.log('context.State = new StartScreen(context);');
-    context.State = new StartScreen(context);
-  }
-
-  public update(context: GameContext): void {
-    if (!this.runAsyncInitFunctionOnce) {
-      this.runAsyncInitFunctionOnce = true;
-      Init.init(context); // it transitions at end of this async
-    }
-  }
-
-  public keyHandler(event: KeyboardEvent, inGameKeys: InGameKeys): void {
-    // do nothing, overide base class
-  }
-
   public static async init(context: GameContext): Promise<void> {
     /**
      * ==========================================================================
@@ -102,6 +86,22 @@ export class Init extends Base implements State {
 
     // WORKS!! this.renderAll(context.ctx);
     context.transition();
+  }
+
+  public transition(context: GameContext): void {
+    console.log('context.State = new StartScreen(context);');
+    context.State = new StartScreen(context);
+  }
+
+  public update(context: GameContext): void {
+    if (!this.runAsyncInitFunctionOnce) {
+      this.runAsyncInitFunctionOnce = true;
+      Init.init(context); // it transitions at end of this async
+    }
+  }
+
+  public keyHandler(event: KeyboardEvent, inGameKeys: InGameKeys): void {
+    // do nothing, overide base class
   }
 }
 

@@ -6,7 +6,7 @@ import { GameContext } from '../states/context.js';
 
 export type Character = Hero | Zombie | Bullet;
 export interface Drawable {
-  updatePosition(state?: any): void;
+  updatePosition(context?: GameContext): void;
   draw(ctx: CanvasRenderingContext2D): void;
 }
 
