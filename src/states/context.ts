@@ -48,6 +48,7 @@ export class GameContext {
 
   public set State(state: State) {
     this.state = state;
+    // this.pause = false;
   }
 
   public transition(): void {

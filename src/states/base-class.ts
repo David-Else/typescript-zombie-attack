@@ -4,6 +4,7 @@ export interface State {
   transition(context: GameContext): void;
   keyHandler(event: KeyboardEvent, inGameKeys: InGameKeys): void;
   update(context: GameContext): void;
+  //   draw(): void;
 }
 
 export abstract class Base {

@@ -47,7 +47,7 @@ function detectCollision(context: GameContext): void {
       // hero killed by zombie, loose life, start level again
       context.entities.hero[0].lives -= 1;
       // massive zombie spawn bug!
-      //   context.State = new LevelOne(context);
+      context.State = new LevelOne(context);
     }
 
     // inner loop for bullets
@@ -66,9 +66,12 @@ function detectCollision(context: GameContext): void {
 
 // Main loop
 function gameLoop(): void {
+  //   while (GameContext.running) {
   gameContext.updateCurrentState();
   detectCollision(gameContext);
   //   gameContext.updateAndDrawCharacters();
+  //   }
+
   requestAnimationFrame(gameLoop);
 }
 
