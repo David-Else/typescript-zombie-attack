@@ -18,7 +18,7 @@ export class Zombie extends BitmapCharacter {
   public updatePosition(context: GameContext): void {
     const slowDownFactor: Vector2 = [0.1, 0.1];
 
-    this.directTowards(context.entities.hero[0].position);
+    this.directTowards(context.entities.hero.position);
     this.randomStumble();
     this.position = vectors.add(
       this.position,

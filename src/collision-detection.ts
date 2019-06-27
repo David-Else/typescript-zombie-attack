@@ -5,9 +5,16 @@ import { Vector2 } from './vectors.js';
  * Axis-aligned bounding boxes, test if two game entities are overlapping or not
  * =============================================================================
  */
+
+export interface Collidable {
+  x: number;
+  y: number;
+  widthHeight: Vector2;
+}
+
 export function checkCollision(
-  character1: { x: number; y: number; widthHeight: Vector2 },
-  character2: { x: number; y: number; widthHeight: Vector2 },
+  character1: Collidable,
+  character2: Collidable,
 ): boolean {
   const left = character1.x;
   const right = character1.x + character1.widthHeight[0];

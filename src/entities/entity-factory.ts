@@ -38,7 +38,7 @@ export function instantiate(
   ClassToInstantiate: typeof Hero,
   numberOf: number,
   options: HeroOptions,
-): Hero[];
+): Hero;
 export function instantiate(
   ClassToInstantiate: typeof Bullet,
   numberOf: number,
@@ -48,8 +48,9 @@ export function instantiate(
   ClassToInstantiate: typeof Zombie | typeof Hero | typeof Bullet,
   numberOf: number,
   options?: any,
-): any[] {
+): any[] | any {
   const characters: any[] = [];
+
   for (let index = 0; index < numberOf; index += 1) {
     switch (ClassToInstantiate) {
       case Zombie:
@@ -61,8 +62,7 @@ export function instantiate(
         );
         break;
       case Hero:
-        characters.push(new ClassToInstantiate(options.position));
-        break;
+        return new ClassToInstantiate(options.position);
       case Bullet:
         characters.push(
           new ClassToInstantiate(options.position, options.rotation),

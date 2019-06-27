@@ -43,9 +43,9 @@ document.addEventListener('keyup', gameContext.keyHandler.bind(gameContext));
 function detectCollision(context: GameContext): void {
   // outer loop for zombies
   context.entities.zombies.forEach((zombie, index) => {
-    if (checkCollision(context.entities.hero[0], zombie)) {
+    if (checkCollision(context.entities.hero, zombie)) {
       // hero killed by zombie, loose life, start level again
-      context.entities.hero[0].lives -= 1;
+      context.entities.hero.lives -= 1;
       // massive zombie spawn bug!
       context.State = new LevelOne(context);
     }

@@ -15,13 +15,13 @@ export interface InGameKeys {
 
 export class GameContext {
   public entities: {
-    hero: Hero[];
+    hero: Hero;
     zombies: Zombie[];
     bullets: Bullet[];
     screenText: ScreenText[];
-    [key: string]: Drawable[];
+    [key: string]: Drawable[] | Drawable;
   } = {
-    hero: [],
+    hero: {} as Hero,
     zombies: [],
     bullets: [],
     screenText: [],

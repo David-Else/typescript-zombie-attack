@@ -19,11 +19,9 @@ export class LevelOne extends Base implements State {
       ctx.canvas.height / 2,
     ];
 
-    context.entities.hero.push(
-      ...instantiate(Hero, 1, {
-        position: middleOfScreen(context.ctx),
-      }),
-    );
+    context.entities.hero = instantiate(Hero, 1, {
+      position: middleOfScreen(context.ctx),
+    });
 
     context.entities.zombies.push(
       ...instantiate(Zombie, 50, {
@@ -41,10 +39,10 @@ export class LevelOne extends Base implements State {
   public update(context: GameContext): void {
     super.update(context);
     context.entities.screenText[0].linesOfText = [
-      `Lives = ${context.entities.hero[0].lives} `,
+      `Lives = ${context.entities.hero.lives} `,
       `Score = ${context.score}`,
       `Zombies = ${context.entities.zombies.length} `,
-      `Bullets = ${context.entities.hero[0].numberOfBullets}`,
+      `Bullets = ${context.entities.hero.numberOfBullets}`,
     ];
   }
 }

@@ -84,7 +84,7 @@ export abstract class VectorCharacter extends BaseCharacter
   }
 
   protected abstract color: string;
-  protected abstract widthHeight: Vector2;
+  public abstract widthHeight: Vector2;
 }
 
 /**
