@@ -24,18 +24,31 @@ export abstract class Base {
     // );
 
     Object.entries(context.entities)
-      .flatMap(
-        ({ 1: objOrArray }: { [key: string]: Drawable | Drawable[] }) => {
-          if (objOrArray instanceof Array) {
-            return objOrArray;
-          }
-          return [objOrArray];
-        },
-      )
+      .flatMap(keyValueArray => {
+        const [key, objOrArrayValue] = keyValueArray;
+        if (objOrArrayValue instanceof Array) {
+          return objOrArrayValue;
+        }
+        return [objOrArrayValue];
+      })
       .forEach((obj: Drawable) => {
         obj.updatePosition(context);
         obj.draw(context.ctx);
       });
+
+    // Object.entries(context.entities)
+    //   .flatMap(
+    //     ({ 1: objOrArray }: { [key: string]: Drawable | Drawable[] }) => {
+    //       if (objOrArray instanceof Array) {
+    //         return objOrArray;
+    //       }
+    //       return [objOrArray];
+    //     },
+    //   )
+    //   .forEach((obj: Drawable) => {
+    //     obj.updatePosition(context);
+    //     obj.draw(context.ctx);
+    //   });
 
     Object.entries(context.entities)
       .flatMap((keyValueArray: [any, any]) => {

@@ -3,6 +3,7 @@ import { Init } from './states/init.js';
 import { checkCollision } from './collision-detection.js';
 import { Vector2 } from './vectors.js';
 import { LevelOne } from './states/level-one.js';
+import { testFetch } from './states/high-scores.js';
 
 // eslint-disable-next-line no-unused-expressions
 // ({
@@ -75,4 +76,6 @@ function gameLoop(): void {
   requestAnimationFrame(gameLoop);
 }
 
-gameLoop();
+// gameLoop();
+
+testFetch();
