@@ -23,18 +23,29 @@ export abstract class Base {
     //   }),
     // );
 
-    Object.entries(context.entities)
-      .flatMap(keyValueArray => {
-        const [key, objOrArrayValue] = keyValueArray;
-        if (objOrArrayValue instanceof Array) {
-          return objOrArrayValue;
-        }
-        return [objOrArrayValue];
-      })
-      .forEach((obj: Drawable) => {
-        obj.updatePosition(context);
-        obj.draw(context.ctx);
+    // STUDY THE DIFFERENCE enteries and values
+
+    // Object.entries(context.entities)
+    //   .flatMap(keyValueArray => {
+    //     const [key, objOrArrayValue] = keyValueArray;
+    //     if (objOrArrayValue instanceof Array) {
+    //       return objOrArrayValue;
+    //     }
+    //     return [objOrArrayValue];
+    //   })
+    //   .forEach((obj: Drawable) => {
+    //     obj.updatePosition(context);
+    //     obj.draw(context.ctx);
+    //   });
+
+    Object.values(context.entities)
+      .flatMap(val => (val instanceof Array ? val : [val]))
+      .forEach((entity: Drawable) => {
+        entity.updatePosition(context);
+        entity.draw(context.ctx);
       });
+
+    // OLD version with the weird 1 thing
 
     // Object.entries(context.entities)
     //   .flatMap(
