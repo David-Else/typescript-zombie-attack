@@ -1,5 +1,6 @@
 import { GameContext, InGameKeys } from './context.js';
 import { Drawable } from '../entities/base-classes.js';
+import { GameOver } from './game-over.js';
 
 export interface State {
   transition(context: GameContext): void;
@@ -16,6 +17,7 @@ export abstract class Base {
       context.ctx.canvas.width,
       context.ctx.canvas.height,
     );
+
     // Object.keys(context.entities).forEach(characterGroup =>
     //   context.entities[characterGroup].forEach(character => {
     //     character.updatePosition(context);
@@ -43,35 +45,6 @@ export abstract class Base {
       .forEach((entity: Drawable) => {
         entity.updatePosition(context);
         entity.draw(context.ctx);
-      });
-
-    // OLD version with the weird 1 thing
-
-    // Object.entries(context.entities)
-    //   .flatMap(
-    //     ({ 1: objOrArray }: { [key: string]: Drawable | Drawable[] }) => {
-    //       if (objOrArray instanceof Array) {
-    //         return objOrArray;
-    //       }
-    //       return [objOrArray];
-    //     },
-    //   )
-    //   .forEach((obj: Drawable) => {
-    //     obj.updatePosition(context);
-    //     obj.draw(context.ctx);
-    //   });
-
-    Object.entries(context.entities)
-      .flatMap((keyValueArray: [any, any]) => {
-        const [key, objOrArrayValue] = keyValueArray;
-        if (objOrArrayValue instanceof Array) {
-          return objOrArrayValue;
-        }
-        return [objOrArrayValue];
-      })
-      .forEach((obj: Drawable) => {
-        obj.updatePosition(context);
-        obj.draw(context.ctx);
       });
   }
 

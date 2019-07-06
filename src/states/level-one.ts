@@ -7,6 +7,7 @@ import { Hero } from '../entities/hero.js';
 import { Zombie } from '../entities/zombie.js';
 import { Vector2 } from '../vectors.js';
 import { LevelTwo } from './level-two.js';
+import { GameOver } from './game-over.js';
 
 export class LevelOne extends Base implements State {
   public constructor(context: GameContext) {
@@ -26,7 +27,7 @@ export class LevelOne extends Base implements State {
         position: middleOfScreen(context.ctx),
       });
     }
-    context.entities.zombies = []; // stop megaspawn, kill remaining zombies
+    context.entities.zombies = []; // stop megaspawn, kill remaining zombies if restart level
     context.entities.zombies.push(
       ...instantiate(Zombie, 50, {
         image: Zombie.imagesToLoad[0],
@@ -42,6 +43,11 @@ export class LevelOne extends Base implements State {
 
   public update(context: GameContext): void {
     super.update(context);
+    if (context.entities.hero.lives === 3) {
+      console.log(context.entities.hero.lives);
+      // why does this just keep running?!
+      //   context.State = new GameOver(context);
+    }
     context.entities.screenText[0].linesOfText = [
       'Level 1',
       `Lives = ${context.entities.hero.lives} `,

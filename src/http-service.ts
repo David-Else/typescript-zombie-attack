@@ -31,7 +31,8 @@ interface Hiscore {
   score: number;
 }
 
-interface Hiscores extends Array<Hiscore> {}
+type Hiscores = Hiscore[];
+// interface Hiscores extends Array<Hiscore> {}
 
 function isHiscores(obj: unknown): obj is Hiscores {
   return (
