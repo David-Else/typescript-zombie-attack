@@ -14,7 +14,6 @@ export class Hero extends VectorCharacter {
     }
     updatePosition(context) {
         function centerOfEntityScreenPosition(entity) {
-            console.log(entity.position);
             let middleOfEntity = vectors.divide(entity.widthHeight, [2, 2]);
             return vectors.add(entity.position, middleOfEntity);
         }
