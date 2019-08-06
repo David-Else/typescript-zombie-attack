@@ -33,3 +33,16 @@ export function checkCollision(
     bottom <= otherTop
   );
 }
+
+// add new stuff from https://www.youtube.com/watch?v=VpaTWhgYQEk
+
+enum CollidableTypes {
+  RECTANGLE,
+  ROTATEDRECTANGLE,
+}
+
+interface Collider {
+  hitTest(obj: CollidableTypes): boolean;
+  colliderType: CollidableTypes;
+  position: Vector2;
+}

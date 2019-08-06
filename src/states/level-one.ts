@@ -12,26 +12,27 @@ import { GameOver } from './game-over.js';
 export class LevelOne extends Base implements State {
   public constructor(context: GameContext) {
     super();
+    const numberOfZombies = 50;
+
     context.entities.screenText = [
       new ScreenText([], '25px Arial', 'black', [161, 30], 'right'),
-    ];
-
-    const middleOfScreen = (ctx: CanvasRenderingContext2D): Vector2 => [
-      ctx.canvas.width / 2,
-      ctx.canvas.height / 2,
     ];
 
     // if the hero does not exist, or has live === 0,  make him
     if (!context.entities.hero.lives) {
       context.entities.hero = instantiate(Hero, 1, {
-        position: middleOfScreen(context.ctx),
+        position: [context.ctx.canvas.width / 2, context.ctx.canvas.height / 2],
       });
     }
+
     context.entities.zombies = []; // stop megaspawn, kill remaining zombies if restart level
     context.entities.zombies.push(
-      ...instantiate(Zombie, 50, {
+      ...instantiate(Zombie, numberOfZombies, {
         image: Zombie.imagesToLoad[0],
-        pointToSpawnAround: middleOfScreen(context.ctx),
+        pointToSpawnAround: [
+          context.ctx.canvas.width / 2,
+          context.ctx.canvas.height / 2,
+        ],
       }),
     );
   }
