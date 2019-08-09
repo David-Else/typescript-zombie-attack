@@ -7,7 +7,7 @@
     "start-typescript-development": "tsc-watch --onSuccess 'npm --silent run test-and-eslint'",
     "test-and-eslint": "npm run test && npm run eslint",
     "test": "mocha --reporter min --require esm --require ./setup-jsdom.js",
-    "eslint": "eslint --fix-dry-run --cache -f unix --ext .ts src/ test/",
+    "eslint": "eslint --fix --cache -f unix --ext .ts src/ test/",
     "build-bundle": "rollup --config",
     "uml": "tplant --input src/app.ts --output uml-diagram.svg"
   },

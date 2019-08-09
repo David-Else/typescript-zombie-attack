@@ -20,7 +20,7 @@ export class Hero extends VectorCharacter {
 
   public updatePosition(context: GameContext): void {
     function centerOfEntityScreenPosition(entity: Entity): Vector2 {
-      let middleOfEntity = vectors.divide(entity.widthHeight, [2, 2]);
+      const middleOfEntity = vectors.divide(entity.widthHeight, [2, 2]);
       return vectors.add(entity.position, middleOfEntity);
     }
 

@@ -2,10 +2,10 @@
 // is game game context game state? make clearer, internal, global. make state diagram, make clear global state, each level has internal state, >> screenState <<
 // draw new diagram! map state
 
-//david-else.github.io/typescript-zombie-attack/
-//github.com/David-Else/typescript-zombie-attack
+// david-else.github.io/typescript-zombie-attack/
+// github.com/David-Else/typescript-zombie-attack
 
-//zoom.us/
+// zoom.us/
 export interface State {
   handle(context: Context): void;
 }
@@ -45,7 +45,7 @@ export class Context {
   }
 }
 
-var context = new Context(new ConcreteStateA());
+const context = new Context(new ConcreteStateA());
 context.request();
 context.request();
 context.request();
