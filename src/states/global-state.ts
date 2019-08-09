@@ -4,13 +4,6 @@ import { Hero } from '../entities/hero.js';
 import { ScreenText } from '../entities/text.js';
 import { Zombie } from '../entities/zombie.js';
 
-export interface State {
-  transition(context: GameContext): void;
-  keyHandler(event: KeyboardEvent, inGameKeys: InGameKeys): void;
-  update(context: GameContext): void;
-  //   draw(): void;
-}
-
 export interface InGameKeys {
   startPressed: boolean;
   firePressed: boolean;
@@ -18,8 +11,8 @@ export interface InGameKeys {
   rightPressed: boolean;
   pausePressed: boolean;
 }
-// ???!! implements State
-export class GameContext {
+
+export class GlobalState {
   public entities: {
     hero: Hero;
     zombies: Zombie[];
@@ -42,31 +35,8 @@ export class GameContext {
     rightPressed: false,
     pausePressed: false,
   };
-  // ? gameState? rename context to state
-  public constructor(
-    private state: State,
-    public ctx: CanvasRenderingContext2D,
-  ) {}
 
-  public get State(): State {
-    return this.state;
-  }
+  // levelState
 
-  public set State(state: State) {
-    this.state = state;
-    // this.pause = false;
-  }
-
-  public transition(): void {
-    console.log(`Transitioning`);
-    this.state.transition(this);
-  }
-
-  public keyHandler(event: KeyboardEvent): void {
-    this.state.keyHandler(event, this.inGameKeys);
-  }
-
-  public updateCurrentState(): void {
-    this.state.update(this);
-  }
+  public constructor(public ctx: CanvasRenderingContext2D) {}
 }

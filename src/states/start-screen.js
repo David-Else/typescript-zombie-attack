@@ -1,6 +1,6 @@
+import { ScreenText } from '../entities/text.js';
 import { Base } from './base-class.js';
 import { LevelOne } from './level-one.js';
-import { ScreenText } from '../entities/text.js';
 export class StartScreen extends Base {
     constructor(context) {
         super();

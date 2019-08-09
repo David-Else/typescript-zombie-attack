@@ -1,8 +1,8 @@
-import { Base } from './base-class.js';
-import { ScreenText } from '../entities/text.js';
 import { instantiate } from '../entities/entity-factory.js';
 import { Hero } from '../entities/hero.js';
+import { ScreenText } from '../entities/text.js';
 import { Zombie } from '../entities/zombie.js';
+import { Base } from './base-class.js';
 import { LevelTwo } from './level-two.js';
 export class LevelOne extends Base {
     constructor(context) {
@@ -33,7 +33,7 @@ export class LevelOne extends Base {
     update(context) {
         super.update(context);
         if (context.entities.hero.lives === 3) {
-            console.log(context.entities.hero.lives);
+            // console.log(context.entities.hero.lives);
             // why does this just keep running?!
             //   context.State = new GameOver(context);
         }

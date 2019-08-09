@@ -1,8 +1,8 @@
+import { GameContext } from '../states/context.js';
 import { Vector2, vectors } from '../vectors.js';
 import { VectorCharacter } from './base-classes.js';
-import { GameContext } from '../states/context.js';
-import { instantiate } from './entity-factory.js';
 import { Bullet } from './bullet.js';
+import { instantiate } from './entity-factory.js';
 import { Zombie } from './zombie.js';
 
 type Entity = Hero | Zombie | Bullet;

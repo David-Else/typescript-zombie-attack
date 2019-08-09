@@ -1,4 +1,6 @@
+// ???!! implements State
 export class GameContext {
+    // ? gameState? rename context to state
     constructor(state, ctx) {
         this.state = state;
         this.ctx = ctx;

@@ -1,7 +1,7 @@
-import { Base, State } from './base-class.js';
-import { GameContext, InGameKeys } from './context.js';
-import { StartScreen } from './start-screen.js';
 import { Zombie } from '../entities/zombie.js';
+import { Base } from './base-class.js';
+import { GameContext, State } from './context.js';
+import { StartScreen } from './start-screen.js';
 
 export class Init extends Base implements State {
   private runAsyncInitFunctionOnce = false; // HACK?

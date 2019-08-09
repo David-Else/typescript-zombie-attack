@@ -1,13 +1,5 @@
-import { GameContext, InGameKeys } from './context.js';
 import { Drawable } from '../entities/base-classes.js';
-import { GameOver } from './game-over.js';
-
-export interface State {
-  transition(context: GameContext): void;
-  keyHandler(event: KeyboardEvent, inGameKeys: InGameKeys): void;
-  update(context: GameContext): void;
-  //   draw(): void;
-}
+import { GameContext, InGameKeys } from './context.js';
 
 export abstract class Base {
   public update(context: GameContext): void {

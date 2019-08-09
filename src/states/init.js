@@ -1,6 +1,6 @@
+import { Zombie } from '../entities/zombie.js';
 import { Base } from './base-class.js';
 import { StartScreen } from './start-screen.js';
-import { Zombie } from '../entities/zombie.js';
 export class Init extends Base {
     constructor() {
         super(...arguments);

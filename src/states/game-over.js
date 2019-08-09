@@ -1,6 +1,6 @@
+import { ScreenText } from '../entities/text.js';
 import { Base } from './base-class.js';
 import { Init } from './init.js';
-import { ScreenText } from '../entities/text.js';
 export class GameOver extends Base {
     constructor(context) {
         super();

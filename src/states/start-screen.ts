@@ -1,7 +1,7 @@
-import { Base, State } from './base-class.js';
-import { GameContext, InGameKeys } from './context.js';
-import { LevelOne } from './level-one.js';
 import { ScreenText } from '../entities/text.js';
+import { Base } from './base-class.js';
+import { GameContext, InGameKeys, State } from './context.js';
+import { LevelOne } from './level-one.js';
 
 export class StartScreen extends Base implements State {
   public constructor(context: GameContext) {

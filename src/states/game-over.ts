@@ -1,7 +1,7 @@
-import { Base, State } from './base-class.js';
-import { Init } from './init.js';
-import { GameContext } from './context.js';
 import { ScreenText } from '../entities/text.js';
+import { Base } from './base-class.js';
+import { GameContext, State } from './context.js';
+import { Init } from './init.js';
 
 export class GameOver extends Base implements State {
   public constructor(context: GameContext) {
