@@ -1,7 +1,7 @@
 import { vectors } from '../vectors.js';
 import { Bullet } from './bullet.js';
 import { instantiate } from './factory.js';
-import { VectorCharacter } from './vector-character';
+import { VectorCharacter } from './vector-character.js';
 export class Hero extends VectorCharacter {
     constructor(position) {
         super();

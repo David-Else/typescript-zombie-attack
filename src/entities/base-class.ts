@@ -13,8 +13,9 @@ export interface Drawable {
  */
 export abstract class EntityBaseClass {
   public rotation = 0;
-  //   protected scale: Vector2 = [0, 0];
+  protected scale: Vector2 = [0, 0];
   protected abstract position: Vector2 = [0, 0];
+
   public get x(): number {
     return this.position[0];
   }

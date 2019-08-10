@@ -1,7 +1,6 @@
 import { GameContext } from '../states/context.js';
 import { Vector2 } from '../vectors.js';
-import { EntityBaseClass } from './base-class';
-import { Drawable } from './base-class.js';
+import { Drawable, EntityBaseClass } from './base-class.js';
 
 export class ScreenText extends EntityBaseClass implements Drawable {
   public position: Vector2 = [200, 200];

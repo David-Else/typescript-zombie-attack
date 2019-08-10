@@ -1,4 +1,4 @@
-import { EntityBaseClass } from './base-class';
+import { EntityBaseClass } from './base-class.js';
 export class ScreenText extends EntityBaseClass {
     //   public originalXValue: number = 100;
     //   public originalYValue: number = 100;

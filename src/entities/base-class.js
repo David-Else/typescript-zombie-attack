@@ -6,7 +6,7 @@
 export class EntityBaseClass {
     constructor() {
         this.rotation = 0;
-        //   protected scale: Vector2 = [0, 0];
+        this.scale = [0, 0];
         this.position = [0, 0];
     }
     get x() {

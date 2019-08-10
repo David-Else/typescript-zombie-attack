@@ -1,6 +1,6 @@
 import { GameContext } from '../states/context.js';
 import { Vector2, vectors } from '../vectors.js';
-import { BitmapCharacter } from './bitmap-character';
+import { BitmapCharacter } from './bitmap-character.js';
 
 export class Zombie extends BitmapCharacter {
   public static imagesToLoad: HTMLImageElement[] = [];

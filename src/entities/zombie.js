@@ -1,5 +1,5 @@
 import { vectors } from '../vectors.js';
-import { BitmapCharacter } from './bitmap-character';
+import { BitmapCharacter } from './bitmap-character.js';
 export class Zombie extends BitmapCharacter {
     constructor(image, position) {
         super();

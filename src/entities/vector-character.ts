@@ -1,6 +1,6 @@
 import { Vector2 } from '../vectors.js';
 import { Drawable } from './base-class';
-import { Character } from './character';
+import { Character } from './character.js';
 
 /**
  * =============================================================================

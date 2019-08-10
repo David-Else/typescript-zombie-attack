@@ -1,6 +1,7 @@
 import { GameContext } from '../states/context.js';
 import { Vector2, vectors } from '../vectors.js';
-import { EntityBaseClass } from './base-class';
+import { EntityBaseClass } from './base-class.js';
+
 /**
  * =============================================================================
  * Second level base character abstract class all other characters inherit from
