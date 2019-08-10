@@ -1,8 +1,9 @@
-import { Vector2 } from '../vectors.js';
-import { GameObject, Drawable } from './base-classes.js';
 import { GameContext } from '../states/context.js';
+import { Vector2 } from '../vectors.js';
+import { EntityBaseClass } from './base-class';
+import { Drawable } from './base-class.js';
 
-export class ScreenText extends GameObject implements Drawable {
+export class ScreenText extends EntityBaseClass implements Drawable {
   public position: Vector2 = [200, 200];
 
   public linesOfText: string[];

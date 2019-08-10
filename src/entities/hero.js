@@ -1,7 +1,7 @@
 import { vectors } from '../vectors.js';
-import { VectorCharacter } from './base-classes.js';
 import { Bullet } from './bullet.js';
-import { instantiate } from './entity-factory.js';
+import { instantiate } from './factory.js';
+import { VectorCharacter } from './vector-character';
 export class Hero extends VectorCharacter {
     constructor(position) {
         super();
@@ -14,7 +14,7 @@ export class Hero extends VectorCharacter {
     }
     updatePosition(context) {
         function centerOfEntityScreenPosition(entity) {
-            let middleOfEntity = vectors.divide(entity.widthHeight, [2, 2]);
+            const middleOfEntity = vectors.divide(entity.widthHeight, [2, 2]);
             return vectors.add(entity.position, middleOfEntity);
         }
         if (context.inGameKeys.rightPressed) {

@@ -12,10 +12,4 @@ export function checkCollision(character1, character2) {
         top >= otherBottom ||
         bottom <= otherTop);
 }
-// add new stuff from https://www.youtube.com/watch?v=VpaTWhgYQEk
-var CollidableTypes;
-(function (CollidableTypes) {
-    CollidableTypes[CollidableTypes["RECTANGLE"] = 0] = "RECTANGLE";
-    CollidableTypes[CollidableTypes["ROTATEDRECTANGLE"] = 1] = "ROTATEDRECTANGLE";
-})(CollidableTypes || (CollidableTypes = {}));
 //# sourceMappingURL=collision-detection.js.map

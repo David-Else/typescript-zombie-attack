@@ -65,3 +65,7 @@ export const tween = {
 
   quartic: (k: number) => 1 - --k * k * k * k,
 };
+
+// test
+
+const dacceleration = (x: number) => Math.pow(x, 2);

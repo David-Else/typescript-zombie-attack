@@ -51,4 +51,6 @@ export const tween = {
     weightedAverage: (p, d, w) => (p * (w - 1) + d) / w,
     quartic: (k) => 1 - --k * k * k * k,
 };
+// test
+const dacceleration = (x) => Math.pow(x, 2);
 //# sourceMappingURL=vectors.js.map

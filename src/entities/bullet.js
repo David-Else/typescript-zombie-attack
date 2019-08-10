@@ -1,5 +1,5 @@
 import { vectors } from '../vectors.js';
-import { VectorCharacter } from './base-classes.js';
+import { VectorCharacter } from './vector-character';
 export class Bullet extends VectorCharacter {
     // public v: number = (this.v * (N - 1) + w) / N;
     constructor(position, rotation) {
@@ -34,9 +34,9 @@ export class Bullet extends VectorCharacter {
         // Run the animation while `frameCounter` is less than `totalFrames`
         if (this.frameCounter < this.totalFrames) {
             // Find the normalized time value
-            let normalizedTime = this.frameCounter / this.totalFrames;
+            const normalizedTime = this.frameCounter / this.totalFrames;
             // Apply the easing function
-            let curvedTime = this.smoothStepSquared(normalizedTime);
+            const curvedTime = this.smoothStepSquared(normalizedTime);
             // Interpolate the sprite's x position based on the curved time
             // let tween =
             //   this.endValue * curvedTime + this.startValue * (1 - curvedTime);

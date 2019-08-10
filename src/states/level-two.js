@@ -1,4 +1,4 @@
-import { instantiate } from '../entities/entity-factory.js';
+import { instantiate } from '../entities/factory.js';
 import { Hero } from '../entities/hero.js';
 import { ScreenText } from '../entities/text.js';
 import { Zombie } from '../entities/zombie.js';

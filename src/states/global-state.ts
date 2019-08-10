@@ -1,4 +1,4 @@
-import { Drawable } from '../entities/base-classes.js';
+import { Drawable } from '../entities/base-class.js';
 import { Bullet } from '../entities/bullet.js';
 import { Hero } from '../entities/hero.js';
 import { ScreenText } from '../entities/text.js';

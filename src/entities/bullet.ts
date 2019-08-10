@@ -1,5 +1,5 @@
 import { Vector2, vectors } from '../vectors.js';
-import { VectorCharacter } from './base-classes.js';
+import { VectorCharacter } from './vector-character';
 
 export class Bullet extends VectorCharacter {
   public widthHeight: Vector2 = [6, 25];

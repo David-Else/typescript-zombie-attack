@@ -1,4 +1,4 @@
-import { Drawable } from '../entities/base-classes.js';
+import { Drawable } from '../entities/base-class.js';
 import { GameContext, InGameKeys } from './context.js';
 
 export abstract class Base {

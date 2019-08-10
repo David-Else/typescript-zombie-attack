@@ -1,5 +1,5 @@
-import { GameObject } from './base-classes.js';
-export class ScreenText extends GameObject {
+import { EntityBaseClass } from './base-class';
+export class ScreenText extends EntityBaseClass {
     //   public originalXValue: number = 100;
     //   public originalYValue: number = 100;
     constructor(linesOfText, textStyle, fontColor, position, textAlignment = 'center') {

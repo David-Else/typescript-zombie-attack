@@ -29,4 +29,4 @@ export function instantiate(ClassToInstantiate, numberOf, options) {
     }
     return characters;
 }
-//# sourceMappingURL=entity-factory.js.map
+//# sourceMappingURL=factory.js.map

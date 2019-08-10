@@ -28,7 +28,7 @@ export class Context {
         this.state.handle(this);
     }
 }
-var context = new Context(new ConcreteStateA());
+const context = new Context(new ConcreteStateA());
 context.request();
 context.request();
 context.request();
