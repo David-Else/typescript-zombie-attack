@@ -1,5 +1,5 @@
 import { GameContext } from '../states/context.js';
-import { Vector2 } from '../vectors.js';
+import { Vector2 } from '../utilities/vectors.js';
 import { Drawable, EntityBaseClass } from './base-class.js';
 
 export class ScreenText extends EntityBaseClass implements Drawable {

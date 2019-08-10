@@ -1,5 +1,5 @@
 import { GameContext } from '../states/context.js';
-import { Vector2, vectors } from '../vectors.js';
+import { Vector2, vectors } from '../utilities/vectors.js';
 import { BitmapCharacter } from './bitmap-character.js';
 
 export class Zombie extends BitmapCharacter {

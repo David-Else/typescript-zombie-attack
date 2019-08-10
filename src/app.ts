@@ -1,9 +1,8 @@
 import { GameContext } from './states/context.js';
 import { Init } from './states/init.js';
-import { checkCollision } from './collision-detection.js';
-import { Vector2 } from './vectors.js';
 import { LevelOne } from './states/level-one.js';
-import { testFetch } from './http-service.js';
+import { checkCollision } from './utilities/collision-detection.js';
+import { Vector2 } from './utilities/vectors.js';
 
 // eslint-disable-next-line no-unused-expressions
 // ({

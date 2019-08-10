@@ -1,5 +1,5 @@
 import { GameContext } from '../states/context.js';
-import { Vector2 } from '../vectors.js';
+import { Vector2 } from '../utilities/vectors.js';
 
 export interface Drawable {
   updatePosition(context?: GameContext): void;
@@ -8,12 +8,11 @@ export interface Drawable {
 
 /**
  * =============================================================================
- * Top level abstract class all others inherit from
+ * Top level abstract class all others entities inherit from
  * =============================================================================
  */
 export abstract class EntityBaseClass {
   public rotation = 0;
-  protected scale: Vector2 = [0, 0];
   protected abstract position: Vector2 = [0, 0];
 
   public get x(): number {

@@ -2,7 +2,7 @@ import { instantiate } from '../entities/factory.js';
 import { Hero } from '../entities/hero.js';
 import { ScreenText } from '../entities/text.js';
 import { Zombie } from '../entities/zombie.js';
-import { Vector2 } from '../vectors.js';
+import { Vector2 } from '../utilities/vectors.js';
 import { Base } from './base-class.js';
 import { GameContext, State } from './context.js';
 import { StartScreen } from './start-screen.js';

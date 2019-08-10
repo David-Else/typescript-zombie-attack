@@ -1,5 +1,5 @@
 import { tween } from '../utilities/tween.js';
-import { vectors } from '../vectors.js';
+import { vectors } from '../utilities/vectors.js';
 import { VectorCharacter } from './vector-character.js';
 export class Bullet extends VectorCharacter {
     constructor(position, rotation) {
@@ -32,7 +32,6 @@ export class Bullet extends VectorCharacter {
         this.tweenVelocity = vectors.add(this.velocity, vectors.multiply([curvedTime, curvedTime], this.velocity));
         // Add 1 to the frame counter
         this.frameCounter += 1;
-        console.log(this.frameCounter);
     }
 }
 //# sourceMappingURL=bullet.js.map

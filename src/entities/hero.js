@@ -1,4 +1,4 @@
-import { vectors } from '../vectors.js';
+import { vectors } from '../utilities/vectors.js';
 import { Bullet } from './bullet.js';
 import { instantiate } from './factory.js';
 import { VectorCharacter } from './vector-character.js';

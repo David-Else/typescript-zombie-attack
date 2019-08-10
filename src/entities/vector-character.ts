@@ -1,4 +1,4 @@
-import { Vector2 } from '../vectors.js';
+import { Vector2 } from '../utilities/vectors.js';
 import { Drawable } from './base-class';
 import { Character } from './character.js';
 

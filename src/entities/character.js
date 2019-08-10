@@ -1,4 +1,4 @@
-import { vectors } from '../vectors.js';
+import { vectors } from '../utilities/vectors.js';
 import { EntityBaseClass } from './base-class.js';
 /**
  * =============================================================================

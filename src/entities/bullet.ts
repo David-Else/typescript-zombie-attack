@@ -1,5 +1,5 @@
 import { tween } from '../utilities/tween.js';
-import { Vector2, vectors } from '../vectors.js';
+import { Vector2, vectors } from '../utilities/vectors.js';
 import { VectorCharacter } from './vector-character.js';
 
 export class Bullet extends VectorCharacter {
@@ -37,6 +37,5 @@ export class Bullet extends VectorCharacter {
     );
     // Add 1 to the frame counter
     this.frameCounter += 1;
-    console.log(this.frameCounter);
   }
 }

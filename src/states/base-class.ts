@@ -58,7 +58,6 @@ export abstract class Base {
           inGameKeys.pausePressed = !inGameKeys.pausePressed;
         }
         break;
-      // no default
     }
   }
 }

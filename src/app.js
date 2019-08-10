@@ -1,7 +1,7 @@
 import { GameContext } from './states/context.js';
 import { Init } from './states/init.js';
-import { checkCollision } from './collision-detection.js';
 import { LevelOne } from './states/level-one.js';
+import { checkCollision } from './utilities/collision-detection.js';
 // eslint-disable-next-line no-unused-expressions
 // ({
 //   plugins: ['jsdom-quokka-plugin'],
