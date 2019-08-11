@@ -5,7 +5,7 @@ import { instantiate } from './factory.js';
 import { VectorCharacter } from './vector-character.js';
 import { Zombie } from './zombie.js';
 
-export type Entity = Hero | Zombie | Bullet;
+export type Entity = Hero | Zombie | Bullet | Grave;
 
 export class Hero extends VectorCharacter {
   public kind = 'hero';

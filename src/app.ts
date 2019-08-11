@@ -46,13 +46,14 @@ document.addEventListener('keyup', gameContext.keyHandler.bind(gameContext));
 // check collision between all objects in these two arrays
 
 function megaDetect(context: GameContext) {
-  const entityCollisionDetections = new Map<Entity[], Entity[]>();
+  const entityPairsForCollisionDetections = new Map<Entity[], Entity[]>();
 
-  entityCollisionDetections
+  entityPairsForCollisionDetections
     .set([context.entities.hero], context.entities.zombies)
-    .set(context.entities.zombies, context.entities.bullets);
+    .set(context.entities.zombies, context.entities.bullets)
+    .set(context.entities.graves, context.entities.bullets);
 
-  for (const [key, value] of entityCollisionDetections) {
+  for (const [key, value] of entityPairsForCollisionDetections) {
     key.forEach((entityOne, index) =>
       value.forEach((entityTwo, indexTwo) => {
         if (checkCollision(entityOne, entityTwo)) {
@@ -87,6 +88,17 @@ function actOnCollision(
         case 'bullet':
           // zombie hit by bullet, delete zombie and bullet
           context.entities.zombies.splice(index, 1);
+          context.entities.bullets.splice(indexTwo, 1);
+          break;
+
+        default:
+          break;
+      }
+    case 'grave':
+      switch (entityTwo.kind) {
+        case 'bullet':
+          // zombie hit by bullet, delete zombie and bullet
+          context.entities.graves.splice(index, 1);
           context.entities.bullets.splice(indexTwo, 1);
           break;
 
