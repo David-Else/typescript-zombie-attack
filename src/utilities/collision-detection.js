@@ -18,20 +18,6 @@ export function checkCollision(character1, character2) {
  * Test pairs of arrays of entities for collision to prevent unnessesary checks
  * =============================================================================
  */
-export function detectAndActOnCollisions(context) {
-    const entityPairsForCollisionDetections = new Map();
-    entityPairsForCollisionDetections
-        .set([context.entities.hero], context.entities.zombies)
-        .set(context.entities.zombies, context.entities.bullets)
-        .set(context.entities.graves, context.entities.bullets);
-    for (const [key, value] of entityPairsForCollisionDetections) {
-        key.forEach((entityOne, index) => value.forEach((entityTwo, indexTwo) => {
-            if (checkCollision(entityOne, entityTwo)) {
-                actOnCollision(context, entityOne, entityTwo, index, indexTwo);
-            }
-        }));
-    }
-}
 function actOnCollision(context, entityOne, entityTwo, index, indexTwo) {
     switch (entityOne.kind) {
         case 'hero':
@@ -45,6 +31,7 @@ function actOnCollision(context, entityOne, entityTwo, index, indexTwo) {
                 default:
                     break;
             }
+            break;
         case 'zombie':
             switch (entityTwo.kind) {
                 case 'bullet':
@@ -55,6 +42,7 @@ function actOnCollision(context, entityOne, entityTwo, index, indexTwo) {
                 default:
                     break;
             }
+            break;
         case 'grave':
             switch (entityTwo.kind) {
                 case 'bullet':
@@ -67,6 +55,22 @@ function actOnCollision(context, entityOne, entityTwo, index, indexTwo) {
             }
         default:
             break;
+    }
+}
+export function detectAndActOnCollisions(context) {
+    // this needs to go in global state so can ve updateable at run time
+    // how about destructuring these to heros, zombies graves
+    // how could this be
+    const entityPairsForCollisionDetections = new Map()
+        .set([context.entities.hero], context.entities.zombies)
+        .set(context.entities.zombies, context.entities.bullets)
+        .set(context.entities.graves, context.entities.bullets);
+    for (const [key, value] of entityPairsForCollisionDetections) {
+        key.forEach((entityOne, index) => value.forEach((entityTwo, indexTwo) => {
+            if (checkCollision(entityOne, entityTwo)) {
+                actOnCollision(context, entityOne, entityTwo, index, indexTwo);
+            }
+        }));
     }
 }
 //# sourceMappingURL=collision-detection.js.map
