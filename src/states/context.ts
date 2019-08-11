@@ -1,5 +1,6 @@
 import { Drawable } from '../entities/base-class.js';
 import { Bullet } from '../entities/bullet.js';
+import { Grave } from '../entities/graves.js';
 import { Hero } from '../entities/hero.js';
 import { ScreenText } from '../entities/text.js';
 import { Zombie } from '../entities/zombie.js';
@@ -24,12 +25,14 @@ export class GameContext {
     hero: Hero;
     zombies: Zombie[];
     bullets: Bullet[];
+    graves: Grave[];
     screenText: ScreenText[];
     [key: string]: Drawable[] | Drawable;
   } = {
     hero: {} as Hero,
     zombies: [],
     bullets: [],
+    graves: [],
     screenText: [],
   };
 

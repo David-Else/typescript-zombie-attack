@@ -1,7 +1,4 @@
-import { instantiate } from '../entities/factory.js';
-import { Hero } from '../entities/hero.js';
 import { ScreenText } from '../entities/text.js';
-import { Zombie } from '../entities/zombie.js';
 import { Base } from './base-class.js';
 import { StartScreen } from './start-screen.js';
 export class LevelTwo extends Base {
@@ -14,13 +11,15 @@ export class LevelTwo extends Base {
             ctx.canvas.width / 2,
             ctx.canvas.height / 2,
         ];
-        context.entities.hero = instantiate(Hero, 1, {
-            position: middleOfScreen(context.ctx),
-        });
-        context.entities.zombies.push(...instantiate(Zombie, 50, {
-            image: Zombie.imagesToLoad[0],
-            pointToSpawnAround: middleOfScreen(context.ctx),
-        }));
+        // context.entities.hero = instantiate(Hero, 1, {
+        //   position: middleOfScreen(context.ctx),
+        // });
+        // context.entities.zombies.push(
+        //   ...instantiate(Zombie, 50, {
+        //     image: Zombie.imagesToLoad[0],
+        //     pointToSpawnAround: middleOfScreen(context.ctx),
+        //   }),
+        // );
     }
     transition(context) {
         console.log('context.State = new Init();');

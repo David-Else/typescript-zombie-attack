@@ -3,6 +3,7 @@ import { BitmapCharacter } from './bitmap-character.js';
 export class Zombie extends BitmapCharacter {
     constructor(image, position) {
         super();
+        this.kind = 'zombie';
         this.widthHeight = [image.width, image.height];
         this.image = image;
         this.position = position;

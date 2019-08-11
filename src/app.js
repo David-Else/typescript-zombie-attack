@@ -24,36 +24,55 @@ const gameContext = new GameContext(new Init(), ctx); // is this the place for i
 // Event Listeners
 document.addEventListener('keydown', gameContext.keyHandler.bind(gameContext));
 document.addEventListener('keyup', gameContext.keyHandler.bind(gameContext));
-// Detect collision
-function detectCollision(context) {
-    // outer loop for zombies
-    context.entities.zombies.forEach((zombie, index) => {
-        if (checkCollision(context.entities.hero, zombie)) {
-            // hero killed by zombie, loose life, start level again
-            context.entities.hero.lives -= 1;
-            // massive zombie spawn bug!
-            context.State = new LevelOne(context);
-        }
-        // inner loop for bullets
-        context.entities.bullets.forEach((bullet, innerIndex) => {
-            if (checkCollision(zombie, bullet)) {
-                // zombie hit by bullet, delete zombie and bullet
-                context.entities.zombies.splice(index, 1);
-                context.entities.bullets.splice(innerIndex, 1);
+//
+// NEW MEGA Detect collision!!!!
+//
+// check collision between all objects in these two arrays
+function megaDetect(context) {
+    const entityCollisionDetections = new Map();
+    entityCollisionDetections
+        .set([context.entities.hero], context.entities.zombies)
+        .set(context.entities.zombies, context.entities.bullets);
+    for (const [key, value] of entityCollisionDetections) {
+        key.forEach((entityOne, index) => value.forEach((entityTwo, indexTwo) => {
+            if (checkCollision(entityOne, entityTwo)) {
+                actOnCollision(context, entityOne, entityTwo, index, indexTwo);
             }
-            //  else if (!state.boundaries.intersects(bullet)) {
-            //   //   state.deleteBullet = innerIndex;
-            // }
-        });
-    });
+        }));
+    }
+}
+function actOnCollision(context, entityOne, entityTwo, index, indexTwo) {
+    switch (entityOne.kind) {
+        case 'hero':
+            switch (entityTwo.kind) {
+                case 'zombie':
+                    // hero killed by zombie, loose life, start level again
+                    context.entities.hero.lives -= 1;
+                    // massive zombie spawn bug!
+                    context.State = new LevelOne(context);
+                    break;
+                default:
+                    break;
+            }
+        case 'zombie':
+            switch (entityTwo.kind) {
+                case 'bullet':
+                    // zombie hit by bullet, delete zombie and bullet
+                    context.entities.zombies.splice(index, 1);
+                    context.entities.bullets.splice(indexTwo, 1);
+                    break;
+                default:
+                    break;
+            }
+        default:
+            break;
+    }
 }
 // Main loop
 function gameLoop() {
     //   while (GameContext.running) {
     gameContext.updateCurrentState();
-    detectCollision(gameContext);
-    //   gameContext.updateAndDrawCharacters();
-    //   }
+    megaDetect(gameContext);
     requestAnimationFrame(gameLoop);
 }
 // testFetch();

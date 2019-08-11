@@ -1,3 +1,4 @@
+import { Entity } from './entities/hero.js';
 import { GameContext } from './states/context.js';
 import { Init } from './states/init.js';
 import { LevelOne } from './states/level-one.js';
@@ -39,39 +40,69 @@ const gameContext = new GameContext(new Init(), ctx); // is this the place for i
 document.addEventListener('keydown', gameContext.keyHandler.bind(gameContext));
 document.addEventListener('keyup', gameContext.keyHandler.bind(gameContext));
 
-// Detect collision
-function detectCollision(context: GameContext): void {
-  // outer loop for zombies
-  context.entities.zombies.forEach((zombie, index) => {
-    if (checkCollision(context.entities.hero, zombie)) {
-      // hero killed by zombie, loose life, start level again
-      context.entities.hero.lives -= 1;
-      // massive zombie spawn bug!
-      context.State = new LevelOne(context);
-    }
+//
+// NEW MEGA Detect collision!!!!
+//
+// check collision between all objects in these two arrays
 
-    // inner loop for bullets
-    context.entities.bullets.forEach((bullet, innerIndex) => {
-      if (checkCollision(zombie, bullet)) {
-        // zombie hit by bullet, delete zombie and bullet
-        context.entities.zombies.splice(index, 1);
-        context.entities.bullets.splice(innerIndex, 1);
+function megaDetect(context: GameContext) {
+  const entityCollisionDetections = new Map<Entity[], Entity[]>();
+
+  entityCollisionDetections
+    .set([context.entities.hero], context.entities.zombies)
+    .set(context.entities.zombies, context.entities.bullets);
+
+  for (const [key, value] of entityCollisionDetections) {
+    key.forEach((entityOne, index) =>
+      value.forEach((entityTwo, indexTwo) => {
+        if (checkCollision(entityOne, entityTwo)) {
+          actOnCollision(context, entityOne, entityTwo, index, indexTwo);
+        }
+      }),
+    );
+  }
+}
+
+function actOnCollision(
+  context: GameContext,
+  entityOne: Entity,
+  entityTwo: Entity,
+  index: number,
+  indexTwo: number,
+) {
+  switch (entityOne.kind) {
+    case 'hero':
+      switch (entityTwo.kind) {
+        case 'zombie':
+          // hero killed by zombie, loose life, start level again
+          context.entities.hero.lives -= 1;
+          // massive zombie spawn bug!
+          context.State = new LevelOne(context);
+          break;
+        default:
+          break;
       }
-      //  else if (!state.boundaries.intersects(bullet)) {
-      //   //   state.deleteBullet = innerIndex;
-      // }
-    });
-  });
+    case 'zombie':
+      switch (entityTwo.kind) {
+        case 'bullet':
+          // zombie hit by bullet, delete zombie and bullet
+          context.entities.zombies.splice(index, 1);
+          context.entities.bullets.splice(indexTwo, 1);
+          break;
+
+        default:
+          break;
+      }
+    default:
+      break;
+  }
 }
 
 // Main loop
 function gameLoop(): void {
   //   while (GameContext.running) {
   gameContext.updateCurrentState();
-  detectCollision(gameContext);
-  //   gameContext.updateAndDrawCharacters();
-  //   }
-
+  megaDetect(gameContext);
   requestAnimationFrame(gameLoop);
 }
 

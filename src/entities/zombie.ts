@@ -3,6 +3,7 @@ import { Vector2, vectors } from '../utilities/vectors.js';
 import { BitmapCharacter } from './bitmap-character.js';
 
 export class Zombie extends BitmapCharacter {
+  public kind = 'zombie';
   public static imagesToLoad: HTMLImageElement[] = [];
   public widthHeight: Vector2;
   public image: HTMLImageElement;

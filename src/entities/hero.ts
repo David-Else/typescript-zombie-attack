@@ -5,9 +5,10 @@ import { instantiate } from './factory.js';
 import { VectorCharacter } from './vector-character.js';
 import { Zombie } from './zombie.js';
 
-type Entity = Hero | Zombie | Bullet;
+export type Entity = Hero | Zombie | Bullet;
 
 export class Hero extends VectorCharacter {
+  public kind = 'hero';
   public lives = 3;
   public widthHeight: Vector2 = [25, 50];
   public color = 'red';

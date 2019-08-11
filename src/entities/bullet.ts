@@ -3,6 +3,7 @@ import { Vector2, vectors } from '../utilities/vectors.js';
 import { VectorCharacter } from './vector-character.js';
 
 export class Bullet extends VectorCharacter {
+  public kind = 'bullet';
   public widthHeight: Vector2 = [6, 25];
   public color = 'black';
   public velocity: Vector2 = [2, -2];

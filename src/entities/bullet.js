@@ -6,6 +6,7 @@ export class Bullet extends VectorCharacter {
         super();
         this.position = position;
         this.rotation = rotation;
+        this.kind = 'bullet';
         this.widthHeight = [6, 25];
         this.color = 'black';
         this.velocity = [2, -2];

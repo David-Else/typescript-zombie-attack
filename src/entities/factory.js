@@ -1,5 +1,6 @@
 import { random } from '../utilities/random.js';
 import { Bullet } from './bullet.js';
+import { Grave } from './graves.js';
 import { Hero } from './hero.js';
 import { Zombie } from './zombie.js';
 export function instantiate(ClassToInstantiate, numberOf, options) {
@@ -13,6 +14,9 @@ export function instantiate(ClassToInstantiate, numberOf, options) {
                 return new ClassToInstantiate(options.position);
             case Bullet:
                 characters.push(new ClassToInstantiate(options.position, options.rotation));
+                break;
+            case Grave:
+                characters.push(new ClassToInstantiate(options.position));
                 break;
             default:
                 break;

@@ -8,6 +8,7 @@ export class GameContext {
             hero: {},
             zombies: [],
             bullets: [],
+            graves: [],
             screenText: [],
         };
         this.score = 0;

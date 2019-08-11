@@ -1,6 +1,7 @@
 import { random } from '../utilities/random.js';
 import { Vector2 } from '../utilities/vectors.js';
 import { Bullet } from './bullet.js';
+import { Grave } from './graves.js';
 import { Hero } from './hero.js';
 import { Zombie } from './zombie.js';
 
@@ -18,7 +19,16 @@ interface BulletOptions {
   rotation: number;
 }
 
+interface GraveOptions {
+  position: Vector2;
+}
+
 // FUNCTION OVERLOADS AND MAIN FUNCTION
+export function instantiate(
+  ClassToInstantiate: typeof Grave,
+  numberOf: number,
+  options: GraveOptions,
+): Grave[];
 export function instantiate(
   ClassToInstantiate: typeof Zombie,
   numberOf: number,
@@ -35,7 +45,11 @@ export function instantiate(
   options: BulletOptions,
 ): Bullet[];
 export function instantiate(
-  ClassToInstantiate: typeof Zombie | typeof Hero | typeof Bullet,
+  ClassToInstantiate:
+    | typeof Zombie
+    | typeof Hero
+    | typeof Bullet
+    | typeof Grave,
   numberOf: number,
   options?: any,
 ): any[] | any {
@@ -57,6 +71,9 @@ export function instantiate(
         characters.push(
           new ClassToInstantiate(options.position, options.rotation),
         );
+        break;
+      case Grave:
+        characters.push(new ClassToInstantiate(options.position));
         break;
       default:
         break;

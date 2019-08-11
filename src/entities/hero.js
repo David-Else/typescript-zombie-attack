@@ -6,6 +6,7 @@ export class Hero extends VectorCharacter {
     constructor(position) {
         super();
         this.position = position;
+        this.kind = 'hero';
         this.lives = 3;
         this.widthHeight = [25, 50];
         this.color = 'red';

@@ -1,4 +1,5 @@
 import { instantiate } from '../entities/factory.js';
+import { Grave } from '../entities/graves.js';
 import { Hero } from '../entities/hero.js';
 import { ScreenText } from '../entities/text.js';
 import { Zombie } from '../entities/zombie.js';
@@ -31,6 +32,9 @@ export class LevelOne extends Base implements State {
           context.ctx.canvas.height / 2,
         ],
       }),
+    );
+    context.entities.graves.push(
+      ...instantiate(Grave, 1, { position: [100, 100] }),
     );
   }
 
