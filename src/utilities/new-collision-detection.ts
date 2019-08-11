@@ -38,7 +38,7 @@ const bullets: Drawable[] = [
   { name: 'bullet2', widthHeight: [10, 10], x: 10, y: 10 },
 ];
 
-const entityCollisionActions = new Map<Drawable[], Drawable[]>();
+let entityCollisionActions = new Map<Drawable[], Drawable[]>();
 
 // check collision between all objects in these two arrays
 // prettier-ignore
@@ -49,8 +49,10 @@ for (const [key, value] of entityCollisionActions) {
   key.forEach((entityOne, indexEntityOne) =>
     value.forEach(entityTwo => {
       console.log(
-        `checking ${entityOne.name} ${indexEntityOne}  ${entityTwo.name} ${ 
-          checkCollision(entityOne, entityTwo)}`,
+        `checking index:${indexEntityOne} entityOne:${
+          entityOne.name
+        } entityTwo:${entityTwo.name} collision:` +
+          checkCollision(entityOne, entityTwo),
       );
     }),
   );

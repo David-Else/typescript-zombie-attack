@@ -23,14 +23,15 @@ const bullets = [
     { name: 'bullet1', widthHeight: [10, 10], x: 10, y: 10 },
     { name: 'bullet2', widthHeight: [10, 10], x: 10, y: 10 },
 ];
-const entityCollisionActions = new Map();
+let entityCollisionActions = new Map();
 // check collision between all objects in these two arrays
 // prettier-ignore
 entityCollisionActions.set(zombies, bullets)
     .set(hero, zombies);
 for (const [key, value] of entityCollisionActions) {
     key.forEach((entityOne, indexEntityOne) => value.forEach(entityTwo => {
-        console.log(`checking ${entityOne.name} ${indexEntityOne}  ${entityTwo.name} ${checkCollision(entityOne, entityTwo)}`);
+        console.log(`checking index:${indexEntityOne} entityOne:${entityOne.name} entityTwo:${entityTwo.name} collision:` +
+            checkCollision(entityOne, entityTwo));
     }));
 }
 //# sourceMappingURL=new-collision-detection.js.map
