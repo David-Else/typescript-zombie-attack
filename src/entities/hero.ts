@@ -2,6 +2,7 @@ import { GameContext } from '../states/context.js';
 import { Vector2, vectors } from '../utilities/vectors.js';
 import { Bullet } from './bullet.js';
 import { instantiate } from './factory.js';
+import { Grave } from './graves.js';
 import { VectorCharacter } from './vector-character.js';
 import { Zombie } from './zombie.js';
 
