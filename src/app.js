@@ -1,6 +1,6 @@
 import { GameContext } from './states/context.js';
 import { Init } from './states/init.js';
-import { detectAndActOnCollisions } from './utilities/collision-detection.js';
+import { detectAndActOnCollisions2 } from './utilities/collision-detection.js';
 // eslint-disable-next-line no-unused-expressions
 // ({
 //   plugins: ['jsdom-quokka-plugin'],
@@ -27,7 +27,7 @@ document.addEventListener('keyup', gameContext.keyHandler.bind(gameContext));
 function gameLoop() {
     //   while (GameContext.running) {
     gameContext.updateCurrentState();
-    detectAndActOnCollisions(gameContext);
+    detectAndActOnCollisions2(gameContext);
     requestAnimationFrame(gameLoop);
 }
 // testFetch();

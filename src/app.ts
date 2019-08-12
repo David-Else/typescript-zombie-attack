@@ -1,6 +1,6 @@
 import { GameContext } from './states/context.js';
 import { Init } from './states/init.js';
-import { detectAndActOnCollisions } from './utilities/collision-detection.js';
+import { detectAndActOnCollisions2 } from './utilities/collision-detection.js';
 import { Vector2 } from './utilities/vectors.js';
 
 // eslint-disable-next-line no-unused-expressions
@@ -42,7 +42,7 @@ document.addEventListener('keyup', gameContext.keyHandler.bind(gameContext));
 function gameLoop(): void {
   //   while (GameContext.running) {
   gameContext.updateCurrentState();
-  detectAndActOnCollisions(gameContext);
+  detectAndActOnCollisions2(gameContext);
   requestAnimationFrame(gameLoop);
 }
 

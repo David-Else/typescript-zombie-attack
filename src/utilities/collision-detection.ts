@@ -41,66 +41,116 @@ export function checkCollision(
  * Test pairs of arrays of entities for collision to prevent unnessesary checks
  * =============================================================================
  */
-function actOnCollision(
-  context: GameContext,
-  entityOne: Entity,
-  entityTwo: Entity,
-  index: number,
-  indexTwo: number,
-): void {
-  switch (entityOne.kind) {
-    case 'hero':
-      switch (entityTwo.kind) {
-        case 'zombie':
-          // hero killed by zombie, loose life, start level again
-          context.entities.hero.lives -= 1;
-          // massive zombie spawn bug!
-          context.State = new LevelOne(context);
-          break;
-        default:
-          break;
-      }
-      break;
-    case 'zombie':
-      switch (entityTwo.kind) {
-        case 'bullet':
-          // zombie hit by bullet, delete zombie and bullet
-          context.entities.zombies.splice(index, 1);
-          context.entities.bullets.splice(indexTwo, 1);
-          break;
-        default:
-          break;
-      }
-      break;
-    case 'grave':
-      switch (entityTwo.kind) {
-        case 'bullet':
-          // zombie hit by bullet, delete zombie and bullet
-          context.entities.graves.splice(index, 1);
-          context.entities.bullets.splice(indexTwo, 1);
-          break;
-        default:
-          break;
-      }
-    default:
-      break;
-  }
-}
 
-export function detectAndActOnCollisions(context: GameContext): void {
+// function actOnCollision(
+//   context: GameContext,
+//   entityOne: Entity,
+//   entityTwo: Entity,
+//   index: number,
+//   indexTwo: number,
+// ): void {
+//   switch (entityOne.kind) {
+//     case 'hero':
+//       switch (entityTwo.kind) {
+//         case 'zombie':
+//           // hero killed by zombie, loose life, start level again
+//           context.entities.hero.lives -= 1;
+//           // massive zombie spawn bug!
+//           context.State = new LevelOne(context);
+//           break;
+//         default:
+//           break;
+//       }
+//       break;
+//     case 'zombie':
+//       switch (entityTwo.kind) {
+//         case 'bullet':
+//           // zombie hit by bullet, delete zombie and bullet
+//           context.entities.zombies.splice(index, 1);
+//           context.entities.bullets.splice(indexTwo, 1);
+//           break;
+//         default:
+//           break;
+//       }
+//       break;
+//     case 'grave':
+//       switch (entityTwo.kind) {
+//         case 'bullet':
+//           context.entities.graves.splice(index, 1);
+//           context.entities.bullets.splice(indexTwo, 1);
+//           break;
+//         default:
+//           break;
+//       }
+//     default:
+//       break;
+//   }
+// }
+
+// export function detectAndActOnCollisions(context: GameContext): void {
+//   // this needs to go in global state so can ve updateable at run time
+//   // how about destructuring these to heros, zombies graves
+//   // how could this be
+//   const entityPairsForCollisionDetections = new Map<Entity[], Entity[]>()
+//     .set([context.entities.hero], context.entities.zombies)
+//     .set(context.entities.zombies, context.entities.bullets)
+//     .set(context.entities.graves, context.entities.bullets);
+
+//   for (const [key, value] of entityPairsForCollisionDetections) {
+//     key.forEach((entityOne, index) =>
+//       value.forEach((entityTwo, indexTwo) => {
+//         if (checkCollision(entityOne, entityTwo)) {
+//           actOnCollision(context, entityOne, entityTwo, index, indexTwo);
+//         }
+//       }),
+//     );
+//   }
+// }
+
+export function detectAndActOnCollisions2(context: GameContext): void {
+  // can we move these into the loop scope and avoid params?
+  const heroZombieCollisionHandler = (context: GameContext) => {
+    context.entities.hero.lives -= 1;
+    context.State = new LevelOne(context);
+  };
+  const zombieBulletCollisionHandler = (
+    context: GameContext,
+    index: number,
+    indexTwo: number,
+  ) => {
+    context.entities.zombies.splice(index, 1);
+    context.entities.bullets.splice(indexTwo, 1);
+  };
+  const graveBulletCollisionHandler = (
+    context: GameContext,
+    index: number,
+    indexTwo: number,
+  ) => {
+    context.entities.graves.splice(index, 1);
+    context.entities.bullets.splice(indexTwo, 1);
+  };
   // this needs to go in global state so can ve updateable at run time
   // how about destructuring these to heros, zombies graves
   // how could this be
-  const entityPairsForCollisionDetections = new Map<Entity[], Entity[]>()
-    .set([context.entities.hero], context.entities.zombies)
-    .set(context.entities.zombies, context.entities.bullets)
-    .set(context.entities.graves, context.entities.bullets);
+  const entityPairsForCollisionDetections2 = new Map()
+    .set(
+      [[context.entities.hero], context.entities.zombies],
+      heroZombieCollisionHandler,
+    )
+    .set(
+      [context.entities.zombies, context.entities.bullets],
+      zombieBulletCollisionHandler,
+    )
+    .set(
+      [context.entities.graves, context.entities.bullets],
+      graveBulletCollisionHandler,
+    );
 
-  for (const [key, value] of entityPairsForCollisionDetections) {
-    key.forEach((entityOne, index) =>
-      value.forEach((entityTwo, indexTwo) => {
+  for (const [key, value] of entityPairsForCollisionDetections2) {
+    key[0].forEach((entityOne: Entity, index: number) =>
+      key[1].forEach((entityTwo: Entity, indexTwo: number) => {
         if (checkCollision(entityOne, entityTwo)) {
-          actOnCollision(context, entityOne, entityTwo, index, indexTwo);
+          value(context, index, indexTwo);
         }
       }),
     );
