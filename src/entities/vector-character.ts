@@ -7,7 +7,6 @@ import { Character } from './character.js';
  * Characters drawn using vectors
  * =============================================================================
  */
-// cx.scale(3, .5); <<< scale method exits, add it so we don't have to make another scale thing!
 export abstract class VectorCharacter extends Character implements Drawable {
   public draw(ctx: CanvasRenderingContext2D): void {
     ctx.save();

@@ -2,9 +2,9 @@ import { ScreenText } from '../entities/text.js';
 import { Base } from './base-class.js';
 import { StartScreen } from './start-screen.js';
 export class LevelTwo extends Base {
-    constructor(context) {
+    constructor(globalState) {
         super();
-        context.entities.screenText = [
+        globalState.entities.screenText = [
             new ScreenText([], '25px Arial', 'black', [161, 30], 'right'),
         ];
         const middleOfScreen = (ctx) => [

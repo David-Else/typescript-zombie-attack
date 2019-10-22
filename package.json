@@ -1,38 +1,159 @@
 {
   "name": "typescript-starter-project",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "src/app.js",
   "scripts": {
     "start-typescript-development": "tsc-watch --onSuccess 'npm --silent run test-and-eslint'",
     "test-and-eslint": "npm run test && npm run eslint",
     "test": "mocha --reporter min --require esm --require ./setup-jsdom.js",
-    "eslint": "eslint --fix --cache -f unix --ext .ts src/ test/",
-    "build-bundle": "rollup --config",
-    "uml": "tplant --input src/app.ts --output uml-diagram.svg"
+    "eslint": "eslint --cache -f unix --ext .ts src/ test/",
+    "eslint-fix": "eslint --fix --cache -f unix --ext .ts src/ test/",
+    "build-bundle": "rollup --config"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@ampproject/rollup-plugin-closure-compiler": "0.10.0",
-    "@types/mocha": "^5.2.6",
-    "@types/node": "12.7.1",
-    "@typescript-eslint/eslint-plugin": "1.13.0",
-    "@typescript-eslint/parser": "1.13.0",
-    "eslint": "6.1.0",
-    "eslint-config-airbnb-base": "14.0.0",
-    "eslint-config-prettier": "6.0.0",
+    "@ampproject/rollup-plugin-closure-compiler": "^0.10.0",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.11.2",
+    "@typescript-eslint/eslint-plugin": "^2.5.0",
+    "@typescript-eslint/parser": "^2.5.0",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
     "esm": "^3.2.25",
-    "jsdom": "^15.1.0",
-    "mocha": "6.2.0",
-    "rollup": "1.19.4",
-    "tsc-watch": "2.4.0",
-    "typescript": "3.5.3"
+    "jsdom": "^15.2.0",
+    "mocha": "^6.2.2",
+    "rollup": "^1.25.1",
+    "tsc-watch": "^4.0.0",
+    "typescript": "^3.6.4"
   },
   "prettier": {
     "singleQuote": true,
     "proseWrap": "always",
     "trailingComma": "all"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended-requiring-type-checking",
+      "prettier",
+      "prettier/@typescript-eslint"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "no-useless-return": "warn",
+      "no-else-return": [
+        "warn",
+        {
+          "allowElseIf": false
+        }
+      ],
+      "no-param-reassign": [
+        "warn",
+        {
+          "props": false
+        }
+      ],
+      "eqeqeq": [
+        "warn",
+        "always",
+        {
+          "null": "ignore"
+        }
+      ],
+      "class-methods-use-this": [
+        "warn",
+        {
+          "exceptMethods": []
+        }
+      ],
+      "object-shorthand": [
+        "warn",
+        "always",
+        {
+          "ignoreConstructors": false,
+          "avoidQuotes": true
+        }
+      ],
+      "prefer-destructuring": [
+        "warn",
+        {
+          "VariableDeclarator": {
+            "array": false,
+            "object": true
+          },
+          "AssignmentExpression": {
+            "array": true,
+            "object": true
+          }
+        },
+        {
+          "enforceForRenamedProperties": false
+        }
+      ],
+      "prefer-object-spread": "error",
+      "prefer-template": "warn",
+      "max-len": [
+        "warn",
+        {
+          "comments": 80
+        }
+      ],
+      "max-classes-per-file": [
+        "error",
+        1
+      ],
+      "max-statements": [
+        "error",
+        10
+      ],
+      "complexity": [
+        "error",
+        10
+      ],
+      "max-nested-callbacks": [
+        "error",
+        3
+      ],
+      "@typescript-eslint/no-magic-numbers": [
+        "warn",
+        {
+          "ignoreArrayIndexes": true,
+          "ignore": [
+            0,
+            1,
+            -1,
+            2
+          ]
+        }
+      ],
+      "@typescript-eslint/no-parameter-properties": "off",
+      "@typescript-eslint/member-ordering": "warn",
+      "@typescript-eslint/unified-signatures": "warn",
+      "@typescript-eslint/explicit-function-return-type": [
+        "warn",
+        {
+          "allowExpressions": true
+        }
+      ]
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "mocha": true
+    },
+    "globals": {
+      "assert": true
+    }
   }
 }

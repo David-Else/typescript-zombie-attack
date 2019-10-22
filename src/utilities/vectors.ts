@@ -16,12 +16,7 @@ export const vectors = {
   divide(a: Vector2, b: Vector2): Vector2 {
     return [a[0] / b[0], a[1] / b[1]];
   },
-  // length(a: Vector2): number {
-  //   return Math.sqrt(a[0] * a[0] + a[1] * a[1]);
-  // },
-  // angle(a: Vector2): number {
-  //   return Math.atan2(a[0], a[1]);
-  // },
+
   get up(): Vector2 {
     return [0, 1];
   },

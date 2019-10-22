@@ -1,10 +1,10 @@
-import { GameContext } from '../states/context.js';
+import { GlobalState } from '../states/global-state.js';
 import { Vector2, vectors } from '../utilities/vectors.js';
 import { BitmapCharacter } from './bitmap-character.js';
 
 export class Zombie extends BitmapCharacter {
-  public kind = 'zombie';
   public static imagesToLoad: HTMLImageElement[] = [];
+  public kind = 'zombie';
   public widthHeight: Vector2;
   public image: HTMLImageElement;
   public position: Vector2;
@@ -16,7 +16,7 @@ export class Zombie extends BitmapCharacter {
     this.position = position;
   }
 
-  public updatePosition(context: GameContext): void {
+  public updatePosition(context: GlobalState): void {
     const slowDownFactor: Vector2 = [0.1, 0.1];
 
     this.directTowards(context.entities.hero.position);

@@ -1,13 +1,13 @@
 import { ScreenText } from '../entities/text.js';
 import { Vector2 } from '../utilities/vectors.js';
 import { Base } from './base-class.js';
-import { GameContext, State } from './context.js';
+import { GlobalState, StatePattern } from './global-state.js';
 import { StartScreen } from './start-screen.js';
 
-export class LevelTwo extends Base implements State {
-  public constructor(context: GameContext) {
+export class LevelTwo extends Base implements StatePattern {
+  public constructor(globalState: GlobalState) {
     super();
-    context.entities.screenText = [
+    globalState.entities.screenText = [
       new ScreenText([], '25px Arial', 'black', [161, 30], 'right'),
     ];
 
@@ -28,12 +28,12 @@ export class LevelTwo extends Base implements State {
     // );
   }
 
-  public transition(context: GameContext): void {
+  public transition(context: GlobalState): void {
     console.log('context.State = new Init();');
     context.State = new StartScreen(context);
   }
 
-  public update(context: GameContext): void {
+  public update(context: GlobalState): void {
     super.update(context);
     context.entities.screenText[0].linesOfText = [
       'Level 2',

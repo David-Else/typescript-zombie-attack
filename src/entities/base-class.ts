@@ -1,8 +1,8 @@
-import { GameContext } from '../states/context.js';
+import { GlobalState } from '../states/global-state.js';
 import { Vector2 } from '../utilities/vectors.js';
 
 export interface Drawable {
-  updatePosition(context?: GameContext): void;
+  updatePosition(context?: GlobalState): void;
   draw(ctx: CanvasRenderingContext2D): void;
 }
 

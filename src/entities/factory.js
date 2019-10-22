@@ -5,6 +5,7 @@ import { Hero } from './hero.js';
 import { Zombie } from './zombie.js';
 export function instantiate(ClassToInstantiate, numberOf, options) {
     const characters = [];
+    // return [...Array(numberOf)].map(() => new Hero([10,10]))
     for (let index = 0; index < numberOf; index += 1) {
         switch (ClassToInstantiate) {
             case Zombie:

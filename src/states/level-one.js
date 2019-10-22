@@ -6,27 +6,34 @@ import { Zombie } from '../entities/zombie.js';
 import { Base } from './base-class.js';
 import { LevelTwo } from './level-two.js';
 export class LevelOne extends Base {
-    constructor(context) {
+    constructor(globalState) {
         super();
         const numberOfZombies = 50;
-        context.entities.screenText = [
+        globalState.entities.screenText = [
             new ScreenText([], '25px Arial', 'black', [161, 30], 'right'),
         ];
         // if the hero does not exist, or has live === 0,  make him
-        if (!context.entities.hero.lives) {
-            context.entities.hero = instantiate(Hero, 1, {
-                position: [context.ctx.canvas.width / 2, context.ctx.canvas.height / 2],
-            });
+        if (!globalState.entities.hero.lives) {
+            globalState.entities.hero = instantiate(Hero, 1, {
+                position: [
+                    globalState.ctx.canvas.width / 2,
+                    globalState.ctx.canvas.height / 2,
+                ],
+            }); /// NIGHTMARE HACK!!!! FIX
         }
-        context.entities.zombies = []; // stop megaspawn, kill remaining zombies if restart level
-        context.entities.zombies.push(...instantiate(Zombie, numberOfZombies, {
+        globalState.entities.zombies = []; // stop megaspawn, kill remaining zombies if restart level
+        globalState.entities.zombies.push(...instantiate(Zombie, numberOfZombies, {
             image: Zombie.imagesToLoad[0],
             pointToSpawnAround: [
-                context.ctx.canvas.width / 2,
-                context.ctx.canvas.height / 2,
+                globalState.ctx.canvas.width / 2,
+                globalState.ctx.canvas.height / 2,
             ],
         }));
-        context.entities.graves.push(...instantiate(Grave, 1, { position: [100, 100] }));
+        const gravesPos = globalState.gameData.level1.graves[0].position;
+        /// there is ERROR here, delete it and it thinks it not assignable like the other weird error!
+        if (gravesPos) {
+            globalState.entities.graves.push(...instantiate(Grave, 1, { position: gravesPos }));
+        }
     }
     transition(context) {
         console.log('context.State = new Level 2;');

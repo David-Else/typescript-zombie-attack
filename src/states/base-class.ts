@@ -1,13 +1,13 @@
 import { Drawable } from '../entities/base-class.js';
-import { GameContext, InGameKeys } from './context.js';
+import { GlobalState, InGameKeys } from './global-state.js';
 
 export abstract class Base {
-  public update(context: GameContext): void {
-    context.ctx.clearRect(
+  public update(globalState: GlobalState): void {
+    globalState.ctx.clearRect(
       0,
       0,
-      context.ctx.canvas.width,
-      context.ctx.canvas.height,
+      globalState.ctx.canvas.width,
+      globalState.ctx.canvas.height,
     );
 
     // Object.keys(context.entities).forEach(characterGroup =>
@@ -32,11 +32,11 @@ export abstract class Base {
     //     obj.draw(context.ctx);
     //   });
 
-    Object.values(context.entities)
+    Object.values(globalState.entities)
       .flatMap(val => (val instanceof Array ? val : [val]))
       .forEach((entity: Drawable) => {
-        entity.updatePosition(context);
-        entity.draw(context.ctx);
+        entity.updatePosition(globalState);
+        entity.draw(globalState.ctx);
       });
   }
 

@@ -1,12 +1,12 @@
 import { ScreenText } from '../entities/text.js';
 import { Base } from './base-class.js';
-import { GameContext, InGameKeys, State } from './context.js';
+import { GlobalState, InGameKeys, StatePattern } from './global-state.js';
 import { LevelOne } from './level-one.js';
 
-export class StartScreen extends Base implements State {
-  public constructor(context: GameContext) {
+export class StartScreen extends Base implements StatePattern {
+  public constructor(globalState: GlobalState) {
     super();
-    context.entities.screenText = [
+    globalState.entities.screenText = [
       new ScreenText(
         ['Welcome', 'To', 'Zombie Game', "('s' to start)", "('p' to pause)"],
         '80px Helvetica Neue',
@@ -16,8 +16,7 @@ export class StartScreen extends Base implements State {
     ];
   }
 
-  public transition(context: GameContext): void {
-    console.log('context.State = new LevelOne(context);');
+  public transition(context: GlobalState): void {
     context.State = new LevelOne(context);
   }
 
@@ -27,7 +26,7 @@ export class StartScreen extends Base implements State {
     }
   }
 
-  public update(context: GameContext): void {
+  public update(context: GlobalState): void {
     context.entities.screenText[0].draw(context.ctx);
 
     if (context.inGameKeys.startPressed) {

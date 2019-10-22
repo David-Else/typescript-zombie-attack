@@ -1,12 +1,8 @@
-import { GameContext } from '../states/context.js';
+import { Entity, GlobalState } from '../states/global-state.js';
 import { Vector2, vectors } from '../utilities/vectors.js';
 import { Bullet } from './bullet.js';
 import { instantiate } from './factory.js';
-import { Grave } from './graves.js';
 import { VectorCharacter } from './vector-character.js';
-import { Zombie } from './zombie.js';
-
-export type Entity = Hero | Zombie | Bullet | Grave;
 
 export class Hero extends VectorCharacter {
   public kind = 'hero';
@@ -20,7 +16,7 @@ export class Hero extends VectorCharacter {
     super();
   }
 
-  public updatePosition(context: GameContext): void {
+  public updatePosition(context: GlobalState): void {
     function centerOfEntityScreenPosition(entity: Entity): Vector2 {
       const middleOfEntity = vectors.divide(entity.widthHeight, [2, 2]);
       return vectors.add(entity.position, middleOfEntity);

@@ -2,9 +2,9 @@ import { ScreenText } from '../entities/text.js';
 import { Base } from './base-class.js';
 import { Init } from './init.js';
 export class GameOver extends Base {
-    constructor(context) {
+    constructor(globalState) {
         super();
-        context.entities.screenText = [
+        globalState.entities.screenText = [
             new ScreenText(['Game Over!'], '25px Arial', 'black', [161, 30], 'right'),
         ];
     }

@@ -1,4 +1,4 @@
-import { GameContext } from '../states/context.js';
+import { GlobalState } from '../states/global-state.js';
 import { Vector2, vectors } from '../utilities/vectors.js';
 import { EntityBaseClass } from './base-class.js';
 
@@ -8,9 +8,9 @@ import { EntityBaseClass } from './base-class.js';
  * =============================================================================
  */
 export abstract class Character extends EntityBaseClass {
-  protected lives: number = 1;
+  protected lives = 1;
   protected velocity: Vector2 = [0, 0];
-  public updatePosition(context?: GameContext): void {
+  public updatePosition(context?: GlobalState): void {
     this.position = vectors.add(this.position, this.velocity);
   }
   protected directTowards(targetPosition: Vector2): void {

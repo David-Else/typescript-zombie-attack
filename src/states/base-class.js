@@ -1,6 +1,6 @@
 export class Base {
-    update(context) {
-        context.ctx.clearRect(0, 0, context.ctx.canvas.width, context.ctx.canvas.height);
+    update(globalState) {
+        globalState.ctx.clearRect(0, 0, globalState.ctx.canvas.width, globalState.ctx.canvas.height);
         // Object.keys(context.entities).forEach(characterGroup =>
         //   context.entities[characterGroup].forEach(character => {
         //     character.updatePosition(context);
@@ -20,11 +20,11 @@ export class Base {
         //     obj.updatePosition(context);
         //     obj.draw(context.ctx);
         //   });
-        Object.values(context.entities)
+        Object.values(globalState.entities)
             .flatMap(val => (val instanceof Array ? val : [val]))
             .forEach((entity) => {
-            entity.updatePosition(context);
-            entity.draw(context.ctx);
+            entity.updatePosition(globalState);
+            entity.draw(globalState.ctx);
         });
     }
     keyHandler(event, inGameKeys) {

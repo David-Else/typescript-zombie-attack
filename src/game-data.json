@@ -1,0 +1,55 @@
+{
+  "some_global_settings": { "game_speed": 30, "theme": "dark" },
+  "level1": {
+    "graves": [
+      {
+        "position": [10, 200]
+      },
+      {
+        "position": [50, 200]
+      }
+    ],
+    "stars": [
+      {
+        "x": 0,
+        "y": 50,
+        "width": 25,
+        "height": 25
+      },
+      {
+        "x": 125,
+        "y": 120,
+        "width": 25,
+        "height": 25
+      }
+    ],
+    "player_position": { "x": 110, "y": 50 },
+    "victory_condition": { "stars_required": 5, "time_limit": "10min" }
+  },
+  "level2": {
+    "graves": [
+      {
+        "position": [300, 300]
+      },
+      {
+        "position": [100, 400]
+      }
+    ],
+    "stars": [
+      {
+        "x": 0,
+        "y": 50,
+        "width": 25,
+        "height": 25
+      },
+      {
+        "x": 125,
+        "y": 120,
+        "width": 25,
+        "height": 25
+      }
+    ],
+    "player_position": { "x": 0, "y": 50 },
+    "victory_condition": { "stars_required": 500, "time_limit": "10min" }
+  }
+}

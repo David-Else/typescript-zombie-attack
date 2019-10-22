@@ -1,11 +1,10 @@
-import { GameContext } from './states/context.js';
+({
+    plugins: ['jsdom-quokka-plugin'],
+    jsdom: { file: './index.html' },
+});
+import { GlobalState } from './states/global-state.js';
 import { Init } from './states/init.js';
-import { detectAndActOnCollisions2 } from './utilities/collision-detection.js';
-// eslint-disable-next-line no-unused-expressions
-// ({
-//   plugins: ['jsdom-quokka-plugin'],
-//   jsdom: { file: './index.html' },
-// });
+import { detectAndActOnCollisions3 } from './utilities/collision-detection.js';
 function toFixedScreenRatio(currentWidth, currentHeight, targetWidthToHeight) {
     const currentWidthToHeight = currentWidth / currentHeight;
     if (currentWidthToHeight > targetWidthToHeight) {
@@ -19,15 +18,15 @@ function toFixedScreenRatio(currentWidth, currentHeight, targetWidthToHeight) {
 const canvas = document.getElementById('game-canvas');
 [canvas.width, canvas.height] = toFixedScreenRatio(window.innerWidth, window.innerHeight, 4 / 3);
 const ctx = canvas.getContext('2d');
-const gameContext = new GameContext(new Init(), ctx); // is this the place for infamous ctx?!
+const globalState = new GlobalState(new Init(), ctx); // is this place for ctx?!
 // Event Listeners
-document.addEventListener('keydown', gameContext.keyHandler.bind(gameContext));
-document.addEventListener('keyup', gameContext.keyHandler.bind(gameContext));
+document.addEventListener('keydown', globalState.keyHandler.bind(globalState));
+document.addEventListener('keyup', globalState.keyHandler.bind(globalState));
 // Main loop
 function gameLoop() {
     //   while (GameContext.running) {
-    gameContext.updateCurrentState();
-    detectAndActOnCollisions2(gameContext);
+    globalState.updateCurrentState();
+    detectAndActOnCollisions3(globalState);
     requestAnimationFrame(gameLoop);
 }
 // testFetch();

@@ -1,3 +1,4 @@
+import { Entity } from '../states/global-state.js';
 import { random } from '../utilities/random.js';
 import { Vector2 } from '../utilities/vectors.js';
 import { Bullet } from './bullet.js';
@@ -23,7 +24,7 @@ interface GraveOptions {
   position: Vector2;
 }
 
-// FUNCTION OVERLOADS AND MAIN FUNCTION
+// FUNCTION OVERLOADS
 export function instantiate(
   ClassToInstantiate: typeof Grave,
   numberOf: number,
@@ -44,6 +45,7 @@ export function instantiate(
   numberOf: number,
   options: BulletOptions,
 ): Bullet[];
+
 export function instantiate(
   ClassToInstantiate:
     | typeof Zombie
@@ -53,7 +55,9 @@ export function instantiate(
   numberOf: number,
   options?: any,
 ): any[] | any {
-  const characters: any[] = [];
+  const characters: Entity[] = [];
+
+  // return [...Array(numberOf)].map(() => new Hero([10,10]))
 
   for (let index = 0; index < numberOf; index += 1) {
     switch (ClassToInstantiate) {

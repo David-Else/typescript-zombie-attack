@@ -80,6 +80,58 @@ export function checkCollision(character1, character2) {
 //     );
 //   }
 // }
+export function detectAndActOnCollisions3(context) {
+    const heroZombieCollisionHandler = (index, indexTwo) => {
+        context.entities.hero.lives -= 1;
+        context.State = new LevelOne(context);
+    };
+    const zombieBulletCollisionHandler = (index, indexTwo) => {
+        context.entities.zombies.splice(index, 1);
+        context.entities.bullets.splice(indexTwo, 1);
+    };
+    const graveBulletCollisionHandler = (index, indexTwo) => {
+        context.entities.graves.splice(index, 1);
+        context.entities.bullets.splice(indexTwo, 1);
+    };
+    const toKey = (x, y) => [x, y];
+    // CREATE MAP
+    const entityPairsForCollisionDetections2 = new Map()
+        .set(toKey([context.entities.hero], context.entities.zombies), heroZombieCollisionHandler)
+        .set(toKey(context.entities.zombies, context.entities.bullets), zombieBulletCollisionHandler)
+        .set(toKey(context.entities.graves, context.entities.bullets), graveBulletCollisionHandler);
+    // COMPARE ARRAYS IN MAP KEY AND RUN FUNCTION IF NEEDED
+    for (const [key, value] of entityPairsForCollisionDetections2) {
+        key[0].forEach((entityOne, index) => key[1].forEach((entityTwo, indexTwo) => {
+            if (checkCollision(entityOne, entityTwo)) {
+                value(index, indexTwo);
+            }
+        }));
+    }
+}
+export function detectAndActOnCollisions4(context) {
+    const heroZombieCollisionHandler = (index, indexTwo) => {
+        context.entities.hero.lives -= 1;
+        context.State = new LevelOne(context);
+    };
+    const zombieBulletCollisionHandler = (index, indexTwo) => {
+        context.entities.zombies.splice(index, 1);
+        context.entities.bullets.splice(indexTwo, 1);
+    };
+    const graveBulletCollisionHandler = (index, indexTwo) => {
+        context.entities.graves.splice(index, 1);
+        context.entities.bullets.splice(indexTwo, 1);
+    };
+    const entityCollisions = (xs, ys, f) => {
+        xs.forEach((x, i) => ys.forEach((y, j) => {
+            if (checkCollision(x, y)) {
+                f(i, j);
+            }
+        }));
+    };
+    entityCollisions([context.entities.hero], context.entities.zombies, heroZombieCollisionHandler);
+    entityCollisions(context.entities.zombies, context.entities.bullets, zombieBulletCollisionHandler);
+    entityCollisions(context.entities.graves, context.entities.bullets, graveBulletCollisionHandler);
+}
 export function detectAndActOnCollisions2(context) {
     // can we move these into the loop scope and avoid params?
     const heroZombieCollisionHandler = (context) => {

@@ -2,14 +2,13 @@ import { ScreenText } from '../entities/text.js';
 import { Base } from './base-class.js';
 import { LevelOne } from './level-one.js';
 export class StartScreen extends Base {
-    constructor(context) {
+    constructor(globalState) {
         super();
-        context.entities.screenText = [
+        globalState.entities.screenText = [
             new ScreenText(['Welcome', 'To', 'Zombie Game', "('s' to start)", "('p' to pause)"], '80px Helvetica Neue', 'red', [350, 150]),
         ];
     }
     transition(context) {
-        console.log('context.State = new LevelOne(context);');
         context.State = new LevelOne(context);
     }
     keyHandler(event, inGameKeys) {
