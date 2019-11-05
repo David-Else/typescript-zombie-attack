@@ -8,10 +8,9 @@ import { Character } from './character.js';
  * =============================================================================
  */
 export abstract class BitmapCharacter extends Character implements Drawable {
+  protected abstract image: HTMLImageElement;
+  protected abstract widthHeight: Vector2;
   public draw(ctx: CanvasRenderingContext2D): void {
     ctx.drawImage(this.image, this.x, this.y);
   }
-
-  protected abstract image: HTMLImageElement;
-  protected abstract widthHeight: Vector2;
 }

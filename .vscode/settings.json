@@ -8,5 +8,10 @@
     "**/.gitignore": true
   },
   "spellright.language": ["English (British)"],
-  "spellright.documentTypes": ["markdown", "latex", "plaintext"]
+  "spellright.documentTypes": [
+    "markdown",
+    "latex",
+    "plaintext"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
