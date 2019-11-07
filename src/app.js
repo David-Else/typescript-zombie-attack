@@ -4,7 +4,13 @@
 });
 import { GlobalState } from './states/global-state.js';
 import { Init } from './states/init.js';
+import { assert } from './utilities/assert.js';
 import { detectAndActOnCollisions3 } from './utilities/collision-detection.js';
+/**
+ * =========================================================================
+ * toFixedScreenRatio
+ * =========================================================================
+ */
 function toFixedScreenRatio(currentWidth, currentHeight, targetWidthToHeight) {
     const currentWidthToHeight = currentWidth / currentHeight;
     if (currentWidthToHeight > targetWidthToHeight) {
@@ -14,15 +20,28 @@ function toFixedScreenRatio(currentWidth, currentHeight, targetWidthToHeight) {
     // window height is too high relative to desired game height
     return [currentWidth, currentWidth / targetWidthToHeight];
 }
-// Globals
+/**
+ * =========================================================================
+ * Globals
+ * =========================================================================
+ */
 const canvas = document.getElementById('game-canvas');
-[canvas.width, canvas.height] = toFixedScreenRatio(window.innerWidth, window.innerHeight, 4 / 3);
+assert(canvas instanceof HTMLCanvasElement, `Element is null/undefined or not a HTMLCanvasElement.`);
 const ctx = canvas.getContext('2d');
 const globalState = new GlobalState(new Init(), ctx); // is this place for ctx?!
-// Event Listeners
+[canvas.width, canvas.height] = toFixedScreenRatio(window.innerWidth, window.innerHeight, 4 / 3);
+/**
+ * =========================================================================
+ * Event Listeners
+ * =========================================================================
+ */
 document.addEventListener('keydown', globalState.keyHandler.bind(globalState));
 document.addEventListener('keyup', globalState.keyHandler.bind(globalState));
-// Main loop
+/**
+ * =========================================================================
+ * Main Loop
+ * =========================================================================
+ */
 function gameLoop() {
     //   while (GameContext.running) {
     globalState.updateCurrentState();

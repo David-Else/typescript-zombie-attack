@@ -23,10 +23,10 @@ export class Hero extends VectorCharacter {
     }
 
     if (context.inGameKeys.rightPressed) {
-      this.rotation = this.rotation + 1;
+      this.rotation += 1;
     }
     if (context.inGameKeys.leftPressed) {
-      this.rotation = this.rotation - 1;
+      this.rotation -= 1;
     }
 
     if (!context.inGameKeys.firePressed) {

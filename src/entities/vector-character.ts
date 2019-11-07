@@ -8,6 +8,9 @@ import { Character } from './character.js';
  * =============================================================================
  */
 export abstract class VectorCharacter extends Character implements Drawable {
+  public abstract widthHeight: Vector2;
+  protected abstract color: string;
+
   public draw(ctx: CanvasRenderingContext2D): void {
     ctx.save();
     ctx.beginPath();
@@ -25,6 +28,4 @@ export abstract class VectorCharacter extends Character implements Drawable {
     );
     ctx.restore();
   }
-  protected abstract color: string;
-  public abstract widthHeight: Vector2;
 }

@@ -42,7 +42,8 @@ export class LevelOne extends Base implements StatePattern {
     const gravesPos: Vector2 | null | undefined =
       globalState.gameData.level1.graves[0].position;
 
-    /// there is ERROR here, delete it and it thinks it not assignable like the other weird error!
+    // there is ERROR here, delete it and it thinks it not assignable
+    // like the other weird error!
     if (gravesPos) {
       globalState.entities.graves.push(
         ...instantiate(Grave, 1, { position: gravesPos }),

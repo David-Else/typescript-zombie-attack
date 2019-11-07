@@ -126,7 +126,7 @@
         3
       ],
       "@typescript-eslint/no-magic-numbers": [
-        "warn",
+        "off",
         {
           "ignoreArrayIndexes": true,
           "ignore": [

@@ -6,10 +6,6 @@ export class ScreenText extends EntityBaseClass {
         super();
         this.position = [200, 200];
         this.widthHeight = [0, 0]; // hack to make it an entity, rethink
-        // public draw(ctx: CanvasRenderingContext2D): void {
-        //   this.styleText(ctx);
-        //   this.drawLinesOfText(ctx);
-        // }
         this.styleText = (ctx) => {
             ctx.textAlign = this.textAlignment;
             ctx.font = this.textStyle;
@@ -32,39 +28,10 @@ export class ScreenText extends EntityBaseClass {
     updatePosition(context) {
         // do nothing, it does not move
     }
-    // ERROR THIS IS DUMMY DOING nothing NEEDS TO UPDATE TEXT
-    //
-    /*
-     * draw a multiline string rotated in a canvas
-     *
-     * @param ctx (M) context of the canvas
-     * @param text (M) string may contain \n
-     * @param posX (M) horizontal start position
-     * @param posY (M) vertical start position
-     * @param textColor color
-     * @param rotation in degrees (by 360)
-     * @param font must be installed on client use websafe
-     * @param fonSize in Pixels
-     *
-     * all (M) params are mandatory - rest is optional
-     */
-    drawString({ ctx, text, posX, posY, textAlignment = 'center', textColor = '#000000', rotation = 0, font = "'serif'", fontSize = 16, }) {
-        const lines = text.split('\n');
-        ctx.save();
-        ctx.font = `${fontSize}px ${font}`;
-        ctx.fillStyle = textColor;
-        ctx.textAlign = textAlignment;
-        ctx.translate(posX, posY);
-        ctx.rotate((rotation * Math.PI) / 180);
-        for (let i = 0; i < lines.length; i += 1) {
-            ctx.fillText(lines[i], 0, i * fontSize);
-        }
-        ctx.restore();
-    }
-    // ['Welcome', 'To', 'Zombie Game', "('s' to start)", "('p' to pause)"],
-    // '80px Helvetica Neue',
-    // 'red',
-    // [350, 150], // make centrered
+    // public draw(ctx: CanvasRenderingContext2D): void {
+    //   this.styleText(ctx);
+    //   this.drawLinesOfText(ctx);
+    // }
     draw(ctx) {
         // var nbc = document.getElementById('nb').getContext('2d');
         this.drawString({
@@ -117,6 +84,19 @@ export class ScreenText extends EntityBaseClass {
             font: 'sans-serif',
             fontSize: 24,
         });
+    }
+    drawString({ ctx, text, posX, posY, textAlignment = 'center', textColor = '#000000', rotation = 0, font = "'serif'", fontSize = 16, }) {
+        const lines = text.split('\n');
+        ctx.save();
+        ctx.font = `${fontSize}px ${font}`;
+        ctx.fillStyle = textColor;
+        ctx.textAlign = textAlignment;
+        ctx.translate(posX, posY);
+        ctx.rotate((rotation * Math.PI) / 180);
+        for (let i = 0; i < lines.length; i += 1) {
+            ctx.fillText(lines[i], 0, i * fontSize);
+        }
+        ctx.restore();
     }
 }
 //# sourceMappingURL=text.js.map

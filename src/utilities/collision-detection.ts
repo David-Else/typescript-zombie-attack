@@ -106,15 +106,24 @@ export function checkCollision(
 //   }
 // }
 export function detectAndActOnCollisions3(context: GlobalState): void {
-  const heroZombieCollisionHandler = (index: number, indexTwo: number) => {
+  const heroZombieCollisionHandler = (
+    index: number,
+    indexTwo: number,
+  ): void => {
     context.entities.hero.lives -= 1;
     context.State = new LevelOne(context);
   };
-  const zombieBulletCollisionHandler = (index: number, indexTwo: number) => {
+  const zombieBulletCollisionHandler = (
+    index: number,
+    indexTwo: number,
+  ): void => {
     context.entities.zombies.splice(index, 1);
     context.entities.bullets.splice(indexTwo, 1);
   };
-  const graveBulletCollisionHandler = (index: number, indexTwo: number) => {
+  const graveBulletCollisionHandler = (
+    index: number,
+    indexTwo: number,
+  ): void => {
     context.entities.graves.splice(index, 1);
     context.entities.bullets.splice(indexTwo, 1);
   };
@@ -151,99 +160,99 @@ export function detectAndActOnCollisions3(context: GlobalState): void {
   }
 }
 
-export function detectAndActOnCollisions4(context: GlobalState): void {
-  const heroZombieCollisionHandler = (index: number, indexTwo: number) => {
-    context.entities.hero.lives -= 1;
-    context.State = new LevelOne(context);
-  };
-  const zombieBulletCollisionHandler = (index: number, indexTwo: number) => {
-    context.entities.zombies.splice(index, 1);
-    context.entities.bullets.splice(indexTwo, 1);
-  };
-  const graveBulletCollisionHandler = (index: number, indexTwo: number) => {
-    context.entities.graves.splice(index, 1);
-    context.entities.bullets.splice(indexTwo, 1);
-  };
+// export function detectAndActOnCollisions4(context: GlobalState): void {
+//   const heroZombieCollisionHandler = (index: number, indexTwo: number) => {
+//     context.entities.hero.lives -= 1;
+//     context.State = new LevelOne(context);
+//   };
+//   const zombieBulletCollisionHandler = (index: number, indexTwo: number) => {
+//     context.entities.zombies.splice(index, 1);
+//     context.entities.bullets.splice(indexTwo, 1);
+//   };
+//   const graveBulletCollisionHandler = (index: number, indexTwo: number) => {
+//     context.entities.graves.splice(index, 1);
+//     context.entities.bullets.splice(indexTwo, 1);
+//   };
 
-  const entityCollisions = (
-    xs: Entity[],
-    ys: Entity[],
-    f: (i: number, j: number) => void,
-  ) => {
-    xs.forEach((x, i) =>
-      ys.forEach((y, j) => {
-        if (checkCollision(x, y)) {
-          f(i, j);
-        }
-      }),
-    );
-  };
-  entityCollisions(
-    [context.entities.hero],
-    context.entities.zombies,
-    heroZombieCollisionHandler,
-  );
-  entityCollisions(
-    context.entities.zombies,
-    context.entities.bullets,
-    zombieBulletCollisionHandler,
-  );
-  entityCollisions(
-    context.entities.graves,
-    context.entities.bullets,
-    graveBulletCollisionHandler,
-  );
-}
+//   const entityCollisions = (
+//     xs: Entity[],
+//     ys: Entity[],
+//     f: (i: number, j: number) => void,
+//   ) => {
+//     xs.forEach((x, i) =>
+//       ys.forEach((y, j) => {
+//         if (checkCollision(x, y)) {
+//           f(i, j);
+//         }
+//       }),
+//     );
+//   };
+//   entityCollisions(
+//     [context.entities.hero],
+//     context.entities.zombies,
+//     heroZombieCollisionHandler,
+//   );
+//   entityCollisions(
+//     context.entities.zombies,
+//     context.entities.bullets,
+//     zombieBulletCollisionHandler,
+//   );
+//   entityCollisions(
+//     context.entities.graves,
+//     context.entities.bullets,
+//     graveBulletCollisionHandler,
+//   );
+// }
 
-export function detectAndActOnCollisions2(context: GlobalState): void {
-  // can we move these into the loop scope and avoid params?
-  const heroZombieCollisionHandler = (context: GlobalState) => {
-    context.entities.hero.lives -= 1;
-    context.State = new LevelOne(context);
-  };
-  const zombieBulletCollisionHandler = (
-    context: GlobalState,
-    index: number,
-    indexTwo: number,
-  ) => {
-    context.entities.zombies.splice(index, 1);
-    context.entities.bullets.splice(indexTwo, 1);
-  };
-  const graveBulletCollisionHandler = (
-    context: GlobalState,
-    index: number,
-    indexTwo: number,
-  ) => {
-    context.entities.graves.splice(index, 1);
-    context.entities.bullets.splice(indexTwo, 1);
-  };
-  // this needs to go in global state so can ve updateable at run time
-  // how about destructuring these to heros, zombies graves
-  // how could this be
-  const entityPairsForCollisionDetections2: ReadonlyMap<
-    [Entity[], Entity[]],
-    any
-  > = new Map()
-    .set(
-      [[context.entities.hero], context.entities.zombies],
-      heroZombieCollisionHandler,
-    )
-    .set(
-      [context.entities.zombies, context.entities.bullets],
-      zombieBulletCollisionHandler,
-    )
-    .set(
-      [context.entities.graves, context.entities.bullets],
-      graveBulletCollisionHandler,
-    );
+// export function detectAndActOnCollisions2(context: GlobalState): void {
+//   // can we move these into the loop scope and avoid params?
+//   const heroZombieCollisionHandler = (context: GlobalState) => {
+//     context.entities.hero.lives -= 1;
+//     context.State = new LevelOne(context);
+//   };
+//   const zombieBulletCollisionHandler = (
+//     context: GlobalState,
+//     index: number,
+//     indexTwo: number,
+//   ) => {
+//     context.entities.zombies.splice(index, 1);
+//     context.entities.bullets.splice(indexTwo, 1);
+//   };
+//   const graveBulletCollisionHandler = (
+//     context: GlobalState,
+//     index: number,
+//     indexTwo: number,
+//   ) => {
+//     context.entities.graves.splice(index, 1);
+//     context.entities.bullets.splice(indexTwo, 1);
+//   };
+//   // this needs to go in global state so can ve updateable at run time
+//   // how about destructuring these to heros, zombies graves
+//   // how could this be
+//   const entityPairsForCollisionDetections2: ReadonlyMap<
+//     [Entity[], Entity[]],
+//     any
+//   > = new Map()
+//     .set(
+//       [[context.entities.hero], context.entities.zombies],
+//       heroZombieCollisionHandler,
+//     )
+//     .set(
+//       [context.entities.zombies, context.entities.bullets],
+//       zombieBulletCollisionHandler,
+//     )
+//     .set(
+//       [context.entities.graves, context.entities.bullets],
+//       graveBulletCollisionHandler,
+//     );
 
-  for (const [key, value] of entityPairsForCollisionDetections2) {
-    key[0].forEach((entityOne: Entity, index: number) =>
-      key[1].forEach((entityTwo: Entity, indexTwo: number) => {
-        if (checkCollision(entityOne, entityTwo)) {
-          value(context, index, indexTwo);
-        }
-      }),
-    );
-  }
-}
+//   for (const [key, value] of entityPairsForCollisionDetections2) {
+//     key[0].forEach((entityOne: Entity, index: number) =>
+//       key[1].forEach((entityTwo: Entity, indexTwo: number) => {
+//         if (checkCollision(entityOne, entityTwo)) {
+//           value(context, index, indexTwo);
+//         }
+//       }),
+//     );
+//   }
+// }

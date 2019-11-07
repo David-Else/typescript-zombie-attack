@@ -1,5 +1,4 @@
 import { ScreenText } from '../entities/text.js';
-import { Vector2 } from '../utilities/vectors.js';
 import { Base } from './base-class.js';
 import { GlobalState, StatePattern } from './global-state.js';
 import { StartScreen } from './start-screen.js';
@@ -11,10 +10,10 @@ export class LevelTwo extends Base implements StatePattern {
       new ScreenText([], '25px Arial', 'black', [161, 30], 'right'),
     ];
 
-    const middleOfScreen = (ctx: CanvasRenderingContext2D): Vector2 => [
-      ctx.canvas.width / 2,
-      ctx.canvas.height / 2,
-    ];
+    // const middleOfScreen = (ctx: CanvasRenderingContext2D): Vector2 => [
+    //   ctx.canvas.width / 2,
+    //   ctx.canvas.height / 2,
+    // ];
 
     // context.entities.hero = instantiate(Hero, 1, {
     //   position: middleOfScreen(context.ctx),

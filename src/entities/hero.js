@@ -19,10 +19,10 @@ export class Hero extends VectorCharacter {
             return vectors.add(entity.position, middleOfEntity);
         }
         if (context.inGameKeys.rightPressed) {
-            this.rotation = this.rotation + 1;
+            this.rotation += 1;
         }
         if (context.inGameKeys.leftPressed) {
-            this.rotation = this.rotation - 1;
+            this.rotation -= 1;
         }
         if (!context.inGameKeys.firePressed) {
             this.firePaused = false;
