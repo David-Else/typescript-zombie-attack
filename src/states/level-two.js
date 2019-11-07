@@ -5,7 +5,13 @@ export class LevelTwo extends Base {
     constructor(globalState) {
         super();
         globalState.entities.screenText = [
-            new ScreenText([], '25px Arial', 'black', [161, 30], 'right'),
+            new ScreenText({
+                linesOfText: [],
+                textStyle: '25px Arial',
+                fontColor: 'black',
+                position: [161, 30],
+                textAlignment: 'right',
+            }),
         ];
         // const middleOfScreen = (ctx: CanvasRenderingContext2D): Vector2 => [
         //   ctx.canvas.width / 2,

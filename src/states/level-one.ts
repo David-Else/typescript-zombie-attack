@@ -14,7 +14,14 @@ export class LevelOne extends Base implements StatePattern {
     const numberOfZombies = 50;
 
     globalState.entities.screenText = [
-      new ScreenText([], '25px Arial', 'black', [161, 30], 'right'),
+      new ScreenText({
+        ctx: globalState.ctx,
+        text: 'Welcome\nTo\nZombie Game\ns to start\np to pause',
+        position: [100, 50],
+        textColor: 'red',
+        font: 'Helvetica Neue',
+        fontSize: 24,
+      }),
     ];
 
     // if the hero does not exist, or has live === 0,  make him
@@ -63,12 +70,6 @@ export class LevelOne extends Base implements StatePattern {
       // why does this just keep running?!
       //   context.State = new GameOver(context);
     }
-    context.entities.screenText[0].linesOfText = [
-      'Level 1',
-      `Lives = ${context.entities.hero.lives} `,
-      `Score = ${context.score}`,
-      `Zombies = ${context.entities.zombies.length} `,
-      `Bullets = ${context.entities.hero.numberOfBullets}`,
-    ];
+    context.entities.screenText[0].text = `Level 1\nLives = ${context.entities.hero.lives}\nScore = ${context.score}\nZombies = ${context.entities.zombies.length}\nBullets = ${context.entities.hero.numberOfBullets}`;
   }
 }

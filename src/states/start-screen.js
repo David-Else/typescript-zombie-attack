@@ -5,7 +5,17 @@ export class StartScreen extends Base {
     constructor(globalState) {
         super();
         globalState.entities.screenText = [
-            new ScreenText(['Welcome', 'To', 'Zombie Game', "('s' to start)", "('p' to pause)"], '80px Helvetica Neue', 'red', [350, 150]),
+            new ScreenText({
+                ctx: globalState.ctx,
+                text: 'Welcome\nTo\nZombie Game\ns to start\np to pause',
+                position: [
+                    globalState.ctx.canvas.width / 2,
+                    globalState.ctx.canvas.height / 2,
+                ],
+                textColor: 'red',
+                font: 'Helvetica Neue',
+                fontSize: 80,
+            }),
         ];
     }
     transition(context) {

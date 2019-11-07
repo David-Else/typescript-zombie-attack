@@ -7,12 +7,17 @@ export class StartScreen extends Base implements StatePattern {
   public constructor(globalState: GlobalState) {
     super();
     globalState.entities.screenText = [
-      new ScreenText(
-        ['Welcome', 'To', 'Zombie Game', "('s' to start)", "('p' to pause)"],
-        '80px Helvetica Neue',
-        'red',
-        [350, 150], // make centrered
-      ),
+      new ScreenText({
+        ctx: globalState.ctx,
+        text: 'Welcome\nTo\nZombie Game\ns to start\np to pause',
+        position: [
+          globalState.ctx.canvas.width / 2,
+          globalState.ctx.canvas.height / 2,
+        ],
+        textColor: 'red',
+        font: 'Helvetica Neue',
+        fontSize: 80,
+      }),
     ];
   }
 

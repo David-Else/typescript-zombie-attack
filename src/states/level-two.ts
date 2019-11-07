@@ -7,7 +7,13 @@ export class LevelTwo extends Base implements StatePattern {
   public constructor(globalState: GlobalState) {
     super();
     globalState.entities.screenText = [
-      new ScreenText([], '25px Arial', 'black', [161, 30], 'right'),
+      new ScreenText({
+        linesOfText: [],
+        textStyle: '25px Arial',
+        fontColor: 'black',
+        position: [161, 30],
+        textAlignment: 'right',
+      }),
     ];
 
     // const middleOfScreen = (ctx: CanvasRenderingContext2D): Vector2 => [
