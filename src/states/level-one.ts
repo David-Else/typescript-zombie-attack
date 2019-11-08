@@ -16,7 +16,7 @@ export class LevelOne extends Base implements StatePattern {
     globalState.entities.screenText = [
       new ScreenText({
         ctx: globalState.ctx,
-        text: 'Welcome\nTo\nZombie Game\ns to start\np to pause',
+        text: '',
         position: [100, 50],
         textColor: 'red',
         font: 'Helvetica Neue',

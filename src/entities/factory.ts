@@ -86,3 +86,27 @@ export function instantiate(
 
   return characters;
 }
+
+export const OLDsimpleFactory = <
+  T extends {
+    new (...args: any[]): any;
+  }
+>(
+  classToCreate: T,
+  numberOf: number,
+  ...args: ConstructorParameters<T>
+): T[] => [...Array(numberOf)].map(() => new classToCreate(...args));
+
+// type Constructor<T> = new (...args: any[]) => T;
+
+// export const simpleFactory = <T>(
+//   classToCreate: Constructor<T>,
+//   numberOf: number,
+//   ...args: ConstructorParameters<typeof classToCreate>
+// ): T[] => [...Array<T>(numberOf)].map(() => new classToCreate(...args));
+
+export const simpleFactory = <I, T extends new (...args: any[]) => I>(
+  classToCreate: T,
+  numberOf: number,
+  ...args: ConstructorParameters<T>
+): I[] => [...Array<I>(numberOf)].map(() => new classToCreate(...args));

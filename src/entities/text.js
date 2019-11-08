@@ -7,7 +7,7 @@ export class ScreenText extends EntityBaseClass {
         this.position = position;
         this.textAlignment = textAlignment;
         this.textColor = textColor;
-        this.rotation = rotation;
+        // this.rotation = rotation;
         this.font = font;
         this.fontSize = fontSize;
     }

@@ -25,4 +25,12 @@ export function instantiate(ClassToInstantiate, numberOf, options) {
     }
     return characters;
 }
+export const OLDsimpleFactory = (classToCreate, numberOf, ...args) => [...Array(numberOf)].map(() => new classToCreate(...args));
+// type Constructor<T> = new (...args: any[]) => T;
+// export const simpleFactory = <T>(
+//   classToCreate: Constructor<T>,
+//   numberOf: number,
+//   ...args: ConstructorParameters<typeof classToCreate>
+// ): T[] => [...Array<T>(numberOf)].map(() => new classToCreate(...args));
+export const simpleFactory = (classToCreate, numberOf, ...args) => [...Array(numberOf)].map(() => new classToCreate(...args));
 //# sourceMappingURL=factory.js.map

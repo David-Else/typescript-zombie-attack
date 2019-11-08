@@ -8,7 +8,7 @@ import { assert } from './utilities/assert.js';
 import { detectAndActOnCollisions3 } from './utilities/collision-detection.js';
 /**
  * =========================================================================
- * toFixedScreenRatio
+ * Calculate the maximum screen size available within a fixed ratio
  * =========================================================================
  */
 function toFixedScreenRatio(currentWidth, currentHeight, targetWidthToHeight) {
@@ -22,7 +22,7 @@ function toFixedScreenRatio(currentWidth, currentHeight, targetWidthToHeight) {
 }
 /**
  * =========================================================================
- * Globals
+ * Global variables
  * =========================================================================
  */
 const canvas = document.getElementById('game-canvas');

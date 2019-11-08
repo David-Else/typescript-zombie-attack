@@ -6,11 +6,15 @@ export class GameOver extends Base {
         super();
         globalState.entities.screenText = [
             new ScreenText({
-                linesOfText: ['Game Over!'],
-                textStyle: '25px Arial',
-                fontColor: 'black',
-                position: [161, 30],
-                textAlignment: 'right',
+                ctx: globalState.ctx,
+                text: 'Game Over!',
+                position: [
+                    globalState.ctx.canvas.width / 2,
+                    globalState.ctx.canvas.height / 2,
+                ],
+                textColor: 'black',
+                font: 'Helvetica Neue',
+                fontSize: 80,
             }),
         ];
     }

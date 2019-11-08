@@ -19,7 +19,7 @@ export class ScreenText extends EntityBaseClass implements Drawable {
   public position: Vector2;
   public textAlignment?: CanvasTextAlign;
   public textColor?: string;
-  public rotation?: number;
+  // public rotation?: number;
   public font?: string;
   public fontSize?: number;
 
@@ -39,7 +39,7 @@ export class ScreenText extends EntityBaseClass implements Drawable {
     this.position = position;
     this.textAlignment = textAlignment;
     this.textColor = textColor;
-    this.rotation = rotation;
+    // this.rotation = rotation;
     this.font = font;
     this.fontSize = fontSize;
   }

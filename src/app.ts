@@ -11,7 +11,7 @@ import { Vector2 } from './utilities/vectors.js';
 
 /**
  * =========================================================================
- * toFixedScreenRatio
+ * Calculate the maximum screen size available within a fixed ratio
  * =========================================================================
  */
 function toFixedScreenRatio(
@@ -31,7 +31,7 @@ function toFixedScreenRatio(
 
 /**
  * =========================================================================
- * Globals
+ * Global variables
  * =========================================================================
  */
 const canvas = document.getElementById('game-canvas');

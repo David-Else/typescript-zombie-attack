@@ -6,11 +6,12 @@ export class LevelTwo extends Base {
         super();
         globalState.entities.screenText = [
             new ScreenText({
-                linesOfText: [],
-                textStyle: '25px Arial',
-                fontColor: 'black',
-                position: [161, 30],
-                textAlignment: 'right',
+                ctx: globalState.ctx,
+                text: '',
+                position: [100, 50],
+                textColor: 'red',
+                font: 'Helvetica Neue',
+                fontSize: 24,
             }),
         ];
         // const middleOfScreen = (ctx: CanvasRenderingContext2D): Vector2 => [
@@ -33,13 +34,7 @@ export class LevelTwo extends Base {
     }
     update(context) {
         super.update(context);
-        context.entities.screenText[0].linesOfText = [
-            'Level 2',
-            `Lives = ${context.entities.hero.lives} `,
-            `Score = ${context.score}`,
-            `Zombies = ${context.entities.zombies.length} `,
-            `Bullets = ${context.entities.hero.numberOfBullets}`,
-        ];
+        context.entities.screenText[0].text = `Level 1\nLives = ${context.entities.hero.lives}\nScore = ${context.score}\nZombies = ${context.entities.zombies.length}\nBullets = ${context.entities.hero.numberOfBullets}`;
     }
 }
 //# sourceMappingURL=level-two.js.map
