@@ -4,7 +4,7 @@ export const load = {
    * Image loader
    * =========================================================================
    */
-  image(filePath: string): Promise<HTMLImageElement> {
+  loadImage(filePath: string): Promise<HTMLImageElement> {
     const imageElement = new Image();
     imageElement.src = filePath;
 
@@ -19,7 +19,7 @@ export const load = {
    * Audio loader
    * =========================================================================
    */
-  audio(filePath: string): Promise<HTMLAudioElement> {
+  loadAudio(filePath: string): Promise<HTMLAudioElement> {
     const audioElement = new Audio();
     audioElement.src = filePath;
 
@@ -34,7 +34,7 @@ export const load = {
    * JSON loader
    * =========================================================================
    */
-  JSON<T>(request: RequestInfo): Promise<T> {
+  loadJSON<T>(request: RequestInfo): Promise<T> {
     return new Promise(resolve => {
       fetch(request)
         .then(response => response.json())

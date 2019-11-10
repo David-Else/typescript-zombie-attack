@@ -105,8 +105,23 @@ export const OLDsimpleFactory = <
 //   ...args: ConstructorParameters<typeof classToCreate>
 // ): T[] => [...Array<T>(numberOf)].map(() => new classToCreate(...args));
 
+// Strangely deleted from reddit but working
 export const simpleFactory = <I, T extends new (...args: any[]) => I>(
   classToCreate: T,
   numberOf: number,
   ...args: ConstructorParameters<T>
 ): I[] => [...Array<I>(numberOf)].map(() => new classToCreate(...args));
+
+// T only implements the constructor interface so it doesn't have a property 'position'.
+// To get the instance type, you can use InstanceType. Use InstanceType in simpleFactory's type signature to obtain the instance type from T.
+// InstanceType<T> Constructs a type consisting of the instance type of a constructor function type T
+const LATESTsimpleFactory = <
+  T extends {
+    new (...args: any[]): any;
+  }
+>(
+  classToCreate: T,
+  numberOf: number,
+  ...args: ConstructorParameters<T>
+): InstanceType<T>[] =>
+  [...Array(numberOf)].map(() => new classToCreate(...args));

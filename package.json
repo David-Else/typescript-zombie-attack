@@ -9,7 +9,10 @@
     "test": "mocha --reporter min --require esm --require ./setup-jsdom.js",
     "eslint": "eslint --cache -f unix --ext .ts src/ test/",
     "eslint-fix": "eslint --fix --cache -f unix --ext .ts src/ test/",
-    "build-bundle": "rollup --config"
+    "build-bundle": "rollup --config",
+    "create-github_markdown-of-readme": "pandoc --strip-comments --extract-media=./dist README.md -t gfm -o README_github.md",
+    "create-html-of-readme": "pandoc --strip-comments --extract-media=./dist README.md -o README.html",
+    "convert-png-to-jpg": "mogrify -format jpg -strip -resize 1920\\> ./dist/*.png"
   },
   "keywords": [],
   "author": "",
@@ -32,7 +35,8 @@
   "prettier": {
     "singleQuote": true,
     "proseWrap": "always",
-    "trailingComma": "all"
+    "trailingComma": "all",
+    "quoteProps": "consistent"
   },
   "eslintConfig": {
     "extends": [

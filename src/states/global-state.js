@@ -49,11 +49,11 @@ export class GlobalState {
             Zombie.imagesToLoad[0],
             context.gameData,
         ] = await Promise.all([
-            load.audio('./assets/explosion.wav'),
-            load.audio('./assets/invaderkilled.wav'),
-            load.audio('./assets/shoot.wav'),
-            load.image('./assets/zombie64-final.png'),
-            load.JSON('src/game-data.json'),
+            load.loadAudio('./assets/explosion.wav'),
+            load.loadAudio('./assets/invaderkilled.wav'),
+            load.loadAudio('./assets/shoot.wav'),
+            load.loadImage('./assets/zombie64-final.png'),
+            load.loadJSON('src/game-data.json'),
         ]);
         context.transition();
     }
