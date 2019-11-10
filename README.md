@@ -15,10 +15,7 @@ Text **bold**
 
 ## heading 2
 
-![winter-in-bohemi](./assets/winter-in-bohemia.png){width=250}
-![winter-in-bohemi](./assets/acid.svg){width=250}
-
-![winter-in-bohemi](./assets/acid.svg){width=250}
+![ums](./assets/uml-diagram.svg){width=100%}
 
 <!-- <img src="./assets/winter-in-bohemia" width="300"> -->
 
