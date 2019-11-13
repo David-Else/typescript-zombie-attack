@@ -1,6 +1,7 @@
 import { vectors } from '../utilities/vectors.js';
 import { Bullet } from './bullet.js';
-import { instantiate } from './factory.js';
+import { entityFactory } from './factory.js';
+// import { instantiate } from './factory.js';
 import { VectorCharacter } from './vector-character.js';
 export class Hero extends VectorCharacter {
     constructor(position) {
@@ -32,10 +33,7 @@ export class Hero extends VectorCharacter {
             !this.firePaused) {
             //   context.inGameKeys.firePressed = false; WATCH OUT RACE BUG
             this.firePaused = true;
-            context.entities.bullets.push(...instantiate(Bullet, 1, {
-                position: centerOfEntityScreenPosition(this),
-                rotation: this.rotation,
-            }));
+            context.entities.bullets.push(...entityFactory(Bullet, 1, centerOfEntityScreenPosition(this), this.rotation));
             this.numberOfBullets -= 1;
         }
     }

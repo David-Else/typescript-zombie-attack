@@ -12,7 +12,8 @@ export class Init extends Base {
     update(context) {
         if (!this.runAsyncInitFunctionOnce) {
             this.runAsyncInitFunctionOnce = true;
-            GlobalState.loadAssets(context).catch(message => console.error(message)); // it transitions at end of this async
+            // it transitions at end of this async
+            GlobalState.loadAssets(context).catch(message => console.error(message));
         }
     }
 }

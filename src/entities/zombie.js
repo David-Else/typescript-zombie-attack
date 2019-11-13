@@ -1,12 +1,13 @@
+import { random } from '../utilities/random.js';
 import { vectors } from '../utilities/vectors.js';
 import { BitmapCharacter } from './bitmap-character.js';
 export class Zombie extends BitmapCharacter {
-    constructor(image, position) {
+    constructor(image, positionToSpawnAround) {
         super();
         this.kind = 'zombie';
         this.widthHeight = [image.width, image.height];
         this.image = image;
-        this.position = position;
+        this.position = random.positionAroundPoint(positionToSpawnAround);
     }
     updatePosition(context) {
         const slowDownFactor = [0.1, 0.1];

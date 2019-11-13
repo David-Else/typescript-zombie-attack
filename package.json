@@ -7,7 +7,7 @@
     "start-typescript-development": "tsc-watch --onSuccess 'npm --silent run test-and-eslint'",
     "test-and-eslint": "npm run test && npm run eslint",
     "test": "mocha --reporter min --require esm --require ./setup-jsdom.js",
-    "eslint": "eslint --cache -f unix --ext .ts src/ test/",
+    "eslint": "eslint --cache --ext .ts src/ test/",
     "eslint-fix": "eslint --fix --cache -f unix --ext .ts src/ test/",
     "build-bundle": "rollup --config",
     "create-github_markdown-of-readme": "pandoc --strip-comments --extract-media=./dist README.md -t gfm -o README_github.md",

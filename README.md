@@ -15,6 +15,8 @@ Text **bold**
 
 ## heading 2
 
+<div style="page-break-after: always;"></div>
+
 ![ums](./assets/uml-diagram.svg){width=100%}
 
 <!-- <img src="./assets/winter-in-bohemia" width="300"> -->

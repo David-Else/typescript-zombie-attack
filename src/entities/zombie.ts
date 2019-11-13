@@ -1,4 +1,5 @@
 import { GlobalState } from '../states/global-state.js';
+import { random } from '../utilities/random.js';
 import { Vector2, vectors } from '../utilities/vectors.js';
 import { BitmapCharacter } from './bitmap-character.js';
 
@@ -9,11 +10,11 @@ export class Zombie extends BitmapCharacter {
   public image: HTMLImageElement;
   public position: Vector2;
 
-  public constructor(image: HTMLImageElement, position: Vector2) {
+  public constructor(image: HTMLImageElement, positionToSpawnAround: Vector2) {
     super();
     this.widthHeight = [image.width, image.height];
     this.image = image;
-    this.position = position;
+    this.position = random.positionAroundPoint(positionToSpawnAround);
   }
 
   public updatePosition(context: GlobalState): void {

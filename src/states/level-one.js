@@ -1,4 +1,4 @@
-import { instantiate } from '../entities/factory.js';
+import { entityFactory } from '../entities/factory.js';
 import { Grave } from '../entities/graves.js';
 import { Hero } from '../entities/hero.js';
 import { ScreenText } from '../entities/text.js';
@@ -14,33 +14,34 @@ export class LevelOne extends Base {
                 ctx: globalState.ctx,
                 text: '',
                 position: [100, 50],
-                textColor: 'red',
+                textAlignment: 'left',
+                textColor: 'black',
                 font: 'Helvetica Neue',
                 fontSize: 24,
             }),
         ];
         // if the hero does not exist, or has live === 0,  make him
         if (!globalState.entities.hero.lives) {
-            globalState.entities.hero = instantiate(Hero, 1, {
-                position: [
-                    globalState.ctx.canvas.width / 2,
-                    globalState.ctx.canvas.height / 2,
-                ],
-            }); /// NIGHTMARE HACK!!!! FIX
-        }
-        globalState.entities.zombies = []; // stop megaspawn, kill remaining zombies if restart level
-        globalState.entities.zombies.push(...instantiate(Zombie, numberOfZombies, {
-            image: Zombie.imagesToLoad[0],
-            pointToSpawnAround: [
+            const heroObject = entityFactory(Hero, 1, [
                 globalState.ctx.canvas.width / 2,
                 globalState.ctx.canvas.height / 2,
-            ],
-        }));
+            ]);
+            globalState.entities.hero = heroObject[0];
+            // globalState.entities.hero = entityFactory(Hero, 1, [
+            //   globalState.ctx.canvas.width / 2,
+            //   globalState.ctx.canvas.height / 2,
+            // ]); /// NIGHTMARE HACK!!!! FIX
+        }
+        globalState.entities.zombies = []; // stop megaspawn, kill remaining zombies if restart level
+        globalState.entities.zombies.push(...entityFactory(Zombie, numberOfZombies, Zombie.imagesToLoad[0], [
+            globalState.ctx.canvas.width / 2,
+            globalState.ctx.canvas.height / 2,
+        ]));
         const gravesPos = globalState.gameData.level1.graves[0].position;
         // there is ERROR here, delete it and it thinks it not assignable
         // like the other weird error!
         if (gravesPos) {
-            globalState.entities.graves.push(...instantiate(Grave, 1, { position: gravesPos }));
+            globalState.entities.graves.push(...entityFactory(Grave, 1, gravesPos));
         }
     }
     transition(context) {
