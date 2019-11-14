@@ -3,7 +3,7 @@ import { Vector2, vectors } from '../utilities/vectors.js';
 import { EntityBaseClass } from './base-class.js';
 
 /**
- * =============================================================================
+ * ============================================================================
  * Second level base character abstract class all other characters inherit from
  * ============================================================================
  */
@@ -17,11 +17,15 @@ export abstract class Character extends EntityBaseClass {
   }
 
   protected directTowards(targetPosition: Vector2): void {
-    this.velocity = this.moveTowardsEntity(this.position, targetPosition, 1);
+    this.velocity = this.velocityTowards(this.position, targetPosition, 1);
   }
 
-  // this needs to move out into utilities, get better name, and have test!
-  private moveTowardsEntity(
+  /**
+   * ==========================================================================
+   * Returns the velocity for an entity to move towards a target position
+   * ==========================================================================
+   */
+  private velocityTowards(
     currentPosition: Vector2,
     targetPosition: Vector2,
     speed: number,
