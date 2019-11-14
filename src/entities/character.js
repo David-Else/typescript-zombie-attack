@@ -9,26 +9,25 @@ export class Character extends EntityBaseClass {
     constructor() {
         super(...arguments);
         this.lives = 1;
+        // The velocity of an object is the rate of change of its position with respect
+        // to a frame of reference
         this.velocity = [0, 0];
     }
     updatePosition(context) {
         this.position = vectors.add(this.position, this.velocity);
     }
     directTowards(targetPosition) {
-        this.velocity = this.moveTowardsEntity(this.position, targetPosition);
+        this.velocity = this.moveTowardsEntity(this.position, targetPosition, 1);
     }
-    moveTowardsEntity(currentPosition, targetPosition) {
-        let velocity;
-        let targetVelocity = [0, 0];
-        velocity =
-            currentPosition[0] > targetPosition[0]
-                ? (targetVelocity = vectors.add(targetVelocity, vectors.left))
-                : (targetVelocity = vectors.add(targetVelocity, vectors.right));
-        velocity =
-            currentPosition[1] > targetPosition[1]
-                ? (targetVelocity = vectors.add(targetVelocity, vectors.down))
-                : (targetVelocity = vectors.add(targetVelocity, vectors.up));
-        return velocity;
+    // this needs to move out into utilities, get better name, and have test!
+    moveTowardsEntity(currentPosition, targetPosition, speed) {
+        // compute delta between the source point and the destination point
+        let dx = targetPosition[0] - currentPosition[0];
+        let dy = targetPosition[1] - currentPosition[1];
+        // compute the angle between the two points
+        let angle = Math.atan2(dy, dx);
+        // return the velocity vector through magnitude (speed) and the angle
+        return [speed * Math.cos(angle), speed * Math.sin(angle)];
     }
 }
 //# sourceMappingURL=character.js.map
