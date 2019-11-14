@@ -3,7 +3,7 @@ import { EntityBaseClass } from './base-class.js';
 /**
  * =============================================================================
  * Second level base character abstract class all other characters inherit from
- * =============================================================================
+ * ============================================================================
  */
 export class Character extends EntityBaseClass {
     constructor() {
@@ -15,21 +15,20 @@ export class Character extends EntityBaseClass {
         this.position = vectors.add(this.position, this.velocity);
     }
     directTowards(targetPosition) {
-        const [targetX, targetY] = [targetPosition[0], targetPosition[1]];
+        this.velocity = this.moveTowardsEntity(this.position, targetPosition);
+    }
+    moveTowardsEntity(currentPosition, targetPosition) {
+        let velocity;
         let targetVelocity = [0, 0];
-        if (this.x > targetX) {
-            targetVelocity = vectors.add(targetVelocity, vectors.left);
-        }
-        else {
-            targetVelocity = vectors.add(targetVelocity, vectors.right);
-        }
-        if (this.y > targetY) {
-            targetVelocity = vectors.add(targetVelocity, vectors.down);
-        }
-        else {
-            targetVelocity = vectors.add(targetVelocity, vectors.up);
-        }
-        this.velocity = targetVelocity;
+        velocity =
+            currentPosition[0] > targetPosition[0]
+                ? (targetVelocity = vectors.add(targetVelocity, vectors.left))
+                : (targetVelocity = vectors.add(targetVelocity, vectors.right));
+        velocity =
+            currentPosition[1] > targetPosition[1]
+                ? (targetVelocity = vectors.add(targetVelocity, vectors.down))
+                : (targetVelocity = vectors.add(targetVelocity, vectors.up));
+        return velocity;
     }
 }
 //# sourceMappingURL=character.js.map

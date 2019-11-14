@@ -20,13 +20,11 @@ function toFixedScreenRatio(
   targetWidthToHeight: number,
 ): Vector2 {
   const currentWidthToHeight = currentWidth / currentHeight;
-
-  if (currentWidthToHeight > targetWidthToHeight) {
-    // window width is too wide relative to desired game width
-    return [currentHeight * targetWidthToHeight, currentHeight];
-  }
-  // window height is too high relative to desired game height
-  return [currentWidth, currentWidth / targetWidthToHeight];
+  return currentWidthToHeight > targetWidthToHeight
+    ? // window width is too wide relative to desired game width
+      [currentHeight * targetWidthToHeight, currentHeight]
+    : // window height is too high relative to desired game height
+      [currentWidth, currentWidth / targetWidthToHeight];
 }
 
 /**

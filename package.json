@@ -25,6 +25,7 @@
     "@typescript-eslint/parser": "^2.6.1",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-functional": "^1.0.0",
     "esm": "^3.2.25",
     "jsdom": "^15.2.1",
     "mocha": "^6.2.2",
@@ -52,7 +53,8 @@
       "project": "./tsconfig.json"
     },
     "plugins": [
-      "@typescript-eslint"
+      "@typescript-eslint",
+      "functional"
     ],
     "rules": {
       "no-useless-return": "warn",
@@ -149,7 +151,11 @@
         {
           "allowExpressions": true
         }
-      ]
+      ],
+      "functional/no-let": "error",
+      "functional/prefer-readonly-type": "error",
+      "functional/no-conditional-statement": "error",
+      "functional/no-loop-statement": "error"
     },
     "env": {
       "browser": true,

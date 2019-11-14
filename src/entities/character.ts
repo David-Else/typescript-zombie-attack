@@ -5,7 +5,7 @@ import { EntityBaseClass } from './base-class.js';
 /**
  * =============================================================================
  * Second level base character abstract class all other characters inherit from
- * =============================================================================
+ * ============================================================================
  */
 export abstract class Character extends EntityBaseClass {
   protected lives = 1;
@@ -13,19 +13,27 @@ export abstract class Character extends EntityBaseClass {
   public updatePosition(context?: GlobalState): void {
     this.position = vectors.add(this.position, this.velocity);
   }
+
   protected directTowards(targetPosition: Vector2): void {
-    const [targetX, targetY] = [targetPosition[0], targetPosition[1]];
+    this.velocity = this.moveTowardsEntity(this.position, targetPosition);
+  }
+
+  private moveTowardsEntity(
+    currentPosition: Vector2,
+    targetPosition: Vector2,
+  ): Vector2 {
+    let velocity: Vector2;
     let targetVelocity: Vector2 = [0, 0];
-    if (this.x > targetX) {
-      targetVelocity = vectors.add(targetVelocity, vectors.left);
-    } else {
-      targetVelocity = vectors.add(targetVelocity, vectors.right);
-    }
-    if (this.y > targetY) {
-      targetVelocity = vectors.add(targetVelocity, vectors.down);
-    } else {
-      targetVelocity = vectors.add(targetVelocity, vectors.up);
-    }
-    this.velocity = targetVelocity;
+
+    velocity =
+      currentPosition[0] > targetPosition[0]
+        ? (targetVelocity = vectors.add(targetVelocity, vectors.left))
+        : (targetVelocity = vectors.add(targetVelocity, vectors.right));
+    velocity =
+      currentPosition[1] > targetPosition[1]
+        ? (targetVelocity = vectors.add(targetVelocity, vectors.down))
+        : (targetVelocity = vectors.add(targetVelocity, vectors.up));
+
+    return velocity;
   }
 }
