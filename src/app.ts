@@ -6,7 +6,7 @@
 import { GlobalState } from './states/global-state.js';
 import { Init } from './states/init.js';
 import { assert } from './utilities/assert.js';
-import { detectAndActOnCollisions3 } from './utilities/collision-detection.js';
+import { detectAndActOnCollisions4 } from './utilities/collision-detection.js';
 import { Vector2 } from './utilities/vectors.js';
 
 /**
@@ -63,7 +63,7 @@ document.addEventListener('keyup', globalState.keyHandler.bind(globalState));
 function gameLoop(): void {
   //   while (GameContext.running) {
   globalState.updateCurrentState();
-  detectAndActOnCollisions3(globalState);
+  detectAndActOnCollisions4(globalState);
   requestAnimationFrame(gameLoop);
 }
 

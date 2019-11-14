@@ -41,6 +41,7 @@
   },
   "comments": {
     "eslintConfig-rules-optional": [
+      "https://github.com/jonaskello/eslint-plugin-functional",
       "functional/immutable-data",
       "functional/no-let",
       "functional/prefer-readonly-type",
