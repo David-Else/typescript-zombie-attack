@@ -3,25 +3,26 @@ import { Vector2 } from '../utilities/vectors.js';
 import { Drawable, EntityBaseClass } from './base-class.js';
 
 interface Text {
-  ctx: CanvasRenderingContext2D;
-  text: string;
-  position: Vector2;
-  textAlignment?: CanvasTextAlign;
-  textColor?: string;
-  rotation?: number;
-  font?: string;
-  fontSize?: number;
+  readonly ctx: CanvasRenderingContext2D;
+  readonly text: string;
+  readonly position: Vector2;
+  readonly textAlignment?: CanvasTextAlign;
+  readonly textColor?: string;
+  readonly rotation?: number;
+  readonly font?: string;
+  readonly fontSize?: number;
 }
 
 export class ScreenText extends EntityBaseClass implements Drawable {
-  public ctx: CanvasRenderingContext2D;
+  public readonly ctx: CanvasRenderingContext2D;
+  public readonly position: Vector2;
+  public readonly textAlignment: CanvasTextAlign;
+  public readonly fillStyle: string;
+  public readonly rotation: number;
+  public readonly font: string;
+  public readonly fontSize: number;
+
   public text: string;
-  public position: Vector2;
-  public textAlignment: CanvasTextAlign;
-  public fillStyle: string;
-  public rotation: number;
-  public font: string;
-  public fontSize: number;
 
   public constructor({
     ctx,

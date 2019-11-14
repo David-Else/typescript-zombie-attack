@@ -10,8 +10,8 @@ export class Character extends EntityBaseClass {
     constructor() {
         super(...arguments);
         this.lives = 1;
-        // The velocity of an object is the rate of change of its position with respect
-        // to a frame of reference
+        // The velocity of an object is the rate of change of its position with
+        // respect to a frame of reference
         this.velocity = [0, 0];
     }
     updatePosition(context) {

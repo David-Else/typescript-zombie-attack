@@ -7,13 +7,13 @@ export class Bullet extends VectorCharacter {
         this.position = position;
         this.rotation = rotation;
         this.kind = 'bullet';
-        this.widthHeight = [6, 25];
         this.color = 'black';
+        this.widthHeight = [6, 25];
         this.velocity = [2, -2];
-        this.tweenVelocity = [0, 0];
         // Add smoothstep
         this.totalFrames = 120;
         this.frameCounter = 0;
+        this.tweenVelocity = [0, 0];
     }
     updatePosition() {
         // Run the animation while `frameCounter` is less than `totalFrames`

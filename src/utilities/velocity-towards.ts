@@ -11,11 +11,11 @@ export function velocityTowards(
   speed: number,
 ): Vector2 {
   // compute delta between the source point and the destination point
-  let dx = targetPosition[0] - currentPosition[0];
-  let dy = targetPosition[1] - currentPosition[1];
+  const dx = targetPosition[0] - currentPosition[0];
+  const dy = targetPosition[1] - currentPosition[1];
 
   // compute the angle between the two points
-  let angle = Math.atan2(dy, dx);
+  const angle = Math.atan2(dy, dx);
 
   // return the velocity vector through magnitude (speed) and the angle
   return [speed * Math.cos(angle), speed * Math.sin(angle)];

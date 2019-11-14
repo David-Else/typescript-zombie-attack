@@ -8,9 +8,9 @@ export class Hero extends VectorCharacter {
         super();
         this.position = position;
         this.kind = 'hero';
-        this.lives = 3;
         this.widthHeight = [25, 50];
         this.color = 'red';
+        this.lives = 3;
         this.firePaused = false;
         this.numberOfBullets = 100;
     }

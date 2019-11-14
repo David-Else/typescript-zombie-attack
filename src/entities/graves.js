@@ -4,9 +4,9 @@ export class Grave extends VectorCharacter {
         super();
         this.position = position;
         this.kind = 'grave';
-        this.lives = 3;
         this.widthHeight = [125, 50];
         this.color = 'grey';
+        this.lives = 3;
     }
 }
 //# sourceMappingURL=graves.js.map

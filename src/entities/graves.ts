@@ -2,10 +2,11 @@ import { Vector2 } from '../utilities/vectors.js';
 import { VectorCharacter } from './vector-character.js';
 
 export class Grave extends VectorCharacter {
-  public kind = 'grave';
-  public lives = 3;
-  public widthHeight: Vector2 = [125, 50];
-  public color = 'grey';
+  public readonly kind = 'grave';
+  public readonly widthHeight: Vector2 = [125, 50];
+  public readonly color = 'grey';
+
+  public readonly lives = 3;
 
   public constructor(public position: Vector2) {
     super();

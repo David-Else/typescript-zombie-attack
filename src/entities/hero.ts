@@ -6,10 +6,11 @@ import { entityFactory } from './factory.js';
 import { VectorCharacter } from './vector-character.js';
 
 export class Hero extends VectorCharacter {
-  public kind = 'hero';
+  public readonly kind = 'hero';
+  public readonly widthHeight: Vector2 = [25, 50];
+  public readonly color = 'red';
+
   public lives = 3;
-  public widthHeight: Vector2 = [25, 50];
-  public color = 'red';
   public firePaused = false;
   public numberOfBullets = 100;
 

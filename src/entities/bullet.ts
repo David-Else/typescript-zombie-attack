@@ -3,14 +3,16 @@ import { Vector2, vectors } from '../utilities/vectors.js';
 import { VectorCharacter } from './vector-character.js';
 
 export class Bullet extends VectorCharacter {
-  public kind = 'bullet';
-  public widthHeight: Vector2 = [6, 25];
-  public color = 'black';
-  public velocity: Vector2 = [2, -2];
-  public tweenVelocity: Vector2 = [0, 0];
+  public readonly kind = 'bullet';
+  public readonly color = 'black';
+
+  public readonly widthHeight: Vector2 = [6, 25];
+  public readonly velocity: Vector2 = [2, -2];
+
   // Add smoothstep
-  public totalFrames = 120;
+  public readonly totalFrames = 120;
   public frameCounter = 0;
+  public tweenVelocity: Vector2 = [0, 0];
 
   public constructor(public position: Vector2, public rotation: number) {
     super();
