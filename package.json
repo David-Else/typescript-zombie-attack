@@ -20,24 +20,35 @@
   "devDependencies": {
     "@ampproject/rollup-plugin-closure-compiler": "^0.12.1",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.12.5",
-    "@typescript-eslint/eslint-plugin": "^2.6.1",
-    "@typescript-eslint/parser": "^2.6.1",
+    "@types/node": "^12.12.7",
+    "@typescript-eslint/eslint-plugin": "^2.7.0",
+    "@typescript-eslint/parser": "^2.7.0",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-functional": "^1.0.0",
     "esm": "^3.2.25",
     "jsdom": "^15.2.1",
     "mocha": "^6.2.2",
-    "rollup": "^1.26.3",
+    "rollup": "^1.27.0",
     "tsc-watch": "^4.0.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.2"
   },
   "prettier": {
     "singleQuote": true,
     "proseWrap": "always",
     "trailingComma": "all",
     "quoteProps": "consistent"
+  },
+  "comments": {
+    "eslintConfig-rules-optional": [
+      "functional/immutable-data",
+      "functional/no-let",
+      "functional/prefer-readonly-type",
+      "functional/no-conditional-statement",
+      "functional/no-expression-statement",
+      "functional/no-loop-statement",
+      "functional/no-return-void"
+    ]
   },
   "eslintConfig": {
     "extends": [

@@ -30,7 +30,6 @@ export class Hero extends VectorCharacter {
     if (context.inGameKeys.leftPressed) {
       this.rotation -= 1;
     }
-
     if (!context.inGameKeys.firePressed) {
       this.firePaused = false;
     }
