@@ -4,7 +4,7 @@
 
 - `git clone https://github.com/David-Else/typescript-zombie-attack`
 - `npm` (or whatever package manager you use) `install`
-- Built the JavaScript to run in the browser using the NPM script `build`
+- Build the JavaScript to run in the browser using the NPM script `build`
 - Launch a dev server on `index.html` in the `dist` directory
 - **Kill zombies!**
 
