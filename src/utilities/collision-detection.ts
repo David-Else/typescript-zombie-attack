@@ -80,6 +80,7 @@ export function detectAndActOnCollisions4(context: GlobalState): void {
     context.entities.bullets.splice(indexTwo, 1);
   };
 
+  // This refactor went wrong, think again
   const groupsToCheck: (
     | Entity[]
     | ((index: number, indexTwo: number) => void)
@@ -101,21 +102,22 @@ export function detectAndActOnCollisions4(context: GlobalState): void {
     ]
   ];
 
-  groupsToCheck.forEach(groupParams => checkIfGroupsColliding(...groupParams));
+  // This refactor went wrong, think again
+  // groupsToCheck.forEach(groupParams => checkIfGroupsColliding(...groupParams));
 
-  // checkIfGroupsColliding(
-  //   [context.entities.hero],
-  //   context.entities.zombies,
-  //   heroZombieCollisionHandler,
-  // );
-  // checkIfGroupsColliding(
-  //   context.entities.zombies,
-  //   context.entities.bullets,
-  //   zombieBulletCollisionHandler,
-  // );
-  // checkIfGroupsColliding(
-  //   context.entities.graves,
-  //   context.entities.bullets,
-  //   graveBulletCollisionHandler,
-  // );
+  checkIfGroupsColliding(
+    [context.entities.hero],
+    context.entities.zombies,
+    heroZombieCollisionHandler
+  );
+  checkIfGroupsColliding(
+    context.entities.zombies,
+    context.entities.bullets,
+    zombieBulletCollisionHandler
+  );
+  checkIfGroupsColliding(
+    context.entities.graves,
+    context.entities.bullets,
+    graveBulletCollisionHandler
+  );
 }
