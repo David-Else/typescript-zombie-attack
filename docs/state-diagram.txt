@@ -1,0 +1,25 @@
+@startuml
+[*] --> Init
+note "interface State { transition(); keyHandler(); update();}" as N1
+Init : Setup Canvas and screen dimensions
+Init : Load assets
+
+
+Init -> StartScreen
+
+StartScreen -> LevelOne : Press 's'
+StartScreen : Display text
+
+LevelOne -> GameOver: Player dies
+LevelOne -> LevelTwo: Complete level
+
+LevelTwo -> GameOver : Player dies
+LevelTwo -> GameOver: Complete level
+
+GameOver -> HighScores: Wait 5s
+GameOver: Display text
+
+HighScores -> StartScreen
+HighScores: Enter high score
+HighScores: Save to browser or server
+@enduml

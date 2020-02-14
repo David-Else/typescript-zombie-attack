@@ -15,7 +15,7 @@ export interface Collidable {
  */
 export function checkCollision(
   character1: Collidable,
-  character2: Collidable,
+  character2: Collidable
 ): boolean {
   const left = character1.x;
   const right = character1.x + character1.widthHeight[0];
@@ -43,14 +43,14 @@ export function checkCollision(
 const checkIfGroupsColliding = (
   entitiesGroupOne: Entity[],
   entitiesGroupTwo: Entity[],
-  collisionHandler: (indexOne: number, indexTwo: number) => void,
+  collisionHandler: (indexOne: number, indexTwo: number) => void
 ): void => {
   entitiesGroupOne.forEach((entity, indexOne) =>
     entitiesGroupTwo.forEach((entityTwo, indexTwo) => {
       if (checkCollision(entity, entityTwo)) {
         collisionHandler(indexOne, indexTwo);
       }
-    }),
+    })
   );
 };
 
@@ -67,14 +67,14 @@ export function detectAndActOnCollisions4(context: GlobalState): void {
   };
   const zombieBulletCollisionHandler = (
     index: number,
-    indexTwo: number,
+    indexTwo: number
   ): void => {
     context.entities.zombies.splice(index, 1);
     context.entities.bullets.splice(indexTwo, 1);
   };
   const graveBulletCollisionHandler = (
     index: number,
-    indexTwo: number,
+    indexTwo: number
   ): void => {
     context.entities.graves.splice(index, 1);
     context.entities.bullets.splice(indexTwo, 1);
@@ -87,18 +87,18 @@ export function detectAndActOnCollisions4(context: GlobalState): void {
     [
       [context.entities.hero],
       context.entities.zombies,
-      heroZombieCollisionHandler,
+      heroZombieCollisionHandler
     ],
     [
       context.entities.zombies,
       context.entities.bullets,
-      zombieBulletCollisionHandler,
+      zombieBulletCollisionHandler
     ],
     [
       context.entities.graves,
       context.entities.bullets,
-      graveBulletCollisionHandler,
-    ],
+      graveBulletCollisionHandler
+    ]
   ];
 
   groupsToCheck.forEach(groupParams => checkIfGroupsColliding(...groupParams));

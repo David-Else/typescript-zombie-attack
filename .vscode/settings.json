@@ -1,17 +1,11 @@
 {
   "files.exclude": {
-    ".vscode": true,
-    "node_modules": true,
+    ".gitignore": true,
     "pnpm-lock.yaml": true,
-    "favicon.ico": true,
-    ".eslintcache": true,
-    "**/.gitignore": true
+    "node_modules/": true,
+    ".npmrc": true
   },
-  "spellright.language": ["English (British)"],
-  "spellright.documentTypes": [
-    "markdown",
-    "latex",
-    "plaintext"
-  ],
+  "deno.enable": false,
+  "deno.import_map": "import_map.json",
   "typescript.tsdk": "node_modules/typescript/lib"
 }

@@ -48,7 +48,7 @@ export class GlobalState {
   public sounds = {
     explosionSound: {} as HTMLAudioElement,
     invaderkilledSound: {} as HTMLAudioElement,
-    shootSound: {} as HTMLAudioElement,
+    shootSound: {} as HTMLAudioElement
   };
 
   public entities: EntitiesContainer = {
@@ -56,7 +56,7 @@ export class GlobalState {
     zombies: [],
     bullets: [],
     graves: [],
-    screenText: [],
+    screenText: []
   };
 
   public score = 0;
@@ -66,7 +66,7 @@ export class GlobalState {
     firePressed: false,
     leftPressed: false,
     rightPressed: false,
-    pausePressed: false,
+    pausePressed: false
   };
   /**
    * ==========================================================================
@@ -75,7 +75,7 @@ export class GlobalState {
    */
   public constructor(
     private levelState: StatePattern,
-    public ctx: CanvasRenderingContext2D,
+    public ctx: CanvasRenderingContext2D
   ) {}
 
   /**
@@ -89,13 +89,13 @@ export class GlobalState {
       context.sounds.invaderkilledSound,
       context.sounds.shootSound,
       Zombie.imagesToLoad[0],
-      context.gameData,
+      context.gameData
     ] = await Promise.all([
       load.loadAudio('./assets/explosion.wav'),
       load.loadAudio('./assets/invaderkilled.wav'),
       load.loadAudio('./assets/shoot.wav'),
       load.loadImage('./assets/zombie64-final.png'),
-      load.loadJSON<GameData>('src/game-data.json'),
+      load.loadJSON<GameData>('./game-data.json')
     ]);
 
     context.transition();
