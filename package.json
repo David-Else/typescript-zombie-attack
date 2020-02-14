@@ -1,7 +1,7 @@
 {
-  "name": "app",
+  "name": "zombie-attack",
   "version": "1.0.0",
-  "description": "Hybrid Typescript template with Deno and Rollup bundling support",
+  "description": "Arcade quality thrilling game written in TypeScript",
   "type": "module",
   "main": "src/mod.ts",
   "scripts": {
@@ -12,7 +12,7 @@
     "lint": "npm run clear-console && eslint --cache --ext .ts src/",
     "clear-console": "deno eval \"console.clear()\"",
     "copy-build-files": "cp -r src/{main.css,index.html,game-data.json} assets/ dist",
-    "clean-build_dir": "rm -r dist/*"
+    "clean-build-dir": "rm -r dist/*"
   },
   "author": "https://www.elsewebdevelopment.com/",
   "license": "gpl-3.0",
