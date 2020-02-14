@@ -1,7 +1,7 @@
-import { GlobalState } from '../states/global-state.js';
-import { Vector2, vectors } from '../utilities/vectors.js';
-import { velocityTowards } from '../utilities/velocity-towards.js';
-import { EntityBaseClass } from './base-class.js';
+import { GlobalState } from "../states/global-state.js";
+import { Vector2, vectors } from "../utilities/vectors.js";
+import { velocityTowards } from "../utilities/velocity-towards.js";
+import { EntityBaseClass } from "./base-class.js";
 
 /**
  * ============================================================================

@@ -12,5 +12,5 @@ export const tween = {
   smoothStepSquared: (x: number) => (x * x * (3 - 2 * x)) ** 2,
   smoothStepCubed: (x: number) => (x * x * (3 - 2 * x)) ** 3,
   weightedAverage: (p: number, d: number, w: number) => (p * (w - 1) + d) / w,
-  quartic: (k: number) => 1 - --k * k * k * k,
+  quartic: (k: number) => 1 - --k * k * k * k
 };

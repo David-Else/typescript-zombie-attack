@@ -1,7 +1,7 @@
-import { ScreenText } from '../entities/text.js';
-import { Base } from './base-class.js';
-import { GlobalState, InGameKeys, StatePattern } from './global-state.js';
-import { LevelOne } from './level-one.js';
+import { ScreenText } from "../entities/text.js";
+import { Base } from "./base-class.js";
+import { GlobalState, InGameKeys, StatePattern } from "./global-state.js";
+import { LevelOne } from "./level-one.js";
 
 export class StartScreen extends Base implements StatePattern {
   public constructor(globalState: GlobalState) {
@@ -9,15 +9,15 @@ export class StartScreen extends Base implements StatePattern {
     globalState.entities.screenText = [
       new ScreenText({
         ctx: globalState.ctx,
-        text: 'Welcome\nTo\nZombie Game\ns to start\np to pause',
+        text: "Welcome\nTo\nZombie Game\ns to start\np to pause",
         position: [
           globalState.ctx.canvas.width / 2,
-          globalState.ctx.canvas.height / 2,
+          globalState.ctx.canvas.height / 2
         ],
-        textColor: 'red',
-        font: 'Helvetica Neue',
-        fontSize: 80,
-      }),
+        textColor: "red",
+        font: "Helvetica Neue",
+        fontSize: 80
+      })
     ];
   }
 
@@ -26,8 +26,8 @@ export class StartScreen extends Base implements StatePattern {
   }
 
   public keyHandler(event: KeyboardEvent, inGameKeys: InGameKeys): void {
-    if (event.code === 'KeyS') {
-      inGameKeys.startPressed = event.type === 'keydown';
+    if (event.code === "KeyS") {
+      inGameKeys.startPressed = event.type === "keydown";
     }
   }
 

@@ -1,7 +1,7 @@
-import { ScreenText } from '../entities/text.js';
-import { Base } from './base-class.js';
-import { GlobalState, StatePattern } from './global-state.js';
-import { StartScreen } from './start-screen.js';
+import { ScreenText } from "../entities/text.js";
+import { Base } from "./base-class.js";
+import { GlobalState, StatePattern } from "./global-state.js";
+import { StartScreen } from "./start-screen.js";
 
 export class LevelTwo extends Base implements StatePattern {
   public constructor(globalState: GlobalState) {
@@ -9,12 +9,12 @@ export class LevelTwo extends Base implements StatePattern {
     globalState.entities.screenText = [
       new ScreenText({
         ctx: globalState.ctx,
-        text: '',
+        text: "",
         position: [100, 50],
-        textColor: 'red',
-        font: 'Helvetica Neue',
-        fontSize: 24,
-      }),
+        textColor: "red",
+        font: "Helvetica Neue",
+        fontSize: 24
+      })
     ];
 
     // const middleOfScreen = (ctx: CanvasRenderingContext2D): Vector2 => [
@@ -35,7 +35,7 @@ export class LevelTwo extends Base implements StatePattern {
   }
 
   public transition(context: GlobalState): void {
-    console.log('context.State = new Init();');
+    console.log("context.State = new Init();");
     context.State = new StartScreen(context);
   }
 

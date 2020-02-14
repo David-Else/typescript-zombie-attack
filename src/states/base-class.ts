@@ -1,5 +1,5 @@
-import { Drawable } from '../entities/base-class.js';
-import { GlobalState, InGameKeys } from './global-state.js';
+import { Drawable } from "../entities/base-class.js";
+import { GlobalState, InGameKeys } from "./global-state.js";
 
 export abstract class Base {
   public update(globalState: GlobalState): void {
@@ -7,7 +7,7 @@ export abstract class Base {
       0,
       0,
       globalState.ctx.canvas.width,
-      globalState.ctx.canvas.height,
+      globalState.ctx.canvas.height
     );
 
     // Object.keys(context.entities).forEach(characterGroup =>
@@ -42,19 +42,19 @@ export abstract class Base {
 
   public keyHandler(event: KeyboardEvent, inGameKeys: InGameKeys): void {
     switch (event.code) {
-      case 'KeyF':
-        inGameKeys.firePressed = event.type === 'keydown';
+      case "KeyF":
+        inGameKeys.firePressed = event.type === "keydown";
         break;
-      case 'ArrowLeft':
+      case "ArrowLeft":
         event.preventDefault();
-        inGameKeys.leftPressed = event.type === 'keydown';
+        inGameKeys.leftPressed = event.type === "keydown";
         break;
-      case 'ArrowRight':
+      case "ArrowRight":
         event.preventDefault();
-        inGameKeys.rightPressed = event.type === 'keydown';
+        inGameKeys.rightPressed = event.type === "keydown";
         break;
-      case 'KeyP':
-        if (event.type === 'keydown' && !event.repeat) {
+      case "KeyP":
+        if (event.type === "keydown" && !event.repeat) {
           inGameKeys.pausePressed = !inGameKeys.pausePressed;
         }
         break;

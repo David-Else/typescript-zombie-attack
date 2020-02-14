@@ -1,10 +1,10 @@
-import { tween } from '../utilities/tween.js';
-import { Vector2, vectors } from '../utilities/vectors.js';
-import { VectorCharacter } from './vector-character.js';
+import { tween } from "../utilities/tween.js";
+import { Vector2, vectors } from "../utilities/vectors.js";
+import { VectorCharacter } from "./vector-character.js";
 
 export class Bullet extends VectorCharacter {
-  public readonly kind = 'bullet';
-  public readonly color = 'black';
+  public readonly kind = "bullet";
+  public readonly color = "black";
 
   public readonly widthHeight: Vector2 = [6, 25];
   public readonly velocity: Vector2 = [2, -2];
@@ -26,7 +26,7 @@ export class Bullet extends VectorCharacter {
     }
     this.position = vectors.add(this.position, [
       this.tweenVelocity[0] * Math.sin(this.rotation * (Math.PI / 180)),
-      this.tweenVelocity[1] * Math.cos(this.rotation * (Math.PI / 180)),
+      this.tweenVelocity[1] * Math.cos(this.rotation * (Math.PI / 180))
     ]);
   }
 
@@ -36,7 +36,7 @@ export class Bullet extends VectorCharacter {
     const curvedTime = tween.smoothStepSquared(normalizedTime);
     this.tweenVelocity = vectors.add(
       this.velocity,
-      vectors.multiply([curvedTime, curvedTime], this.velocity),
+      vectors.multiply([curvedTime, curvedTime], this.velocity)
     );
     // Add 1 to the frame counter
     this.frameCounter += 1;

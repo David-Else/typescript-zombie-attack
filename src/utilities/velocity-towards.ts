@@ -1,4 +1,4 @@
-import { Vector2 } from './vectors';
+import { Vector2 } from "./vectors";
 
 /**
  * ==========================================================================
@@ -8,7 +8,7 @@ import { Vector2 } from './vectors';
 export function velocityTowards(
   currentPosition: Vector2,
   targetPosition: Vector2,
-  speed: number,
+  speed: number
 ): Vector2 {
   // compute delta between the source point and the destination point
   const dx = targetPosition[0] - currentPosition[0];

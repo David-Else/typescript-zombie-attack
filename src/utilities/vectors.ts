@@ -28,5 +28,5 @@ export const vectors = {
   },
   get right(): Vector2 {
     return [1, 0];
-  },
+  }
 };

@@ -42,5 +42,5 @@ export const load = {
           resolve(body);
         });
     });
-  },
+  }
 };

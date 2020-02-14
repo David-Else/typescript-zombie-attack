@@ -1,14 +1,14 @@
-import { Entity, GlobalState } from '../states/global-state.js';
-import { Vector2, vectors } from '../utilities/vectors.js';
-import { Bullet } from './bullet.js';
-import { entityFactory } from './factory.js';
+import { Entity, GlobalState } from "../states/global-state.js";
+import { Vector2, vectors } from "../utilities/vectors.js";
+import { Bullet } from "./bullet.js";
+import { entityFactory } from "./factory.js";
 // import { instantiate } from './factory.js';
-import { VectorCharacter } from './vector-character.js';
+import { VectorCharacter } from "./vector-character.js";
 
 export class Hero extends VectorCharacter {
-  public readonly kind = 'hero';
+  public readonly kind = "hero";
   public readonly widthHeight: Vector2 = [25, 50];
-  public readonly color = 'red';
+  public readonly color = "red";
 
   public lives = 3;
   public firePaused = false;
@@ -47,8 +47,8 @@ export class Hero extends VectorCharacter {
           Bullet,
           1,
           centerOfEntityScreenPosition(this),
-          this.rotation,
-        ),
+          this.rotation
+        )
       );
       this.numberOfBullets -= 1;
     }

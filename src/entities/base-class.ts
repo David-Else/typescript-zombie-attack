@@ -1,5 +1,5 @@
-import { GlobalState } from '../states/global-state.js';
-import { Vector2 } from '../utilities/vectors.js';
+import { GlobalState } from "../states/global-state.js";
+import { Vector2 } from "../utilities/vectors.js";
 
 export interface Drawable {
   updatePosition(context?: GlobalState): void;

@@ -1,4 +1,4 @@
-import { Vector2 } from './vectors';
+import { Vector2 } from "./vectors";
 
 // =========================================================================
 // Random
@@ -10,5 +10,5 @@ export const random = {
     const theta = Math.random() * (2 * Math.PI);
     const r = Math.random() * variationInR + minimumR;
     return [Math.cos(theta) * r + point[0], Math.sin(theta) * r + point[1]];
-  },
+  }
 };

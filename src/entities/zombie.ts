@@ -1,11 +1,11 @@
-import { GlobalState } from '../states/global-state.js';
-import { random } from '../utilities/random.js';
-import { Vector2, vectors } from '../utilities/vectors.js';
-import { BitmapCharacter } from './bitmap-character.js';
+import { GlobalState } from "../states/global-state.js";
+import { random } from "../utilities/random.js";
+import { Vector2, vectors } from "../utilities/vectors.js";
+import { BitmapCharacter } from "./bitmap-character.js";
 
 export class Zombie extends BitmapCharacter {
   public static readonly imagesToLoad: HTMLImageElement[] = [];
-  public readonly kind = 'zombie';
+  public readonly kind = "zombie";
   public readonly widthHeight: Vector2;
   public readonly image: HTMLImageElement;
 
@@ -25,7 +25,7 @@ export class Zombie extends BitmapCharacter {
     // this.randomStumble();
     this.position = vectors.add(
       this.position,
-      vectors.multiply(this.velocity, slowDownFactor),
+      vectors.multiply(this.velocity, slowDownFactor)
     );
   }
   // doesn't do much!

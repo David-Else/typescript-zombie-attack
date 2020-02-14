@@ -1,6 +1,6 @@
-import { Base } from './base-class.js';
-import { GlobalState, StatePattern } from './global-state.js';
-import { StartScreen } from './start-screen.js';
+import { Base } from "./base-class.js";
+import { GlobalState, StatePattern } from "./global-state.js";
+import { StartScreen } from "./start-screen.js";
 
 export class Init extends Base implements StatePattern {
   private runAsyncInitFunctionOnce = false; // HACK?

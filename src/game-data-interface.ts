@@ -1,4 +1,4 @@
-import { Vector2 } from './utilities/vectors';
+import { Vector2 } from "./utilities/vectors";
 
 // https://jvilk.com/MakeTypes/
 

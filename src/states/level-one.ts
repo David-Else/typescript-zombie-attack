@@ -1,12 +1,12 @@
-import { entityFactory } from '../entities/factory.js';
-import { Grave } from '../entities/graves.js';
-import { Hero } from '../entities/hero.js';
-import { ScreenText } from '../entities/text.js';
-import { Zombie } from '../entities/zombie.js';
-import { Vector2 } from '../utilities/vectors.js';
-import { Base } from './base-class.js';
-import { GlobalState, StatePattern } from './global-state.js';
-import { LevelTwo } from './level-two.js';
+import { entityFactory } from "../entities/factory.js";
+import { Grave } from "../entities/graves.js";
+import { Hero } from "../entities/hero.js";
+import { ScreenText } from "../entities/text.js";
+import { Zombie } from "../entities/zombie.js";
+import { Vector2 } from "../utilities/vectors.js";
+import { Base } from "./base-class.js";
+import { GlobalState, StatePattern } from "./global-state.js";
+import { LevelTwo } from "./level-two.js";
 
 export class LevelOne extends Base implements StatePattern {
   public constructor(globalState: GlobalState) {
@@ -16,13 +16,13 @@ export class LevelOne extends Base implements StatePattern {
     globalState.entities.screenText = [
       new ScreenText({
         ctx: globalState.ctx,
-        text: '',
+        text: "",
         position: [100, 50],
-        textAlignment: 'left',
-        textColor: 'black',
-        font: 'Helvetica Neue',
-        fontSize: 24,
-      }),
+        textAlignment: "left",
+        textColor: "black",
+        font: "Helvetica Neue",
+        fontSize: 24
+      })
     ];
 
     // if the hero does not exist, or has live === 0,  make him
@@ -30,7 +30,7 @@ export class LevelOne extends Base implements StatePattern {
     if (!globalState.entities.hero.lives) {
       const heroObject = entityFactory(Hero, 1, [
         globalState.ctx.canvas.width / 2,
-        globalState.ctx.canvas.height / 2,
+        globalState.ctx.canvas.height / 2
       ]);
       globalState.entities.hero = heroObject[0];
       // globalState.entities.hero = entityFactory(Hero, 1, [
@@ -43,8 +43,8 @@ export class LevelOne extends Base implements StatePattern {
     globalState.entities.zombies.push(
       ...entityFactory(Zombie, numberOfZombies, Zombie.imagesToLoad[0], [
         globalState.ctx.canvas.width / 2,
-        globalState.ctx.canvas.height / 2,
-      ]),
+        globalState.ctx.canvas.height / 2
+      ])
     );
 
     const gravesPos: Vector2 | null | undefined =
@@ -58,7 +58,7 @@ export class LevelOne extends Base implements StatePattern {
   }
 
   public transition(context: GlobalState): void {
-    console.log('context.State = new Level 2;');
+    console.log("context.State = new Level 2;");
     context.State = new LevelTwo(context);
   }
 
