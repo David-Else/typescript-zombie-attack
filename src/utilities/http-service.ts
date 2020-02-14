@@ -26,7 +26,7 @@
 //   },
 // ];
 
-////
+//
 
 interface Hiscore {
   name: string;

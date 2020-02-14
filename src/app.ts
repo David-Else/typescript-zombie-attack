@@ -14,7 +14,7 @@ import { Vector2 } from './utilities/vectors.js';
  * Calculate the maximum screen size available within a fixed ratio
  * ============================================================================
  */
-function toFixedScreenRatio(
+export function toFixedScreenRatio(
   currentWidth: number,
   currentHeight: number,
   targetWidthToHeight: number,
