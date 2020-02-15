@@ -6,13 +6,13 @@
   "main": "src/mod.ts",
   "scripts": {
     "deno-run": "deno run --allow-all --importmap=./import_map.json src/mod.ts",
-    "deno-test": "npm run clear-console && deno test --allow-all --importmap=./import_map.json test/*",
-    "build": "npm run copy-build-files && rollup -c",
-    "build-watch": "npm run copy-build-files && rollup -cw",
-    "lint": "npm run clear-console && eslint --cache --ext .ts src/",
-    "clear-console": "deno eval \"console.clear()\"",
-    "copy-build-files": "cp -r src/{main.css,index.html,game-data.json} assets/ dist",
-    "clean-build-dir": "rm -r dist/*"
+    "deno-test": "npm run _clear-console && deno test --allow-all --importmap=./import_map.json test/*",
+    "build": "npm run _copy-build-files && rollup -c",
+    "build-watch": "npm run _copy-build-files && rollup -cw",
+    "build-clean-dist": "rm -r dist/*",
+    "lint": "npm run _clear-console && eslint --cache --ext .ts src/",
+    "_copy-build-files": "cp -r src/{main.css,index.html,game-data.json} assets/ dist",
+    "_clear-console": "deno eval \"console.clear()\""
   },
   "author": "https://www.elsewebdevelopment.com/",
   "license": "gpl-3.0",
