@@ -5,7 +5,7 @@ import { Hero } from "../entities/hero.js";
 import { ScreenText } from "../entities/text.js";
 import { Zombie } from "../entities/zombie.js";
 import { GameData } from "../game-data-interface.js";
-import { load } from "../utilities/loader.js";
+import { loadImage, loadAudio, loadJSON } from "../utilities/loader.js";
 
 /**
  * ==========================================================================
@@ -91,11 +91,11 @@ export class GlobalState {
       Zombie.imagesToLoad[0],
       context.gameData
     ] = await Promise.all([
-      load.loadAudio("./assets/explosion.wav"),
-      load.loadAudio("./assets/invaderkilled.wav"),
-      load.loadAudio("./assets/shoot.wav"),
-      load.loadImage("./assets/zombie64-final.png"),
-      load.loadJSON<GameData>("./game-data.json")
+      loadAudio("./assets/explosion.wav"),
+      loadAudio("./assets/invaderkilled.wav"),
+      loadAudio("./assets/shoot.wav"),
+      loadImage("./assets/zombie64-final.png"),
+      loadJSON<GameData>("./game-data.json")
     ]);
 
     context.transition();

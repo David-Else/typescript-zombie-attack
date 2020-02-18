@@ -1,1 +1,1 @@
-export { assertEquals } from 'testing/asserts.ts';
+export { assertEquals, assertThrowsAsync } from "testing/asserts.ts";
