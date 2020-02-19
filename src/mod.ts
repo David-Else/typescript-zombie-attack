@@ -1,8 +1,8 @@
-import { GlobalState } from "./states/global-state.js";
-import { Init } from "./states/init.js";
-import { assert } from "./utilities/assert.js";
+import { GlobalState } from "./states/global-state";
+import { Init } from "./states/init";
+import { assert } from "./utilities/assert";
 // import { detectAndActOnCollisions4 } from "./utilities/collision-detection.js";
-import { Vector2 } from "./utilities/vectors.js";
+import { Vector2 } from "./utilities/vectors";
 
 // /**
 //  * ============================================================================
@@ -79,7 +79,7 @@ const globalState = new GlobalState(new Init(), ctx); // is this place for ctx?!
 //   ZombieGraphicsComponent,
 //   ZombiePhysicsComponent
 // } from "./components";
-import { createPerson, createZombie, createZombie2 } from "./new-test-pattern";
+import { createHero, createZombie, createBullet } from "./new-test-pattern";
 import { random } from "./utilities/random";
 import { vectors } from "./utilities/vectors.js";
 import { World } from "./world";
@@ -158,16 +158,16 @@ let testZombie: HTMLImageElement;
 async function tz() {
   [testZombie] = await Promise.all([loadImage("./assets/zombie64-final.png")]);
 
-  const person = createPerson(ctx, [100, 20]);
-  const zombie = createZombie(ctx, [80, 20]);
-  const zombie2 = createZombie2(ctx, testZombie, [120, 50]);
+  const hero = createHero(ctx, [100, 20]);
+  const bullet = createBullet(ctx, [10, 10]);
+  const zombie = createZombie(ctx, testZombie, [120, 50]);
 
   function gameLoop(): void {
     requestAnimationFrame(gameLoop);
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    hero.update();
+    bullet.update();
     zombie.update();
-    person.update();
-    zombie2.update();
   }
   gameLoop();
 }

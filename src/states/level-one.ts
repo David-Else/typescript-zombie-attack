@@ -1,12 +1,12 @@
-import { entityFactory } from "../entities/factory.js";
-import { Grave } from "../entities/graves.js";
-import { Hero } from "../entities/hero.js";
-import { ScreenText } from "../entities/text.js";
-import { Zombie } from "../entities/zombie.js";
-import { Vector2 } from "../utilities/vectors.js";
-import { Base } from "./base-class.js";
-import { GlobalState, StatePattern } from "./global-state.js";
-import { LevelTwo } from "./level-two.js";
+import { entityFactory } from "../entities/factory";
+import { Grave } from "../entities/graves";
+import { Hero } from "../entities/hero";
+import { ScreenText } from "../entities/text";
+import { Zombie } from "../entities/zombie";
+import { Vector2 } from "../utilities/vectors";
+import { Base } from "./base-class";
+import { GlobalState, StatePattern } from "./global-state";
+// import { LevelTwo } from "./level-two";
 
 export class LevelOne extends Base implements StatePattern {
   public constructor(globalState: GlobalState) {
@@ -59,7 +59,7 @@ export class LevelOne extends Base implements StatePattern {
 
   public transition(context: GlobalState): void {
     console.log("context.State = new Level 2;");
-    context.State = new LevelTwo(context);
+    // context.State = new LevelTwo(context);
   }
 
   public update(context: GlobalState): void {

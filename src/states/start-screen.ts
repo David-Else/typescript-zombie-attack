@@ -1,7 +1,7 @@
-import { ScreenText } from "../entities/text.js";
-import { Base } from "./base-class.js";
-import { GlobalState, InGameKeys, StatePattern } from "./global-state.js";
-import { LevelOne } from "./level-one.js";
+import { ScreenText } from "../entities/text";
+import { Base } from "./base-class";
+import { GlobalState, InGameKeys, StatePattern } from "./global-state";
+import { LevelOne } from "./level-one";
 
 export class StartScreen extends Base implements StatePattern {
   public constructor(globalState: GlobalState) {

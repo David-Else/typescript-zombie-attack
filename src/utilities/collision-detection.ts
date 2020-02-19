@@ -1,6 +1,6 @@
-import { Entity, GlobalState } from "../states/global-state.js";
-import { LevelOne } from "../states/level-one.js";
-import { Vector2 } from "./vectors.js";
+import { Entity, GlobalState } from "../states/global-state";
+import { LevelOne } from "../states/level-one";
+import { Vector2 } from "./vectors";
 
 export interface Collidable {
   x: number;

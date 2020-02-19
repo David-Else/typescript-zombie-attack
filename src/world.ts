@@ -1,5 +1,5 @@
-import { GameObject } from "./components.js";
-import { loadImage, loadAudio, loadJSON } from "../src/utilities/loader.js";
+import { GameObject } from "./components";
+import { loadImage, loadAudio, loadJSON } from "../src/utilities/loader";
 
 /**
  * ============================================================================

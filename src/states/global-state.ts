@@ -1,11 +1,11 @@
-import { Drawable } from "../entities/base-class.js";
-import { Bullet } from "../entities/bullet.js";
-import { Grave } from "../entities/graves.js";
-import { Hero } from "../entities/hero.js";
-import { ScreenText } from "../entities/text.js";
-import { Zombie } from "../entities/zombie.js";
-import { GameData } from "../game-data-interface.js";
-import { loadImage, loadAudio, loadJSON } from "../utilities/loader.js";
+import { Drawable } from "../entities/base-class";
+import { Bullet } from "../entities/bullet";
+import { Grave } from "../entities/graves";
+import { Hero } from "../entities/hero";
+import { ScreenText } from "../entities/text";
+import { Zombie } from "../entities/zombie";
+import { GameData } from "../game-data-interface";
+import { loadImage, loadAudio, loadJSON } from "../utilities/loader";
 
 /**
  * ==========================================================================
@@ -95,7 +95,7 @@ export class GlobalState {
       loadAudio("./assets/invaderkilled.wav"),
       loadAudio("./assets/shoot.wav"),
       loadImage("./assets/zombie64-final.png"),
-      loadJSON<GameData>("./game-data.json")
+      loadJSON<GameData>("./game-dataon")
     ]);
 
     context.transition();

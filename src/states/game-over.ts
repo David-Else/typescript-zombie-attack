@@ -1,7 +1,7 @@
-import { ScreenText } from "../entities/text.js";
-import { Base } from "./base-class.js";
-import { GlobalState, StatePattern } from "./global-state.js";
-import { Init } from "./init.js";
+import { ScreenText } from "../entities/text";
+import { Base } from "./base-class";
+import { GlobalState, StatePattern } from "./global-state";
+import { Init } from "./init";
 
 export class GameOver extends Base implements StatePattern {
   public constructor(globalState: GlobalState) {

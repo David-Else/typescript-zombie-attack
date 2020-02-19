@@ -1,6 +1,6 @@
-import { Vector2, vectors } from "./utilities/vectors.js";
-import { velocityTowards } from "./utilities/velocity-towards.js";
-import { World } from "./world.js";
+import { Vector2, vectors } from "./utilities/vectors";
+import { velocityTowards } from "./utilities/velocity-towards";
+import { World } from "./world";
 
 interface EntityComponentCtor {
   new (): any;

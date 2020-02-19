@@ -1,5 +1,5 @@
-import { Drawable } from "../entities/base-class.js";
-import { GlobalState, InGameKeys } from "./global-state.js";
+import { Drawable } from "../entities/base-class";
+import { GlobalState, InGameKeys } from "./global-state";
 
 export abstract class Base {
   public update(globalState: GlobalState): void {

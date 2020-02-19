@@ -1,4 +1,4 @@
-import { Vector2 } from "./utilities/vectors.js";
+import { Vector2 } from "./utilities/vectors";
 
 interface Delegate {
   update(): void;
@@ -132,7 +132,7 @@ class KeyboardInputable implements Delegate {
   };
 }
 
-export const createPerson = (
+export const createHero = (
   ctx: CanvasRenderingContext2D,
   position: Vector2
 ): Entity => {
@@ -142,26 +142,32 @@ export const createPerson = (
   return new Entity(rectangleRenderable, keyboardInputable);
 };
 
-export const createZombie = (
+export const createBullet = (
   ctx: CanvasRenderingContext2D,
   position: Vector2
 ): Entity => {
-  const positionable = new Positionable(position, 10, 10, 0);
+  const width = 5;
+  const height = 10;
+  const rotation = 33;
+  const positionable = new Positionable(position, width, height, rotation);
   const rectangleRenderable = new RectangleRenderable(
     ctx,
-    "green",
+    "black",
     positionable
   );
-
-  return new Entity(rectangleRenderable);
+  const keyboardInputable = new KeyboardInputable(positionable);
+  return new Entity(rectangleRenderable, keyboardInputable);
 };
 
-export const createZombie2 = (
+export const createZombie = (
   ctx: CanvasRenderingContext2D,
   image: HTMLImageElement,
   position: Vector2
 ): Entity => {
-  const positionable = new Positionable(position, 10, 10, 0);
+  const width = 10;
+  const height = 10;
+  const rotation = 0;
+  const positionable = new Positionable(position, width, height, rotation);
   const bitmapRenderable = new BitmapRenderable(ctx, image, positionable);
 
   return new Entity(bitmapRenderable);
