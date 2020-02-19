@@ -66,7 +66,7 @@ class Positionable {
 class BitmapRenderable implements Delegate {
   constructor(
     private ctx: CanvasRenderingContext2D,
-    private image: HTMLImageElement,
+    private image: HTMLImageElement, // Needs to be async
     private readonly positionable: Positionable
   ) {}
   public update(): void {
