@@ -1,4 +1,4 @@
-import { Vector2 } from "./utilities/vectors";
+import { Vector2, vectors } from "./utilities/vectors";
 
 interface Delegate {
   update(): void;
@@ -18,17 +18,48 @@ class Entity {
   }
 }
 
+class DirectTowardsable implements Delegate {
+  constructor(
+    private targetPosition: Vector2,
+    private speed: number,
+    private readonly positionable: Positionable
+  ) {}
+  public update(): void {
+    const { position } = this.positionable;
+
+    // compute delta between the source point and the destination point
+    const dx = this.targetPosition[0] - position[0];
+    const dy = this.targetPosition[1] - position[1];
+
+    // compute the angle between the two points
+    const angle = Math.atan2(dy, dx);
+
+    // return the velocity vector through magnitude (speed) and the angle
+
+    this.positionable.velocity = [
+      this.speed * Math.cos(angle),
+      this.speed * Math.sin(angle)
+    ];
+    this.positionable.position = vectors.add(
+      this.positionable.position,
+      this.positionable.velocity
+    );
+  }
+}
+
 class Positionable {
   constructor(
     public position: Vector2,
     public width: number,
     public height: number,
-    public rotation: number
+    public rotation: number,
+    public velocity: Vector2
   ) {
     this.position = position;
     this.width = width;
     this.height = height;
     this.rotation = rotation;
+    this.velocity = velocity;
   }
 }
 
@@ -136,7 +167,7 @@ export const createHero = (
   ctx: CanvasRenderingContext2D,
   position: Vector2
 ): Entity => {
-  const positionable = new Positionable(position, 25, 50, 33);
+  const positionable = new Positionable(position, 25, 50, 33, [0, 0]);
   const rectangleRenderable = new RectangleRenderable(ctx, "red", positionable);
   const keyboardInputable = new KeyboardInputable(positionable);
   return new Entity(rectangleRenderable, keyboardInputable);
@@ -149,7 +180,11 @@ export const createBullet = (
   const width = 5;
   const height = 10;
   const rotation = 33;
-  const positionable = new Positionable(position, width, height, rotation);
+
+  const positionable = new Positionable(position, width, height, rotation, [
+    0,
+    0
+  ]);
   const rectangleRenderable = new RectangleRenderable(
     ctx,
     "black",
@@ -167,8 +202,13 @@ export const createZombie = (
   const width = 10;
   const height = 10;
   const rotation = 0;
-  const positionable = new Positionable(position, width, height, rotation);
-  const bitmapRenderable = new BitmapRenderable(ctx, image, positionable);
 
-  return new Entity(bitmapRenderable);
+  const positionable = new Positionable(position, width, height, rotation, [
+    0,
+    0
+  ]);
+  const bitmapRenderable = new BitmapRenderable(ctx, image, positionable);
+  const directTowardsable = new DirectTowardsable([500, 500], 1, positionable);
+
+  return new Entity(bitmapRenderable, directTowardsable);
 };
