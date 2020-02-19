@@ -1,17 +1,4 @@
-({
-  plugins: ["jsdom-quokka-plugin"],
-  jsdom: { file: "./index.html" }
-});
-
-const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
-const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
-
-type Vector2 = [number, number];
-
-class World {
-  public example = "hello";
-}
-const world = new World();
+import { Vector2 } from "./utilities/vectors.js";
 
 interface Delegate {
   update(): void;
@@ -42,6 +29,18 @@ class Positionable {
     this.width = width;
     this.height = height;
     this.rotation = rotation;
+  }
+}
+
+class BitmapRenderable implements Delegate {
+  constructor(
+    private ctx: CanvasRenderingContext2D,
+    private image: HTMLImageElement, // Needs to be async
+    private readonly positionable: Positionable
+  ) {}
+  public update(): void {
+    const { position } = this.positionable;
+    this.ctx.drawImage(this.image, position[0], position[1]);
   }
 }
 
@@ -155,4 +154,15 @@ export const createZombie = (
   );
 
   return new Entity(rectangleRenderable);
+};
+
+export const createZombie2 = (
+  ctx: CanvasRenderingContext2D,
+  image: HTMLImageElement,
+  position: Vector2
+): Entity => {
+  const positionable = new Positionable(position, 10, 10, 0);
+  const bitmapRenderable = new BitmapRenderable(ctx, image, positionable);
+
+  return new Entity(bitmapRenderable);
 };

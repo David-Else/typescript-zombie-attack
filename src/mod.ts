@@ -1,5 +1,5 @@
-// import { GlobalState } from "./states/global-state.js";
-// import { Init } from "./states/init.js";
+import { GlobalState } from "./states/global-state.js";
+import { Init } from "./states/init.js";
 import { assert } from "./utilities/assert.js";
 // import { detectAndActOnCollisions4 } from "./utilities/collision-detection.js";
 import { Vector2 } from "./utilities/vectors.js";
@@ -34,7 +34,7 @@ assert(
 );
 const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
-// const globalState = new GlobalState(new Init(), ctx); // is this place for ctx?!
+const globalState = new GlobalState(new Init(), ctx); // is this place for ctx?!
 
 // [canvas.width, canvas.height] = toFixedScreenRatio(
 //   window.innerWidth,
@@ -71,18 +71,20 @@ const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
  * ============================================================================
  */
 
-import {
-  GameObject,
-  HeroGraphicsComponent,
-  HeroInputComponent,
-  HeroPhysicsComponent,
-  ZombieGraphicsComponent,
-  ZombiePhysicsComponent
-} from "./components";
-import { createPerson, createZombie } from "./new-test-pattern";
+// import {
+//   GameObject,
+//   HeroGraphicsComponent,
+//   HeroInputComponent,
+//   HeroPhysicsComponent,
+//   ZombieGraphicsComponent,
+//   ZombiePhysicsComponent
+// } from "./components";
+import { createPerson, createZombie, createZombie2 } from "./new-test-pattern";
 import { random } from "./utilities/random";
 import { vectors } from "./utilities/vectors.js";
 import { World } from "./world";
+import { Zombie } from "./entities/zombie.js";
+import { loadImage } from "./utilities/loader.js";
 
 // async function game(): Promise<void> {
 //   /**
@@ -151,20 +153,22 @@ import { World } from "./world";
 // }
 // game();
 
-const person = createPerson(ctx, [100, 20]);
-const zombie = createZombie(ctx, [80, 20]);
-const zombie2 = createZombie(ctx, [80, 20]);
+let testZombie: HTMLImageElement;
 
-zombie.update();
-person.update();
+async function tz() {
+  [testZombie] = await Promise.all([loadImage("./assets/zombie64-final.png")]);
 
-console.log(zombie.update === person.update);
-console.log(zombie.update === zombie2.update);
+  const person = createPerson(ctx, [100, 20]);
+  const zombie = createZombie(ctx, [80, 20]);
+  const zombie2 = createZombie2(ctx, testZombie, [120, 50]);
 
-function gameLoop(): void {
-  requestAnimationFrame(gameLoop);
-  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-  zombie.update();
-  person.update();
+  function gameLoop(): void {
+    requestAnimationFrame(gameLoop);
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    zombie.update();
+    person.update();
+    zombie2.update();
+  }
+  gameLoop();
 }
-gameLoop();
+tz();
