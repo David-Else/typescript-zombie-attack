@@ -66,7 +66,7 @@ class Positionable {
 class BitmapRenderable implements Delegate {
   constructor(
     private ctx: CanvasRenderingContext2D,
-    private image: HTMLImageElement, // Needs to be async
+    private image: HTMLImageElement,
     private readonly positionable: Positionable
   ) {}
   public update(): void {
@@ -168,9 +168,11 @@ export const createHero = (
   position: Vector2
 ): Entity => {
   const positionable = new Positionable(position, 25, 50, 33, [0, 0]);
-  const rectangleRenderable = new RectangleRenderable(ctx, "red", positionable);
-  const keyboardInputable = new KeyboardInputable(positionable);
-  return new Entity(rectangleRenderable, keyboardInputable);
+
+  return new Entity(
+    new RectangleRenderable(ctx, "red", positionable),
+    new KeyboardInputable(positionable)
+  );
 };
 
 export const createBullet = (
@@ -180,18 +182,15 @@ export const createBullet = (
   const width = 5;
   const height = 10;
   const rotation = 33;
-
   const positionable = new Positionable(position, width, height, rotation, [
     0,
     0
   ]);
-  const rectangleRenderable = new RectangleRenderable(
-    ctx,
-    "black",
-    positionable
+
+  return new Entity(
+    new RectangleRenderable(ctx, "black", positionable),
+    new KeyboardInputable(positionable)
   );
-  const keyboardInputable = new KeyboardInputable(positionable);
-  return new Entity(rectangleRenderable, keyboardInputable);
 };
 
 export const createZombie = (
@@ -202,13 +201,13 @@ export const createZombie = (
   const width = 10;
   const height = 10;
   const rotation = 0;
-
   const positionable = new Positionable(position, width, height, rotation, [
     0,
     0
   ]);
-  const bitmapRenderable = new BitmapRenderable(ctx, image, positionable);
-  const directTowardsable = new DirectTowardsable([500, 500], 1, positionable);
 
-  return new Entity(bitmapRenderable, directTowardsable);
+  return new Entity(
+    new BitmapRenderable(ctx, image, positionable),
+    new DirectTowardsable([500, 500], 1, positionable)
+  );
 };
