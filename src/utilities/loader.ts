@@ -6,7 +6,8 @@
 export function loadImage(filePath: string): Promise<HTMLImageElement> {
   const imageElement = new Image();
   imageElement.src = filePath;
-
+  // we don't seem to need to explicity type HTMLImageElement anymore
+  // https://www.reddit.com/r/typescript/comments/bhlb1e/please_help_me_understand_typing_a_simple_promise/
   return new Promise<HTMLImageElement>((resolve, reject) => {
     imageElement.onload = () => resolve(imageElement);
     imageElement.onerror = reject;
