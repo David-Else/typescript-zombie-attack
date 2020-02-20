@@ -161,24 +161,7 @@ async function tz() {
   const hero = createHero({ ctx, position: [100, 20] });
   const bullet = createBullet({ ctx, position: [10, 10] });
   const zombie = createZombie({ ctx, image: testZombie, position: [120, 50] });
-  // console.log(JSON.stringify(hero, null, 2));
-  //
 
-  // serialize.js
-
-  let replacer = (key: any, value: { toString: () => any }) => {
-    // if we get a function give us the code for that function
-    if (typeof value === "function") {
-      return value.toString();
-    }
-    return value;
-  }; // get a stringified version of our object
-  // and indent the keys at 2 spaces
-  const serialized = JSON.stringify(hero, replacer, 2);
-
-  console.log(serialized);
-
-  //
   function gameLoop(): void {
     requestAnimationFrame(gameLoop);
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
