@@ -26,8 +26,8 @@ class Entity {
 
 class BitmapRenderable implements Delegate {
   constructor(
-    private ctx: CanvasRenderingContext2D,
-    private image: HTMLImageElement, // Needs to be async
+    private readonly ctx: CanvasRenderingContext2D,
+    private readonly image: HTMLImageElement, // Needs to be async
     private readonly positionable: Positionable
   ) {}
   public update(): void {
@@ -68,8 +68,8 @@ class RectangleRenderable implements Delegate {
  */
 class DirectTowardsable implements Delegate {
   constructor(
-    private targetPosition: Vector2,
-    private speed: number,
+    private readonly targetPosition: Vector2,
+    private readonly speed: number,
     private readonly positionable: Positionable
   ) {}
   public update(): void {
