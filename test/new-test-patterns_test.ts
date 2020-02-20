@@ -1,10 +1,29 @@
 import { assertEquals, assert } from "../deps.ts";
 import { EventObserver } from "../src/EventObserver.ts";
+
 /**
  * SUBSCRIBE UNSUBSCRIBE
  */
 Deno.test({
-  name: "SUBSCRIBE UNSUBSCRIBE",
+  name: "SUBSCRIBE",
+  fn(): void {
+    // Arrange
+    const observer = new EventObserver();
+    const fn = () => {};
+
+    // Act
+    observer.subscribe(fn);
+
+    // Assert
+    assertEquals(observer.observers.length, 1);
+  }
+});
+
+/**
+ * SUBSCRIBE UNSUBSCRIBE
+ */
+Deno.test({
+  name: "UNSUBSCRIBE",
   fn(): void {
     // Arrange
     const observer = new EventObserver();
