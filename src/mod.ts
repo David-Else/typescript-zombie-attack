@@ -158,9 +158,9 @@ let testZombie: HTMLImageElement;
 async function tz() {
   [testZombie] = await Promise.all([loadImage("./assets/zombie64-final.png")]);
 
-  const hero = createHero(ctx, [100, 20]);
-  const bullet = createBullet(ctx, [10, 10]);
-  const zombie = createZombie(ctx, testZombie, [120, 50]);
+  const hero = createHero({ ctx, position: [100, 20] });
+  const bullet = createBullet({ ctx, position: [10, 10] });
+  const zombie = createZombie({ ctx, image: testZombie, position: [120, 50] });
 
   function gameLoop(): void {
     requestAnimationFrame(gameLoop);

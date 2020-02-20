@@ -23,11 +23,10 @@ class Entity {
  * Graphic components
  * ============================================================================
  */
-
 class BitmapRenderable implements Delegate {
   constructor(
     private readonly ctx: CanvasRenderingContext2D,
-    private readonly image: HTMLImageElement, // Needs to be async
+    private readonly image: HTMLImageElement,
     private readonly positionable: Positionable
   ) {}
   public update(): void {
@@ -184,22 +183,32 @@ class KeyboardInputable implements Delegate {
  * Entity constructors
  * ============================================================================
  */
-export const createHero = (
-  ctx: CanvasRenderingContext2D,
-  position: Vector2
-): Entity => {
-  const positionable = new Positionable(position, 25, 50, 33, [0, 0]);
 
+/**
+ * Hero
+ */
+interface CreateHeroParam {
+  ctx: CanvasRenderingContext2D;
+  position: Vector2;
+}
+
+export const createHero = ({ ctx, position }: CreateHeroParam): Entity => {
+  const positionable = new Positionable(position, 25, 50, 33, [0, 0]);
   return new Entity(
     new RectangleRenderable(ctx, "red", positionable),
     new KeyboardInputable(positionable)
   );
 };
 
-export const createBullet = (
-  ctx: CanvasRenderingContext2D,
-  position: Vector2
-): Entity => {
+/**
+ * Bullet
+ */
+interface CreateBulletParam {
+  ctx: CanvasRenderingContext2D;
+  position: Vector2;
+}
+
+export const createBullet = ({ ctx, position }: CreateBulletParam): Entity => {
   const width = 5;
   const height = 10;
   const rotation = 33;
@@ -207,18 +216,26 @@ export const createBullet = (
     0,
     0
   ]);
-
   return new Entity(
     new RectangleRenderable(ctx, "black", positionable),
     new KeyboardInputable(positionable)
   );
 };
 
-export const createZombie = (
-  ctx: CanvasRenderingContext2D,
-  image: HTMLImageElement,
-  position: Vector2
-): Entity => {
+/**
+ * Zombie
+ */
+interface CreateZombieParam {
+  ctx: CanvasRenderingContext2D;
+  image: HTMLImageElement;
+  position: Vector2;
+}
+
+export const createZombie = ({
+  ctx,
+  image,
+  position
+}: CreateZombieParam): Entity => {
   const width = 10;
   const height = 10;
   const rotation = 0;
@@ -226,7 +243,6 @@ export const createZombie = (
     0,
     0
   ]);
-
   return new Entity(
     new BitmapRenderable(ctx, image, positionable),
     new DirectTowardsable([500, 500], 1, positionable)
