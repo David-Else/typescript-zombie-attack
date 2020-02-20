@@ -1,3 +1,4 @@
+import { EventObserver } from "../src/EventObserver";
 import { Vector2, vectors } from "./utilities/vectors";
 
 interface Delegate {
@@ -93,7 +94,9 @@ class DirectTowardsable implements Delegate {
     );
   }
 }
-
+/**
+ * this is not a delegate... it is shared state that can be pushed inside a delegate
+ */
 class Positionable {
   constructor(
     public position: Vector2,
