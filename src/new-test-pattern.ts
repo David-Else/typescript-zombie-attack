@@ -216,10 +216,7 @@ export const createBullet = ({ ctx, position }: CreateBulletParam): Entity => {
     0,
     0
   ]);
-  return new Entity(
-    new RectangleRenderable(ctx, "black", positionable),
-    new KeyboardInputable(positionable)
-  );
+  return new Entity(new RectangleRenderable(ctx, "black", positionable));
 };
 
 /**
