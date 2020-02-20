@@ -1,15 +1,31 @@
 import { EventObserver } from "../src/EventObserver";
 import { Vector2, vectors } from "./utilities/vectors";
 
+const entityEventObserver = new EventObserver();
+// entityEventObserver.subscribe((data: any) => console.log(data));
+
+const afunction = (data: any) => console.log(data);
+
+entityEventObserver.subscribe(afunction);
+// entityEventObserver.subscribe(() => console.log("foff"));
+
+// entityEventObserver.broadcast("buggeroff");
+
+// entityEventObserver.unsubscribe(() => console.log("foff"));
+
+entityEventObserver.broadcast("main level");
+
 interface Delegate {
   update(): void;
 }
 
 class Entity {
   private readonly delegates: Delegate[];
+  public entityEventObserver: EventObserver;
 
   constructor(...delegates: Delegate[]) {
     this.delegates = delegates;
+    this.entityEventObserver = new EventObserver();
   }
 
   public update(): void {
