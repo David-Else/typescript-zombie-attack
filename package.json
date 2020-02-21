@@ -21,8 +21,8 @@
     "@typescript-eslint/parser": "^2.20.0",
     "eslint": "^6.8.0",
     "rollup": "^1.31.1",
-    "tslib": "^1.10.0",
-    "typescript": "^3.8.1-rc"
+    "tslib": "^1.11.0",
+    "typescript": "^3.8.2"
   },
   "dependencies": {
     "tplant": "^2.3.3"
