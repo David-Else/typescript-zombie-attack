@@ -39,7 +39,7 @@ export class World {
     hero: [],
     zombies: [],
     bullets: [],
-    graves: [],
+    // graves: [],
     screenText: []
   };
 

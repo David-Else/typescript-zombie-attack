@@ -211,10 +211,8 @@ async function tz() {
   function gameLoop(): void {
     requestAnimationFrame(gameLoop);
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    world.entities.hero[0].update();
-    world.entities.bullets[0].update();
-    world.entities.zombies[0].update();
-    world.entities.screenText[0].update();
+    // test to check there is one in the array :)
+    Object.entries(world.entities).forEach(([key, value]) => value[0].update());
   }
   gameLoop();
 }
