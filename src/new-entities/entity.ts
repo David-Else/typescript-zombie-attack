@@ -3,6 +3,23 @@ export interface Delegate {
 }
 
 /**
+ * Entity - a container for delegate objects that give 'has a' functionality using composition
+ */
+export class Entity {
+  private readonly delegates: Delegate[];
+
+  constructor(...delegates: Delegate[]) {
+    this.delegates = delegates;
+  }
+
+  public update(): void {
+    for (const delegate of this.delegates) {
+      delegate.update();
+    }
+  }
+}
+
+/**
  * ============================================================================
  * World
  * ============================================================================
@@ -66,21 +83,4 @@ export class World {
   //     // load.loadJSON<GameData>('src/game-data.json'),
   //   ]);
   // }
-}
-
-/**
- * Entity - a container for delegate objects that give 'has a' functionality using composition
- */
-export class Entity {
-  private readonly delegates: Delegate[];
-
-  constructor(...delegates: Delegate[]) {
-    this.delegates = delegates;
-  }
-
-  public update(): void {
-    for (const delegate of this.delegates) {
-      delegate.update();
-    }
-  }
 }

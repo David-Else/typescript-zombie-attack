@@ -89,6 +89,7 @@ import { createHero } from "./new-entities/hero";
 import { createBullet } from "./new-entities/bullet";
 import { createZombie } from "./new-entities/zombie";
 import { GameObject } from "./components";
+import { createText } from "./new-entities/text";
 
 // async function game(): Promise<void> {
 //   /**
@@ -196,6 +197,16 @@ async function tz() {
   world.entities["bullets"].push(
     ...[...Array(1)].map(() => createBullet({ ctx, position: [10, 10] }))
   );
+  world.entities["screenText"].push(
+    ...[...Array(1)].map(() =>
+      createText({
+        ctx,
+        position: [25, 15],
+        text: `hello!!
+    new line`
+      })
+    )
+  );
 
   function gameLoop(): void {
     requestAnimationFrame(gameLoop);
@@ -203,6 +214,7 @@ async function tz() {
     world.entities.hero[0].update();
     world.entities.bullets[0].update();
     world.entities.zombies[0].update();
+    world.entities.screenText[0].update();
   }
   gameLoop();
 }
