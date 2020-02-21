@@ -88,7 +88,7 @@ import { loadImage } from "./utilities/loader.js";
 import { createHero } from "./new-entities/hero";
 import { createBullet } from "./new-entities/bullet";
 import { createZombie } from "./new-entities/zombie";
-import { GameObject } from "./components";
+// import { GameObject } from "./components";
 import { createText } from "./new-entities/text";
 
 // async function game(): Promise<void> {
