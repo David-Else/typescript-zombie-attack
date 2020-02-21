@@ -27,14 +27,14 @@ export function toFixedScreenRatio(
 //  * Global variables
 //  * ============================================================================
 //  */
-const canvas = document.getElementById("game-canvas");
-assert(
-  canvas instanceof HTMLCanvasElement,
-  `Element is null/undefined or not a HTMLCanvasElement.`
-);
-const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+// const canvas = document.getElementById("game-canvas");
+// assert(
+//   canvas instanceof HTMLCanvasElement,
+//   `Element is null/undefined or not a HTMLCanvasElement.`
+// );
+// const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
-const globalState = new GlobalState(new Init(), ctx); // is this place for ctx?!
+// const globalState = new GlobalState(new Init(), ctx); // is this place for ctx?!
 
 // [canvas.width, canvas.height] = toFixedScreenRatio(
 //   window.innerWidth,
@@ -79,12 +79,16 @@ const globalState = new GlobalState(new Init(), ctx); // is this place for ctx?!
 //   ZombieGraphicsComponent,
 //   ZombiePhysicsComponent
 // } from "./components";
-import { createHero, createZombie, createBullet } from "./new-test-pattern";
+// import { createHero, createZombie, createBullet } from "./new-test-pattern";
 import { random } from "./utilities/random";
 import { vectors } from "./utilities/vectors.js";
-import { World } from "./world";
+import { World, Entity } from "./new-entities/entity";
 import { Zombie } from "./entities/zombie.js";
 import { loadImage } from "./utilities/loader.js";
+import { createHero } from "./new-entities/hero";
+import { createBullet } from "./new-entities/bullet";
+import { createZombie } from "./new-entities/zombie";
+import { GameObject } from "./components";
 
 // async function game(): Promise<void> {
 //   /**
@@ -156,18 +160,49 @@ import { loadImage } from "./utilities/loader.js";
 let testZombie: HTMLImageElement;
 
 async function tz() {
+  const canvas = document.getElementById("game-canvas");
+  assert(
+    canvas instanceof HTMLCanvasElement,
+    `Element is null/undefined or not a HTMLCanvasElement.`
+  );
+  const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+  /**
+   * ============================================================================
+   * Create entities in the world using its built in factory
+   * ============================================================================
+   */
+
+  const world = new World();
+  const middleOfCanvas = () =>
+    vectors.divide([canvas.width, canvas.height], [2, 2]);
+  const randomPositionAroundMiddle = () =>
+    random.positionAroundPoint(middleOfCanvas());
+
+  // world.entityFactory(GameObject, "hero", 1, { ctx, position: [100, 20] });
   [testZombie] = await Promise.all([loadImage("./assets/zombie64-final.png")]);
 
-  const hero = createHero({ ctx, position: [100, 20] });
-  const bullet = createBullet({ ctx, position: [10, 10] });
-  const zombie = createZombie({ ctx, image: testZombie, position: [120, 50] });
+  world.entities["hero"].push(
+    ...[...Array(1)].map(() => createHero({ ctx, position: [100, 20] }))
+  );
+  world.entities["zombies"].push(
+    ...[...Array(50)].map(() =>
+      createZombie({
+        ctx,
+        image: testZombie,
+        position: [10, 10]
+      })
+    )
+  );
+  world.entities["bullets"].push(
+    ...[...Array(1)].map(() => createBullet({ ctx, position: [10, 10] }))
+  );
 
   function gameLoop(): void {
     requestAnimationFrame(gameLoop);
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    hero.update();
-    bullet.update();
-    zombie.update();
+    world.entities.hero[0].update();
+    world.entities.bullets[0].update();
+    world.entities.zombies[0].update();
   }
   gameLoop();
 }
