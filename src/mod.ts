@@ -182,30 +182,34 @@ async function tz() {
   // world.entityFactory(GameObject, "hero", 1, { ctx, position: [100, 20] });
   [testZombie] = await Promise.all([loadImage("./assets/zombie64-final.png")]);
 
-  world.entities["hero"].push(
-    ...[...Array(1)].map(() => createHero({ ctx, position: [100, 20] }))
+  function pushToWorld(
+    entity: Entity,
+    homeArray: keyof World["entities"], // not working!
+    numberOf: number
+  ) {
+    world.entities[homeArray].push(...[...Array(numberOf)].map(() => entity));
+  }
+
+  pushToWorld(createHero({ ctx, position: [100, 20] }), "hero", 1);
+  pushToWorld(
+    createZombie({
+      ctx,
+      image: testZombie,
+      position: [10, 10]
+    }),
+    "zombies",
+    50
   );
-  world.entities["zombies"].push(
-    ...[...Array(50)].map(() =>
-      createZombie({
-        ctx,
-        image: testZombie,
-        position: [10, 10]
-      })
-    )
-  );
-  world.entities["bullets"].push(
-    ...[...Array(1)].map(() => createBullet({ ctx, position: [10, 10] }))
-  );
-  world.entities["screenText"].push(
-    ...[...Array(1)].map(() =>
-      createText({
-        ctx,
-        position: [25, 15],
-        text: `hello!!
-    new line`
-      })
-    )
+  pushToWorld(createBullet({ ctx, position: [10, 10] }), "bullets", 1);
+  pushToWorld(
+    createText({
+      ctx,
+      position: [25, 15],
+      text: `hello!!
+new line`
+    }),
+    "screenText",
+    1
   );
 
   function gameLoop(): void {
