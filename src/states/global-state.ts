@@ -27,12 +27,12 @@ export interface InGameKeys {
 }
 
 export interface EntitiesContainer {
+  [key: string]: Drawable[] | Drawable;
   hero: Hero;
   zombies: Zombie[];
   bullets: Bullet[];
   graves: Grave[];
   screenText: ScreenText[];
-  [key: string]: Drawable[] | Drawable;
 }
 
 export type Entity = Hero | Zombie | Bullet | Grave;

@@ -7,6 +7,6 @@
   },
   "deno.enable": false,
   "deno.import_map": "import_map.json",
-  "eslint.enable": false,
+  "eslint.enable": true,
   "typescript.tsdk": "node_modules/typescript/lib"
 }

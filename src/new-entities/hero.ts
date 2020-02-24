@@ -2,7 +2,7 @@ import { Entity } from "./entity";
 import { Positionable } from "../components/positionable";
 import { RectangleRenderable } from "../components/rectangle-renderable";
 import { KeyboardInputable } from "../components/keyboard-inputable";
-import { Vector2 } from "../utilities/vectors";
+import type { Vector2 } from "../utilities/vectors";
 
 /**
  * Hero

@@ -184,7 +184,7 @@ async function tz() {
 
   function pushToWorld(
     entity: Entity,
-    homeArray: keyof World["entities"], // not working!
+    homeArray: keyof World["entities"], // not working! remove index sig it works, but other stuff needs assertion
     numberOf: number
   ) {
     world.entities[homeArray].push(...[...Array(numberOf)].map(() => entity));

@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { assertEquals, assert } from "../deps.ts";
-import { EventObserver } from "../src/EventObserver.ts";
+import { PubSub } from "../src/EventObserver.ts";
 
 /**
  * SUBSCRIBE UNSUBSCRIBE
@@ -8,14 +9,14 @@ Deno.test({
   name: "SUBSCRIBE",
   fn(): void {
     // Arrange
-    const observer = new EventObserver();
+    const observer = new PubSub();
     const fn = () => {};
 
     // Act
     observer.subscribe(fn);
 
     // Assert
-    assertEquals(observer.observers.length, 1);
+    assertEquals(observer.handlers.size, 1);
   }
 });
 
@@ -26,7 +27,7 @@ Deno.test({
   name: "UNSUBSCRIBE",
   fn(): void {
     // Arrange
-    const observer = new EventObserver();
+    const observer = new PubSub();
     const fn = () => {};
     observer.subscribe(fn);
 
@@ -34,7 +35,7 @@ Deno.test({
     observer.unsubscribe(fn);
 
     // Assert
-    assertEquals(observer.observers.length, 0);
+    assertEquals(observer.handlers.size, 0);
   }
 });
 
@@ -45,13 +46,14 @@ Deno.test({
   name: "BROADCAST",
   fn(): void {
     // Arrange
-    const observer = new EventObserver();
+    const observer = new PubSub();
     let subscriberHasBeenCalled = false;
-    const fn = data => (subscriberHasBeenCalled = data);
+    // eslint-disable-next-line no-return-assign
+    const fn = (data: any) => (subscriberHasBeenCalled = data);
     observer.subscribe(fn);
 
     // Act
-    observer.broadcast(true);
+    observer.emit(true);
 
     // Assert
     assert(subscriberHasBeenCalled);
